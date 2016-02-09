@@ -28,6 +28,14 @@ public class GameWindow {
         this.root.show();
     }
 
+    public void close() {
+        this.root.getStage().close();
+    }
+
+    public Stage getStage() {
+        return this.root.getStage();
+    }
+
     public Context getContext() {
         return this.root;
     }

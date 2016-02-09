@@ -20,6 +20,10 @@ public class Context {
         return this;
     }
 
+    public Stage getStage() {
+        return this.currentStage;
+    }
+
     public Context setController(MediableController controller) {
         this.currentController = controller;
         return this;

@@ -1,23 +1,35 @@
 package controller;
 
+import javafx.scene.control.TextField;
+
+import javax.xml.soap.Text;
+import java.util.List;
+
 /**
  * Created by Gandalf on 8/2/2016.
  */
 public class ConfigurationMediator implements Mediator {
-    private FirstController controller1;
-    private ConfigurationController controller2;
+    private FirstController parentController;
+    private ConfigurationController subController;
 
-    public void setControllers(MediableController controller1, MediableController controller2) {
-        this.controller1 = (FirstController) controller1;
-        this.controller2 = (ConfigurationController) controller2;
+    public void setControllers(MediableController parentController, MediableController subController) {
+        this.parentController = (FirstController) parentController;
+        this.subController = (ConfigurationController) subController;
     }
 
     public MediableController getFirstController() {
-        return this.controller1;
+        return this.parentController;
     }
 
     public MediableController getSecondController() {
-        return this.controller2;
+        return this.subController;
+    }
+
+    public void rootControllerSetData(List<String> userNames) {
+        for(String name: userNames)
+            System.out.println(name);
+
+        this.parentController.initGameUI();
     }
 
     public void printMediator() {

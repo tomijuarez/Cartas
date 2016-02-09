@@ -38,12 +38,12 @@ public class FirstController extends MediableController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comenzarJuego.setOnAction((event)-> {
-            Modal subWindow = new Modal("layouts/configurationView.fxml", new ConfigurationController(), new Stage(), event);
+            Modal subWindow = new Modal("layouts/configurationView.fxml", new ConfigurationController(), new Stage(), this.context);
             this.context.setChild(subWindow, new ConfigurationMediator());
         });
 
         crearMazo.setOnAction((event)->{
-            Modal mazoWindow = new Modal("layouts/secondView.fxml", new SecondController(), new Stage(), event);
+            Modal mazoWindow = new Modal("layouts/secondView.fxml", new SecondController(), new Stage(), this.context);
             this.context.setChild(mazoWindow, new RegisterMediator());
         });
         /*
@@ -54,7 +54,7 @@ public class FirstController extends MediableController implements Initializable
     }
 
     public void initGameUI() {
-        Modal subWindow = new Modal("layouts/GameView.fxml", new GameController(), new Stage(), event);
+        Modal subWindow = new Modal("layouts/GameView.fxml", new GameController(), new Stage(), this.context);
         this.context.setChild(subWindow, new GameMediator());
     }
 

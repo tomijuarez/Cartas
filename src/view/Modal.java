@@ -16,15 +16,15 @@ public class Modal extends GameWindow {
 
     private Stage stage;
 
-    public Modal(String view, MediableController controller, Stage stage, ActionEvent event) {
+    public Modal(String view, MediableController controller, Stage stage, GameWindow parent) {
         super(view, controller, stage);
         this.stage = stage;
         stage.initModality(Modality.APPLICATION_MODAL);
-        this.blockParent(event);
+        this.blockParent(parent.getStage());
     }
 
-    public void blockParent(ActionEvent event) {
-        this.stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+    public void blockParent(Stage stage) {
+        this.stage.initOwner(stage);
     }
 
 }
