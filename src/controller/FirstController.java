@@ -8,12 +8,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Jugador;
+import model.Mazo;
 import view.Context;
 import view.GameWindow;
 import view.Modal;
 
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -29,6 +32,9 @@ public class FirstController extends MediableController implements Initializable
     private Button crearCartas;
 
     private Mediator mediator;
+
+    private Mazo mazo;
+    private List<Jugador> players;
 
     @Override
     public void setMediator(Mediator mediator) {
@@ -56,6 +62,11 @@ public class FirstController extends MediableController implements Initializable
     public void initGameUI() {
         Modal subWindow = new Modal("layouts/GameView.fxml", new GameController(), new Stage(), this.context);
         this.context.setChild(subWindow, new GameMediator());
+    }
+
+    public void setGameArtifacts(List<Jugador> players, Mazo mazo) {
+        this.players = players;
+        this.mazo = mazo;
     }
 
     private void showCardsCreatorPane() {
