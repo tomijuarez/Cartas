@@ -11,13 +11,13 @@ import java.util.Vector;
 /**
  * Created by Gandalf on 8/2/2016.
  */
-public class ConfigurationMediator implements Mediator {
+public class DeckSelectorMediator implements Mediator {
     private FirstController parentController;
-    private ConfigurationController subController;
+    private DeckSelectorController subController;
 
     public void setControllers(MediableController parentController, MediableController subController) {
         this.parentController = (FirstController) parentController;
-        this.subController = (ConfigurationController) subController;
+        this.subController = (DeckSelectorController) subController;
     }
 
     public MediableController getFirstController() {
@@ -28,17 +28,7 @@ public class ConfigurationMediator implements Mediator {
         return this.subController;
     }
 
-    public void rootControllerSetData(List<String> userNames) {
-        List<Jugador> players = new Vector<>();
-        for(String name: userNames) {
-            //Jugador player = new Jugador();
-            //players.add(player);
-            System.out.println(name);
-        }
-
-        this.parentController.setGameArtifacts(players);
-    }
-
+    @Override
     public void printMediator() {
 
     }

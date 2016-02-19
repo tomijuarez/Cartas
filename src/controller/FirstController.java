@@ -13,6 +13,7 @@ import model.Mazo;
 import view.Context;
 import view.GameWindow;
 import view.Modal;
+import view.model.DeckView;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -49,8 +50,12 @@ public class FirstController extends MediableController implements Initializable
         });
 
         crearMazo.setOnAction((event)->{
-            Modal mazoWindow = new Modal("layouts/secondView.fxml", new SecondController(), new Stage(), this.context);
-            this.context.setChild(mazoWindow, new RegisterMediator());
+
+            Modal deckSelector = new Modal("layouts/deckSelector.fxml", new DeckSelectorController(), new Stage(), this.context);
+            this.context.setChild(deckSelector, new DeckSelectorMediator());
+
+            /*Modal mazoWindow = new Modal("layouts/secondView.fxml", new SecondController(), new Stage(), this.context);
+            this.context.setChild(mazoWindow, new RegisterMediator());*/
         });
         /*
         crearCartas.setOnAction((event)->{
@@ -60,13 +65,18 @@ public class FirstController extends MediableController implements Initializable
     }
 
     public void initGameUI() {
+
+        Modal malletSelector = new Modal("layouts/deckSelector.fxml", new DeckSelectorController(), new Stage(), this.context);
+        this.context.setChild(malletSelector, new DeckSelectorMediator());
+
+        /*
         Modal subWindow = new Modal("layouts/GameView.fxml", new GameController(), new Stage(), this.context);
         this.context.setChild(subWindow, new GameMediator());
+        */
     }
 
-    public void setGameArtifacts(List<Jugador> players, Mazo mazo) {
+    public void setGameArtifacts(List<Jugador> players) {
         this.players = players;
-        this.mazo = mazo;
     }
 
     private void showCardsCreatorPane() {
