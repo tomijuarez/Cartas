@@ -50,7 +50,13 @@ public class XMLDataParser implements DataParser {
 		String[] array;
 		File file = new File(directory);
 		array = file.list();
-		return array.length;
+		if(array != null){
+			return array.length;
+		}
+		else{
+			return 0;
+		}
+
 	}
 	
 }

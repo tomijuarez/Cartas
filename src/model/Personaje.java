@@ -1,18 +1,27 @@
 package model;
 
+import java.io.IOException;
 import java.util.*;
+
+import java.nio.file.*;
 
 public class Personaje extends PersonajeAbstracto {
 	private String nombreReal;
 	private Hashtable<String,Double> atributos;
 	
-	public Personaje(String real,String ficticio){
+	public Personaje(String ficticio,String real,String imagePath){
 		this.setNombreReal(real);
 		super.setNombreFicticio(ficticio);
-		this.atributos = new Hashtable<String,Double>();
-		
+		this.atributos = new Hashtable<String, Double>();
+		Path pathOrigin = Paths.get(imagePath);
+		Path pathTarget = Paths.get(super.getImagePath());
+		try {
+			Files.copy( pathOrigin, pathTarget,StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			System.out.printf("Error al guardar Imagen");
+		}
 	}
-	
+
 	public void agregarAtributo(String nombre,double atrib){
 		Double valor = new Double(atrib);
 		this.atributos.put(nombre,valor); 

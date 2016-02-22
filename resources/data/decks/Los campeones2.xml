@@ -1,0 +1,18 @@
+<model.MazoSave>
+  <nombre>Los campeones2</nombre>
+  <ids>
+    <string>13</string>
+    <string>14</string>
+    <string>15</string>
+    <string>16</string>
+    <string>17</string>
+    <string>18</string>
+    <string>19</string>
+    <string>20</string>
+    <string>21</string>
+    <string>22</string>
+    <string>23</string>
+    <string>24</string>
+  </ids>
+  <atributos/>
+</model.MazoSave>

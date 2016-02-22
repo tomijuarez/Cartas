@@ -1,0 +1,47 @@
+<model.Carta>
+  <changed>false</changed>
+  <obs/>
+  <id>10</id>
+  <personaje class="model.Personaje">
+    <nombreFicticio>Flecha Verde</nombreFicticio>
+    <nombreReal>Oliver Jonas Queen</nombreReal>
+    <atributos>
+      <entry>
+        <string>Destreza</string>
+        <double>8.5</double>
+      </entry>
+      <entry>
+        <string>Peso</string>
+        <double>86.5</double>
+      </entry>
+      <entry>
+        <string>Inteligencia</string>
+        <double>95.5</double>
+      </entry>
+      <entry>
+        <string>Velocidad</string>
+        <double>220.0</double>
+      </entry>
+      <entry>
+        <string>Bondad</string>
+        <double>98.5</double>
+      </entry>
+      <entry>
+        <string>Maldad</string>
+        <double>0.0</double>
+      </entry>
+      <entry>
+        <string>Fuerza</string>
+        <double>710.0</double>
+      </entry>
+    </atributos>
+  </personaje>
+  <atributos>
+    <string>Fuerza</string>
+    <string>Velocidad</string>
+    <string>Destreza</string>
+    <string>Inteligencia</string>
+    <string>Peso</string>
+    <string>Bondad</string>
+  </atributos>
+</model.Carta>

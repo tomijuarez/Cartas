@@ -6,15 +6,13 @@ import java.util.*;
 import java.util.Observable;
 
 public class Carta extends Observable {
-	
-    static int contador = 0;
+	private static final String imagePath = "file:/resources/images";
     private int id ;
     private PersonajeAbstracto personaje;
 	private List<String> atributos;
 	
 	public Carta(PersonajeAbstracto pers){
-		contador += 1;
-		setId(contador);
+
 		this.personaje = pers;
 		this.atributos = new ArrayList<>();	
 	}

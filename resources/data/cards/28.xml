@@ -1,0 +1,48 @@
+<model.Carta>
+  <changed>false</changed>
+  <obs/>
+  <id>28</id>
+  <personaje class="model.Personaje">
+    <nombreFicticio>Wolverine</nombreFicticio>
+    <nombreReal>James Hudson Howlett</nombreReal>
+    <atributos>
+      <entry>
+        <string>Destreza</string>
+        <double>9.0</double>
+      </entry>
+      <entry>
+        <string>Peso</string>
+        <double>81.0</double>
+      </entry>
+      <entry>
+        <string>Inteligencia</string>
+        <double>96.0</double>
+      </entry>
+      <entry>
+        <string>Velocidad</string>
+        <double>215.0</double>
+      </entry>
+      <entry>
+        <string>Bondad</string>
+        <double>98.0</double>
+      </entry>
+      <entry>
+        <string>Maldad</string>
+        <double>2.0</double>
+      </entry>
+      <entry>
+        <string>Fuerza</string>
+        <double>900.0</double>
+      </entry>
+    </atributos>
+  </personaje>
+  <atributos>
+    <string>Fuerza</string>
+    <string>Velocidad</string>
+    <string>Maldad</string>
+    <string>Destreza</string>
+    <string>Inteligencia</string>
+    <string>Peso</string>
+    <string>Bondad</string>
+  </atributos>
+</model.Carta>

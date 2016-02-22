@@ -5,8 +5,8 @@ import java.util.*;
 
 public class MazoPrincipal extends Mazo{
 
-	public MazoPrincipal(){
-		super("");
+	public MazoPrincipal(String nombre){
+		super(nombre);
 	}
 	
 	public List<MazoJugador> repartir(int cantJugadores){
