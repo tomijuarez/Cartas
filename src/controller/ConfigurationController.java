@@ -4,9 +4,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import model.DifficultStrategy;
+import model.EasyStrategy;
+import model.Estrategia;
+import model.MediumStrategy;
 
 import java.net.URL;
 import java.util.List;
@@ -23,21 +25,45 @@ public class ConfigurationController extends MediableController implements Initi
     @FXML
     private TextField playerInputName1;
     @FXML
+    private ToggleButton playerModality1;
+
+    @FXML
     private TextField playerInputName2;
+    @FXML
+    private ToggleButton playerModality2;
+
     @FXML
     private TextField playerInputName3;
     @FXML
+    private ToggleButton playerModality3;
+
+    @FXML
     private TextField playerInputName4;
+    @FXML
+    private ToggleButton playerModality4;
+
+    @FXML
+    private ToggleGroup levelSelection;
+
+    @FXML
+    private RadioButton easyLevel;
+    @FXML
+    private RadioButton mediumLevel;
+    @FXML
+    private RadioButton difficultLevel;
+
+
     @FXML
     private Button acceptButton;
 
     private List<TextField> listedTextFields = new Vector<>();
+    private List<ToggleButton> listedToggleButtons = new Vector<>();
 
-    private String mazo;
     private List<String> userNames = new Vector<>();
+    private List<Boolean> managedManually = new Vector<>();
+    Estrategia selectedStrategy;
 
     private int playersNum = 0;
-
     private ConfigurationMediator mediator;
 
 
@@ -45,16 +71,30 @@ public class ConfigurationController extends MediableController implements Initi
     public void initialize(URL url, ResourceBundle rb) {
 
         this.listTextFields();
+        this.listToggleButtons();
 
         this.setTextFieldsEvents();
+        this.setToggleButtonsEvents();
 
         this.addPlayerButton.setOnAction((event)->{
             this.addPlayer();
         });
 
+        this.easyLevel.setOnAction((event)->{
+            this.selectedStrategy = new EasyStrategy();
+        });
+
+        this.mediumLevel.setOnAction((event)->{
+            this.selectedStrategy = new MediumStrategy();
+        });
+
+        this.difficultLevel.setOnAction((event)->{
+            this.selectedStrategy = new DifficultStrategy();
+        });
+
         this.acceptButton.setOnAction((event) -> {
             if( this.verifyInputs() ) {
-                this.mediator.rootControllerSetData(this.userNames);
+                this.mediator.rootControllerSetData(this.userNames, this.managedManually, this.selectedStrategy);
                 this.context.close();
             }
         });
@@ -76,6 +116,17 @@ public class ConfigurationController extends MediableController implements Initi
         }
     }
 
+    private void setToggleButtonsEvents() {
+        for (ToggleButton toggle: this.listedToggleButtons) {
+            toggle.setOnAction((event)->{
+                if (toggle.isSelected())
+                    toggle.setText("Usuario");
+                else
+                    toggle.setText("Automático");
+            });
+        }
+    }
+
     private void setNormalStateInput(TextField input) {
         input.getStyleClass().clear();
         input.getStyleClass().add("defaultStateTextInput");
@@ -90,14 +141,17 @@ public class ConfigurationController extends MediableController implements Initi
         boolean passed = true;
         for(int i = 0; i < this.playersNum; i++) {
             TextField field = this.listedTextFields.get(i);
+            ToggleButton toggle = this.listedToggleButtons.get(i);
             String name = field.getText();
             if (name.isEmpty()) {
                 this.setErrorStateInput(field);
                 passed = false;
                 this.throwUIError("El nombre de un jugador no puede ser nulo.");
             }
-            else
+            else {
+                this.managedManually.add(toggle.isSelected());
                 this.userNames.add(name);
+            }
         }
         return passed;
     }
@@ -117,9 +171,18 @@ public class ConfigurationController extends MediableController implements Initi
         this.listedTextFields.add(this.playerInputName4);
     }
 
+    private void listToggleButtons() {
+        this.listedToggleButtons.add(this.playerModality1);
+        this.listedToggleButtons.add(this.playerModality2);
+        this.listedToggleButtons.add(this.playerModality3);
+        this.listedToggleButtons.add(this.playerModality4);
+
+    }
+
     private void addPlayer() {
         if ( this.playersNum < 4 ) {
             this.listedTextFields.get(this.playersNum).setDisable(false);
+            this.listedToggleButtons.get(this.playersNum).setDisable(false);
             this.playersNum++;
             return;
         }

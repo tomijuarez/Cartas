@@ -6,7 +6,7 @@ public class Jugador {
 	private Carta cartaActual;
 	private String nombre;
 	private MazoJugador mazo;
-        private String selecAtributoActual;
+	private String selecAtributoActual;
 	
 	public Jugador(Estrategia e, String nU, String n, MazoJugador m){
 		this.estrategia = e;
@@ -14,15 +14,13 @@ public class Jugador {
 		this.nombre = n;
 		this.mazo = m;
 	}
-	
-	public void sacarCarta(){
-		this.cartaActual = this.mazo.obtenerCarta();
-	}
         
-        public Carta entregarCarta(){
-            return this.cartaActual;
-        }
-        public int cantCartasJugador(){
+	public Carta getCurrentCard(){
+		this.cartaActual = this.mazo.obtenerCarta();
+		return this.cartaActual;
+	}
+
+	public int cantCartasJugador(){
            return this.mazo.getCantCartas();
         }
 	

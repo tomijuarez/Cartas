@@ -34,16 +34,16 @@ public class DeckSelectorController extends MediableController implements Initia
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        DeckView deck1 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck2 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck3 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck4 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck5 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck6 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck7 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck8 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck9 = new DeckView("prueba.png","liga de la justicia");
-        DeckView deck10 = new DeckView("prueba.png","liga de la justicia");
+        DeckView deck1 = new DeckView("liga de la justicia");
+        DeckView deck2 = new DeckView("liga de la justicia");
+        DeckView deck3 = new DeckView("liga de la justicia");
+        DeckView deck4 = new DeckView("liga de la justicia");
+        DeckView deck5 = new DeckView("liga de la justicia");
+        DeckView deck6 = new DeckView("liga de la justicia");
+        DeckView deck7 = new DeckView("liga de la justicia");
+        DeckView deck8 = new DeckView("liga de la justicia");
+        DeckView deck9 = new DeckView("liga de la justicia");
+        DeckView deck10 = new DeckView("liga de la justicia");
 
         List<DeckView> decks = new Vector<>();
         decks.add(deck1);

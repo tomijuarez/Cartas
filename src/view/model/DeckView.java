@@ -12,7 +12,9 @@ import javafx.scene.text.Text;
  */
 public class DeckView extends ViewPackage {
 
-    public DeckView(String imagePath, String name) {
+    private final String deckImageName = "deckBackground.png";
+
+    public DeckView(String name) {
         this.container = new Pane();
 
         Text deckName = new Text();
@@ -23,7 +25,7 @@ public class DeckView extends ViewPackage {
 
         deckImageView.setFitWidth(150);
         deckImageView.setFitHeight(200);
-        deckImageView.setImage(new Image(this.getImagePath(imagePath)));
+        deckImageView.setImage(new Image(this.getImagePath(this.deckImageName)));
 
         deckName.setText(name.toUpperCase());
 
