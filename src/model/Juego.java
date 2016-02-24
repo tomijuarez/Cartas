@@ -10,6 +10,8 @@ public class Juego extends Observable {
 
     private static final String CARDS_PATH = "resources/data/cards/";
     private static final String DECKS_PATH = "resources/data/decks/";
+    private static final int CARDS_LIMIT = 0;
+    private static final int CANT_MIN_PLAYERS = 2;
 
     private Boolean hayEmpate;
     private XStream xstream;
@@ -51,9 +53,10 @@ public class Juego extends Observable {
 
     private void verificarJugadores() {
         for (int i = 0; i < this.jugadores.size(); i++) {
-            if (this.jugadores.get(i).cantCartasJugador() == 0) {
+            if (this.jugadores.get(i).cantCartasJugador() == this.CARDS_LIMIT) {
                 this.notifyObservers(this.jugadores.get(i));// notifico el jugador que perdio, y se lo envio al observador
                 this.perdedores.add(this.jugadores.remove(i));// lo agrego a la cola de perdedores
+                this.turnos.remove(this.jugadores.get(i));//elimino al perdedor de la lista de turnos
             }
         }
     }
@@ -143,7 +146,7 @@ public class Juego extends Observable {
      */
     public void comenzarPartida() {
 
-        while (this.turnos.size() == 1) {
+        while (this.turnos.size() >= CANT_MIN_PLAYERS) {
             this.handleShiftTurn(this.currentPlayer());
             // notifico el comienzo de la seleccion de cartas de cada uno de los jugadores en juego
             this.handleCardsSelection(this.jugadores);
@@ -286,6 +289,7 @@ public class Juego extends Observable {
 
     public void agregarJugador(Jugador player) {
         this.jugadores.add(player);
+        this.turnos.add(player);
     }
 
     public void createPlayers(List<String> playerNames, List<Boolean> managedManually, Estrategia selectedStrategy, Mazo deck) {
