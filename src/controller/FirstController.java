@@ -29,11 +29,13 @@ import java.util.*;
  */
 public class FirstController extends MediableController implements Initializable, Observer, ListArtifactsEventVisitor {
     @FXML
-    private Button comenzarJuego;
+    private Button initGameButton;
     @FXML
-    private Button crearMazo;
+    private Button createCharacterButton;
     @FXML
-    private Button crearCartas;
+    private Button createDeckButton;
+    @FXML
+    private Button createCardButton;
 
     private Mediator mediator;
 
@@ -55,12 +57,12 @@ public class FirstController extends MediableController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        comenzarJuego.setOnAction((event)-> {
+        initGameButton.setOnAction((event)-> {
             Modal subWindow = new Modal("layouts/configurationView.fxml", new ConfigurationController(), new Stage(), this.context);
             this.context.setChild(subWindow, new ConfigurationMediator());
         });
 
-        crearMazo.setOnAction((event)->{
+        createDeckButton.setOnAction((event)->{
             Modal deckCreatorWindow = new Modal("layouts/deckCreatorView.fxml", new DeckCreatorController(this.game.getCards()), new Stage(), this.context);
             this.context.setChild(deckCreatorWindow, new DeckCreatorMediator());
         });

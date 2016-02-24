@@ -62,6 +62,7 @@ public class DeckCreatorController extends MediableController implements Initial
         }
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<CardView> cardsView = this.getCardsView();
