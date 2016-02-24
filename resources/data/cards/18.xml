@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>El Pingüino</nombreFicticio>
     <nombreReal>Oswald Chesterfield Cobblepot</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>4.0</double>

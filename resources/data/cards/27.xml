@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Bestia</nombreFicticio>
     <nombreReal>Henry Philip McCoy</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>8.5</double>

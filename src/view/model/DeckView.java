@@ -7,14 +7,21 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import model.Mazo;
+
 /**
  * Created by Gandalf on 13/2/2016.
  */
 public class DeckView extends ViewPackage {
 
-    private final String deckImageName = "deckBackground.png";
+    private final String deckImageName = "deckBackground";
 
-    public DeckView(String name) {
+    private Mazo deck;
+
+    public DeckView(Mazo deck) {
+        this.deck = deck;
+        String name = deck.getNombre();
+
         this.container = new Pane();
 
         Text deckName = new Text();
@@ -31,12 +38,21 @@ public class DeckView extends ViewPackage {
 
         verticalDeckElements.setPrefSize(150,200);
 
-        Pane test = new Pane();
-        test.setPrefSize(250,200);
-        test.setStyle("-fx-background-color: blue;");
         verticalDeckElements.getChildren().addAll(deckImageView, deckName);
 
         this.container.getChildren().add(verticalDeckElements);
+    }
+
+    public void select () {
+        this.container.setStyle("-fx-border-width: 2px; -fx-border-color: blue;");
+    }
+
+    public void unselect() {
+        this.container.setStyle("-fx-border-color: transparent;");
+    }
+
+    public Mazo getDeck() {
+        return this.deck;
     }
 
 }

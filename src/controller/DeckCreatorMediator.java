@@ -1,23 +1,17 @@
 package controller;
 
-import javafx.scene.control.TextField;
-import model.Jugador;
 import model.Mazo;
 
-import javax.xml.soap.Text;
-import java.util.List;
-import java.util.Vector;
-
 /**
- * Created by Gandalf on 8/2/2016.
+ * Created by Gandalf on 23/2/2016.
  */
-public class DeckSelectorMediator implements Mediator {
+public class DeckCreatorMediator implements Mediator {
     private FirstController parentController;
-    private DeckSelectorController subController;
+    private DeckCreatorController subController;
 
     public void setControllers(MediableController parentController, MediableController subController) {
         this.parentController = (FirstController) parentController;
-        this.subController = (DeckSelectorController) subController;
+        this.subController = (DeckCreatorController) subController;
     }
 
     public MediableController getFirstController() {
@@ -31,9 +25,5 @@ public class DeckSelectorMediator implements Mediator {
     @Override
     public void printMediator() {
 
-    }
-
-    public void setDeck(Mazo deck) {
-        this.parentController.setGameDeck(deck);
     }
 }

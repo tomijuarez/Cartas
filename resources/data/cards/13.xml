@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Manhunter</nombreFicticio>
     <nombreReal>Dan Richards</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>7.0</double>

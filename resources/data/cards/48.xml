@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Iron Monger</nombreFicticio>
     <nombreReal>Obadiah Stane</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>5.0</double>

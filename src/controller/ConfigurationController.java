@@ -63,7 +63,7 @@ public class ConfigurationController extends MediableController implements Initi
     private List<Boolean> managedManually = new Vector<>();
     Estrategia selectedStrategy;
 
-    private int playersNum = 0;
+    private int playersNum = 2;
     private ConfigurationMediator mediator;
 
 
@@ -146,13 +146,18 @@ public class ConfigurationController extends MediableController implements Initi
             if (name.isEmpty()) {
                 this.setErrorStateInput(field);
                 passed = false;
-                this.throwUIError("El nombre de un jugador no puede ser nulo.");
             }
             else {
                 this.managedManually.add(toggle.isSelected());
                 this.userNames.add(name);
             }
         }
+        if (!passed)
+            if (this.playersNum > 2)
+                this.throwUIError("El nombre de un jugador no puede ser nulo.");
+            else
+                this.throwUIError("Debe introducir al menos dos jugadores.");
+
         return passed;
     }
 

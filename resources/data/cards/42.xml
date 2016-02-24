@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Dr. Octopus</nombreFicticio>
     <nombreReal>Otto Octavius</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>9.0</double>

@@ -1,23 +1,20 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
+
 import com.thoughtworks.xstream.*;
 import controller.events.*;
-
-import java.util.Observable;
 
 public class Juego extends Observable {
 
     private static final String CARDS_PATH = "resources/data/cards/";
     private static final String DECKS_PATH = "resources/data/decks/";
+
     private Boolean hayEmpate;
     private XStream xstream;
     private Queue<Jugador> turnos;
     private Mazo mazo;
-    private List<Jugador> jugadores;
+    private List<Jugador> jugadores = new Vector<>();
     private Jugador ganador;
     private List<Jugador> empatados;
     private List<Jugador> perdedores;
@@ -164,6 +161,13 @@ public class Juego extends Observable {
         }
     }
 
+    public List<Carta> getCards() {
+        return new Vector<Carta>(this.cartas.values());
+    }
+
+    public List<Mazo> getDecks() {
+        return this.mazos;
+    }
 
     public Juego() {
 
@@ -267,28 +271,27 @@ public class Juego extends Observable {
     }
 
 
-    public void setearMaso(Mazo m) {
-
-    }
-
     public void agregarJugador(Jugador player) {
         this.jugadores.add(player);
     }
 
     public void createPlayers(List<String> playerNames, List<Boolean> managedManually, Estrategia selectedStrategy, Mazo deck) {
+        this.mazo = deck;
+
         for (int i = 0; i < playerNames.size(); i++) {
+
             Estrategia strategy = (managedManually.get(i))
                     ? new ManualStrategy()
                     : selectedStrategy;
 
-            Jugador player = new Jugador(
-                    strategy,
-                    playerNames.get(i),
-                    "",
-                    new MazoJugador()
-            );
 
-            this.agregarJugador(player);
+            this.agregarJugador(
+                    new Jugador(
+                            strategy,
+                            playerNames.get(i),
+                            new MazoJugador()
+                    )
+            );
         }
     }
 
@@ -1322,7 +1325,4 @@ public class Juego extends Observable {
         this.mazos.add(m4);
     }
 
-    public static void main(String [] args){
-        Juego j = new Juego();
-    }
 }

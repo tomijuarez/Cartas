@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Guason</nombreFicticio>
     <nombreReal>Desconocido</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>8.5</double>

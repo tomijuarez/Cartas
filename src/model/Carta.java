@@ -6,7 +6,6 @@ import java.util.*;
 import java.util.Observable;
 
 public class Carta extends Observable {
-	private static final String imagePath = "file:/resources/images";
     private int id ;
     private PersonajeAbstracto personaje;
 	private List<String> atributos;
@@ -15,6 +14,10 @@ public class Carta extends Observable {
 
 		this.personaje = pers;
 		this.atributos = new ArrayList<>();	
+	}
+
+	public String getNick() {
+		return this.personaje.getNombreFicticio();
 	}
 	
 	public int getId() {

@@ -27,37 +27,48 @@ public class DeckSelectorController extends MediableController implements Initia
     @FXML
     private TilePane container;
 
-    private Mazo mazo;
+    @FXML
+    private Button continueButton;
+
+    private List<Mazo> decks;
 
     private DeckSelectorMediator mediator;
+    private DeckView selectedDeck;
 
+    public DeckSelectorController(List<Mazo> decks) {
+        this.decks = decks;
+    }
+
+    private List<DeckView> getDeckViews() {
+        List<DeckView> decksView = new Vector<>();
+        for (Mazo deck: this.decks) {
+            decksView.add(new DeckView(deck));
+        }
+        return decksView;
+    }
+
+    private void setDecksEvents(List<DeckView> decksView) {
+        for(DeckView view: decksView) {
+            view.getResult().setOnMouseClicked((event) -> {
+                this.continueButton.setDisable(false);
+                if(this.selectedDeck != null)
+                    this.selectedDeck.unselect();
+                view.select();
+                this.selectedDeck = view;
+            });
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        DeckView deck1 = new DeckView("liga de la justicia");
-        DeckView deck2 = new DeckView("liga de la justicia");
-        DeckView deck3 = new DeckView("liga de la justicia");
-        DeckView deck4 = new DeckView("liga de la justicia");
-        DeckView deck5 = new DeckView("liga de la justicia");
-        DeckView deck6 = new DeckView("liga de la justicia");
-        DeckView deck7 = new DeckView("liga de la justicia");
-        DeckView deck8 = new DeckView("liga de la justicia");
-        DeckView deck9 = new DeckView("liga de la justicia");
-        DeckView deck10 = new DeckView("liga de la justicia");
+        List<DeckView> decksView = this.getDeckViews();
+        this.setDecksEvents(decksView);
+        this.showDecks(decksView);
 
-        List<DeckView> decks = new Vector<>();
-        decks.add(deck1);
-        decks.add(deck2);
-        decks.add(deck3);
-        decks.add(deck4);
-        decks.add(deck5);
-        decks.add(deck6);
-        decks.add(deck7);
-        decks.add(deck8);
-        decks.add(deck9);
-        decks.add(deck10);
-
-        this.showMallets(decks);
+        this.continueButton.setOnAction((event)->{
+            this.mediator.setDeck(this.selectedDeck.getDeck());
+            this.context.close();
+        });
     }
 
     @Override
@@ -65,7 +76,7 @@ public class DeckSelectorController extends MediableController implements Initia
         this.mediator = (DeckSelectorMediator) mediator;
     }
 
-    public void showMallets(List<DeckView> decks) {
+    public void showDecks(List<DeckView> decks) {
         for (int i =0; i < decks.size(); i++) {
             this.container.getChildren().add(decks.get(i).getResult());
         }

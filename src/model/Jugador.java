@@ -4,14 +4,12 @@ public class Jugador {
 	private Estrategia estrategia;
 	private String nombreUsuario;
 	private Carta cartaActual;
-	private String nombre;
 	private MazoJugador mazo;
 	private String selecAtributoActual;
 	
-	public Jugador(Estrategia e, String nU, String n, MazoJugador m){
+	public Jugador(Estrategia e, String nU, MazoJugador m){
 		this.estrategia = e;
 		this.nombreUsuario = nU;
-		this.nombre = n;
 		this.mazo = m;
 	}
         

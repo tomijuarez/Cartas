@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Raven</nombreFicticio>
     <nombreReal>Rachel Roth</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>9.0</double>

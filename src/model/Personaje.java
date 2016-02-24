@@ -7,19 +7,11 @@ import java.nio.file.*;
 
 public class Personaje extends PersonajeAbstracto {
 	private String nombreReal;
-	private Hashtable<String,Double> atributos;
+	private Map<String,Double> atributos = new Hashtable<>();
 	
 	public Personaje(String ficticio,String real,String imagePath){
-		this.setNombreReal(real);
 		super.setNombreFicticio(ficticio);
-		this.atributos = new Hashtable<String, Double>();
-		Path pathOrigin = Paths.get(imagePath);
-		Path pathTarget = Paths.get(super.getImagePath());
-		try {
-			Files.copy( pathOrigin, pathTarget,StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException e) {
-			System.out.printf("Error al guardar Imagen");
-		}
+		this.nombreReal = real;
 	}
 
 	public void agregarAtributo(String nombre,double atrib){
@@ -40,9 +32,5 @@ public class Personaje extends PersonajeAbstracto {
 	public String getNombreReal() {
 		return nombreReal;
 	}
-	
-	public void setNombreReal(String nombreReal) {
-		this.nombreReal = nombreReal;
-	}
-	
+
 }

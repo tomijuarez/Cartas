@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Spider-Man</nombreFicticio>
     <nombreReal>Peter Benjamin Parker Fitzpatrick</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>10.0</double>

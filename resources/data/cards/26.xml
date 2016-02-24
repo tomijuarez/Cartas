@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Ciclope</nombreFicticio>
     <nombreReal>Scott Summers</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>8.0</double>

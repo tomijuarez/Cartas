@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Wolverine</nombreFicticio>
     <nombreReal>James Hudson Howlett</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>9.0</double>

@@ -61,8 +61,8 @@ public class FirstController extends MediableController implements Initializable
         });
 
         crearMazo.setOnAction((event)->{
-            /*Modal mazoWindow = new Modal("layouts/secondView.fxml", new SecondController(), new Stage(), this.context);
-            this.context.setChild(mazoWindow, new RegisterMediator());*/
+            Modal deckCreatorWindow = new Modal("layouts/deckCreatorView.fxml", new DeckCreatorController(this.game.getCards()), new Stage(), this.context);
+            this.context.setChild(deckCreatorWindow, new DeckCreatorMediator());
         });
         /*
         crearCartas.setOnAction((event)->{
@@ -72,7 +72,7 @@ public class FirstController extends MediableController implements Initializable
     }
 
     public void initDeckSelectorUI() {
-        Modal malletSelector = new Modal("layouts/deckSelector.fxml", new DeckSelectorController(), new Stage(), this.context);
+        Modal malletSelector = new Modal("layouts/deckSelector.fxml", new DeckSelectorController(this.game.getDecks()), new Stage(), this.context);
         this.context.setChild(malletSelector, new DeckSelectorMediator());
     }
 

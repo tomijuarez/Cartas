@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Rinho</nombreFicticio>
     <nombreReal>Aleksei Mikhailovich Sytsevich</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>6.0</double>

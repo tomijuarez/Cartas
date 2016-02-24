@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>La Cosa del Pantano</nombreFicticio>
     <nombreReal>Alec Holland</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>6.5</double>

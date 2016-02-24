@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Linterna Verde</nombreFicticio>
     <nombreReal>Alan Scott</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>7.5</double>

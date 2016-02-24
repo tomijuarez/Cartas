@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Prof. Xavier</nombreFicticio>
     <nombreReal>Bruce Wane</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>60.5</double>

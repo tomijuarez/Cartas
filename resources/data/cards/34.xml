@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Mujer Invisible</nombreFicticio>
     <nombreReal>Susan Storm</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>8.0</double>

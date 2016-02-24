@@ -5,7 +5,7 @@
   <personaje class="model.Personaje">
     <nombreFicticio>Dr. Doom</nombreFicticio>
     <nombreReal>Victor von Doom</nombreReal>
-    <atributos>
+    <atributos class="hashtable">
       <entry>
         <string>Destreza</string>
         <double>8.0</double>
