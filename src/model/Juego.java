@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.thoughtworks.xstream.*;
 import controller.events.*;
+import jdk.internal.util.xml.impl.Pair;
 
 public class Juego extends Observable {
 
@@ -34,6 +35,18 @@ public class Juego extends Observable {
 
     public List<Jugador> getJugadores() {
         return jugadores;
+    }
+
+
+    public void createDeck(List<Carta> cards, String name, List<Map.Entry<String,Boolean> >attributes){
+        Mazo newDeck = new MazoPrincipal(name);
+        for(model.Carta c : cards){
+            newDeck.agregarCarta(c);
+        }
+        for(Map.Entry<String,Boolean> p : attributes){
+            newDeck.agregarAtributo(p.getKey(),p.getValue());
+        }
+        this.mazos.add(newDeck);
     }
 
     private void verificarJugadores() {
