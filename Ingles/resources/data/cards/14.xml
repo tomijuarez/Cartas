@@ -1,0 +1,48 @@
+<model.Card>
+  <changed>false</changed>
+  <obs/>
+  <id>14</id>
+  <character class="model.Character">
+    <fictitiousName>Raven</fictitiousName>
+    <nameReal>Rachel Roth</nameReal>
+    <attributes class="hashtable">
+      <entry>
+        <string>Destreza</string>
+        <double>9.0</double>
+      </entry>
+      <entry>
+        <string>Peso</string>
+        <double>55.0</double>
+      </entry>
+      <entry>
+        <string>Inteligencia</string>
+        <double>97.0</double>
+      </entry>
+      <entry>
+        <string>Velocidad</string>
+        <double>85.0</double>
+      </entry>
+      <entry>
+        <string>Bondad</string>
+        <double>75.0</double>
+      </entry>
+      <entry>
+        <string>Fuerza</string>
+        <double>85.0</double>
+      </entry>
+      <entry>
+        <string>Maldad</string>
+        <double>8.0</double>
+      </entry>
+    </attributes>
+  </character>
+  <attributes>
+    <string>Fuerza</string>
+    <string>Velocidad</string>
+    <string>Maldad</string>
+    <string>Destreza</string>
+    <string>Inteligencia</string>
+    <string>Peso</string>
+    <string>Bondad</string>
+  </attributes>
+</model.Card>

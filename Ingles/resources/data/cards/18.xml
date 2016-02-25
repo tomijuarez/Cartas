@@ -1,0 +1,48 @@
+<model.Card>
+  <changed>false</changed>
+  <obs/>
+  <id>18</id>
+  <character class="model.Character">
+    <fictitiousName>El Pingüino</fictitiousName>
+    <nameReal>Oswald Chesterfield Cobblepot</nameReal>
+    <attributes class="hashtable">
+      <entry>
+        <string>Destreza</string>
+        <double>4.0</double>
+      </entry>
+      <entry>
+        <string>Peso</string>
+        <double>90.0</double>
+      </entry>
+      <entry>
+        <string>Inteligencia</string>
+        <double>99.0</double>
+      </entry>
+      <entry>
+        <string>Velocidad</string>
+        <double>15.0</double>
+      </entry>
+      <entry>
+        <string>Bondad</string>
+        <double>0.5</double>
+      </entry>
+      <entry>
+        <string>Fuerza</string>
+        <double>30.0</double>
+      </entry>
+      <entry>
+        <string>Maldad</string>
+        <double>100.0</double>
+      </entry>
+    </attributes>
+  </character>
+  <attributes>
+    <string>Fuerza</string>
+    <string>Velocidad</string>
+    <string>Maldad</string>
+    <string>Destreza</string>
+    <string>Inteligencia</string>
+    <string>Peso</string>
+    <string>Bondad</string>
+  </attributes>
+</model.Card>
