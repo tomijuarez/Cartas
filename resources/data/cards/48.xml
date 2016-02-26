@@ -1,47 +1,11 @@
-<model.Carta>
-  <changed>false</changed>
-  <obs/>
-  <id>48</id>
-  <personaje class="model.Personaje">
-    <nombreFicticio>Iron Monger</nombreFicticio>
-    <nombreReal>Obadiah Stane</nombreReal>
-    <atributos class="hashtable">
-      <entry>
-        <string>Destreza</string>
-        <double>5.0</double>
-      </entry>
-      <entry>
-        <string>Peso</string>
-        <double>218.0</double>
-      </entry>
-      <entry>
-        <string>Inteligencia</string>
-        <double>90.0</double>
-      </entry>
-      <entry>
-        <string>Velocidad</string>
-        <double>280.0</double>
-      </entry>
-      <entry>
-        <string>Bondad</string>
-        <double>0.0</double>
-      </entry>
-      <entry>
-        <string>Maldad</string>
-        <double>100.0</double>
-      </entry>
-      <entry>
-        <string>Fuerza</string>
-        <double>1800.0</double>
-      </entry>
-    </atributos>
-  </personaje>
-  <atributos>
+<model.CardSave>
+  <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
     <string>Maldad</string>
     <string>Destreza</string>
     <string>Inteligencia</string>
     <string>Peso</string>
-  </atributos>
-</model.Carta>
+  </attributes>
+  <idCharacter>Iron Monger</idCharacter>
+</model.CardSave>

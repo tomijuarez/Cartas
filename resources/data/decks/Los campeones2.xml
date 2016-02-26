@@ -1,5 +1,5 @@
-<model.MazoSave>
-  <nombre>Los campeones2</nombre>
+<model.DeckSave>
+  <name>Los campeones2</name>
   <ids>
     <string>13</string>
     <string>14</string>
@@ -14,5 +14,5 @@
     <string>23</string>
     <string>24</string>
   </ids>
-  <atributos/>
-</model.MazoSave>
+  <attributes/>
+</model.DeckSave>

@@ -1,47 +1,11 @@
-<model.Carta>
-  <changed>false</changed>
-  <obs/>
-  <id>15</id>
-  <personaje class="model.Personaje">
-    <nombreFicticio>Starfire</nombreFicticio>
-    <nombreReal>Koriand&apos;r</nombreReal>
-    <atributos class="hashtable">
-      <entry>
-        <string>Destreza</string>
-        <double>9.0</double>
-      </entry>
-      <entry>
-        <string>Peso</string>
-        <double>57.0</double>
-      </entry>
-      <entry>
-        <string>Inteligencia</string>
-        <double>89.0</double>
-      </entry>
-      <entry>
-        <string>Velocidad</string>
-        <double>110.0</double>
-      </entry>
-      <entry>
-        <string>Bondad</string>
-        <double>98.5</double>
-      </entry>
-      <entry>
-        <string>Maldad</string>
-        <double>0.0</double>
-      </entry>
-      <entry>
-        <string>Fuerza</string>
-        <double>200.0</double>
-      </entry>
-    </atributos>
-  </personaje>
-  <atributos>
+<model.CardSave>
+  <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
     <string>Destreza</string>
     <string>Inteligencia</string>
     <string>Peso</string>
     <string>Bondad</string>
-  </atributos>
-</model.Carta>
+  </attributes>
+  <idCharacter>Starfire</idCharacter>
+</model.CardSave>

@@ -1,47 +1,11 @@
-<model.Carta>
-  <changed>false</changed>
-  <obs/>
-  <id>39</id>
-  <personaje class="model.Personaje">
-    <nombreFicticio>Dr. Doom</nombreFicticio>
-    <nombreReal>Victor von Doom</nombreReal>
-    <atributos class="hashtable">
-      <entry>
-        <string>Destreza</string>
-        <double>8.0</double>
-      </entry>
-      <entry>
-        <string>Peso</string>
-        <double>115.0</double>
-      </entry>
-      <entry>
-        <string>Inteligencia</string>
-        <double>95.5</double>
-      </entry>
-      <entry>
-        <string>Velocidad</string>
-        <double>185.0</double>
-      </entry>
-      <entry>
-        <string>Bondad</string>
-        <double>0.0</double>
-      </entry>
-      <entry>
-        <string>Maldad</string>
-        <double>100.0</double>
-      </entry>
-      <entry>
-        <string>Fuerza</string>
-        <double>1000.0</double>
-      </entry>
-    </atributos>
-  </personaje>
-  <atributos>
+<model.CardSave>
+  <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
     <string>Maldad</string>
     <string>Destreza</string>
     <string>Inteligencia</string>
     <string>Peso</string>
-  </atributos>
-</model.Carta>
+  </attributes>
+  <idCharacter>Dr. Doom</idCharacter>
+</model.CardSave>

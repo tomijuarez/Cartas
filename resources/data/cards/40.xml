@@ -1,42 +1,5 @@
-<model.Carta>
-  <changed>false</changed>
-  <obs/>
-  <id>40</id>
-  <personaje class="model.Personaje">
-    <nombreFicticio>Hombre de Arena</nombreFicticio>
-    <nombreReal>Flint Marko</nombreReal>
-    <atributos class="hashtable">
-      <entry>
-        <string>Destreza</string>
-        <double>9.0</double>
-      </entry>
-      <entry>
-        <string>Peso</string>
-        <double>205.0</double>
-      </entry>
-      <entry>
-        <string>Inteligencia</string>
-        <double>80.0</double>
-      </entry>
-      <entry>
-        <string>Velocidad</string>
-        <double>150.0</double>
-      </entry>
-      <entry>
-        <string>Bondad</string>
-        <double>25.0</double>
-      </entry>
-      <entry>
-        <string>Maldad</string>
-        <double>75.0</double>
-      </entry>
-      <entry>
-        <string>Fuerza</string>
-        <double>1760.0</double>
-      </entry>
-    </atributos>
-  </personaje>
-  <atributos>
+<model.CardSave>
+  <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
     <string>Maldad</string>
@@ -44,5 +7,6 @@
     <string>Inteligencia</string>
     <string>Peso</string>
     <string>Bondad</string>
-  </atributos>
-</model.Carta>
+  </attributes>
+  <idCharacter>Hombre de Arena</idCharacter>
+</model.CardSave>

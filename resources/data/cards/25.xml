@@ -1,42 +1,5 @@
-<model.Carta>
-  <changed>false</changed>
-  <obs/>
-  <id>25</id>
-  <personaje class="model.Personaje">
-    <nombreFicticio>Thor</nombreFicticio>
-    <nombreReal>Thor Odinson</nombreReal>
-    <atributos class="hashtable">
-      <entry>
-        <string>Destreza</string>
-        <double>8.5</double>
-      </entry>
-      <entry>
-        <string>Peso</string>
-        <double>103.0</double>
-      </entry>
-      <entry>
-        <string>Inteligencia</string>
-        <double>95.0</double>
-      </entry>
-      <entry>
-        <string>Velocidad</string>
-        <double>250.0</double>
-      </entry>
-      <entry>
-        <string>Bondad</string>
-        <double>99.5</double>
-      </entry>
-      <entry>
-        <string>Maldad</string>
-        <double>10.0</double>
-      </entry>
-      <entry>
-        <string>Fuerza</string>
-        <double>1100.0</double>
-      </entry>
-    </atributos>
-  </personaje>
-  <atributos>
+<model.CardSave>
+  <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
     <string>Maldad</string>
@@ -44,5 +7,6 @@
     <string>Inteligencia</string>
     <string>Peso</string>
     <string>Bondad</string>
-  </atributos>
-</model.Carta>
+  </attributes>
+  <idCharacter>Thor</idCharacter>
+</model.CardSave>
