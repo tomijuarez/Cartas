@@ -1,9 +1,0 @@
-.defaultStateTextInput {
-    -fx-background-color: "white";
-    -fx-border-color: "gray";
-}
-
-.errorStateTextInput {
-    -fx-background-color: "white";
-    -fx-border-color: "red";
-}
