@@ -13,7 +13,7 @@ public class Character extends AbstractCharacter{
     private String nameReal;
     private Map<String,Double> attributes = new Hashtable<>();
 
-    public Character(String fictional,String real,String imagePath){
+    public Character(String fictional,String real){
         super.setFictitiousName(fictional);
         this.nameReal = real;
     }

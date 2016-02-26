@@ -5,12 +5,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
-import model.Carta;
-import model.Mazo;
+import model.Card;
+import model.Deck;
 import view.model.CardView;
 import view.model.DeckView;
 
-import javax.smartcardio.Card;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;

@@ -7,7 +7,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.Card;
-import model.Carta;
 
 /**
  * Created by Gandalf on 13/2/2016.

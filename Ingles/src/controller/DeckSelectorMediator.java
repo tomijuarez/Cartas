@@ -1,8 +1,8 @@
 package controller;
 
 import javafx.scene.control.TextField;
-import model.Jugador;
-import model.Mazo;
+import model.Player;
+import model.Deck;
 
 import javax.xml.soap.Text;
 import java.util.List;
@@ -33,7 +33,7 @@ public class DeckSelectorMediator implements Mediator {
 
     }
 
-    public void setDeck(Mazo deck) {
+    public void setDeck(Deck deck) {
         this.parentController.setGameDeck(deck);
     }
 }
