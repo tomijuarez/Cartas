@@ -10,11 +10,14 @@ import java.util.*;
  */
 public class Game extends Observable {
 
+    /*
     private static final String CARDS_PATH = "resources/data/cards/";
     private static final String DECKS_PATH = "resources/data/decks/";
     private static  final String CHARACTER_PATH = "resources/data/characters/";
     private static final String ATTRIBUTES_PATH = "resources/data/";
     private static final String NAME_FILE_ATTRIBUTTES = "ListAttributes";
+    */
+
     private static final int CARDS_LIMIT = 0;
     private static final int CANT_MIN_PLAYERS = 2;
 
@@ -36,14 +39,12 @@ public class Game extends Observable {
     /*****/
     private InstanceDirector director;
 
-    private static final String cardsDirectory = "";
-    private static final String decksDirecory = "";
 
     private String currentAttribute;
     private DeckPlayer currentAccumulatorDeck;
 
     //serializador de datos
-    private DataParser dpFile;
+    private DataAccessObject daoXML = new DataAccessObjectXML();
 
     public List<Player> getPlayers() {
         return this.players;
@@ -202,64 +203,20 @@ public class Game extends Observable {
        // this.cards = this.director.getCards();
        // this.decks = this.director.getDecks(this.cards);
 
-        this.crearEstPrueba();
+        //this.crearEstPrueba();
         /**Guardar Datos**/
-        this.saveData();
+        //this.daoXML.saveData(this.characters,this.attributes,this.decks,this.cards);
 
+        this.characters = this.daoXML.getCharacters();
+        this.cards = this.daoXML.getCards(this.characters);
+        this.decks = this.daoXML.getDecks(this.cards);
+        this.attributes = this.daoXML.getAttributes();
+
+        for(String aux : this.attributes){
+            System.out.println(aux);
+        }
     }
 
-    /**
-     * Guardar Masos, cartas, personajes
-     **/
-    public void saveData() {
-
-        /**serializador**/
-        this.dpFile = new XMLDataParser(new XStream());
-
-        /**Guardar Lista de atributos**/
-        this.dpFile.saveData(this.ATTRIBUTES_PATH,this.NAME_FILE_ATTRIBUTTES,this.attributes);
-
-        /**Guardar Personajes**/
-
-        for(AbstractCharacter character : this.characters.values()){
-            this.dpFile.saveData(this.CHARACTER_PATH,character.getFictitiousName(),character);
-        }
-
-        /**Guardar Cards**/
-        for (int i = 1; i <= this.cards.size(); i++) {
-            Card m = this.cards.get(String.valueOf(i));
-            m.setId(i);
-            this.dpFile.saveData(this.CARDS_PATH, String.valueOf(i), new CardSave(m.getAttributes(),m.getCharacter().getFictitiousName()));
-        }
-
-
-        /**Guardar Decks**/
-        List<String> names = new ArrayList<>();
-        for (Deck m : this.decks) {
-            names.add(m.getName());
-            this.dpFile.saveData(this.DECKS_PATH, m.getName(), new DeckSave(m.getName(), this.getIds(m), m.getAtrib()));
-        }
-
-        /**Guardo listado de nombre de mazos**/
-        this.dpFile.saveData(this.DECKS_PATH, "nombresMazos", names);
-
-
-
-
-    }
-
-
-    private List<String> getIds(Deck m) {
-        List<String> ids = new ArrayList<String>();
-        List<Card> cards = m.getCards();
-
-        for (Card c : cards) {
-            String id = String.valueOf(c.getId());
-            ids.add(id);
-        }
-
-        return ids;
-    }
 
 
     public void addPlayer(Player player) {
