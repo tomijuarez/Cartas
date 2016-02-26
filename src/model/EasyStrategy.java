@@ -5,10 +5,10 @@ import java.util.List;
 /**
  * Created by Gandalf on 21/2/2016.
  */
-public class EasyStrategy implements Estrategia {
+public class EasyStrategy implements Strategy {
 
     @Override
-    public String getAtributo(List<String> atributo) {
+    public String getAttribute(List<String> attributes) {
         return "";
     }
 }

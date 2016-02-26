@@ -17,50 +17,49 @@ public class HeroesBuilder implements Builder {
 		this.dpFile = new XMLDataParser(new XStream());
 	}
 	@Override
-	public Hashtable<String, Carta> getCartas() {
+	public Hashtable<String, Card> getCards() {
 		// TODO Auto-generated method stub
 		
-		Hashtable<String, Carta> cartas = new Hashtable<>();
+		Hashtable<String, Card> cards = new Hashtable<>();
 		
 		for(int i=1; i <= this.dpFile.numberFiles(this.CARDS_PATH) ; i++){
-			cartas.put(String.valueOf(i),(Carta)this.dpFile.getData(this.CARDS_PATH,String.valueOf(i)));
+			cards.put(String.valueOf(i),(Card) this.dpFile.getData(this.CARDS_PATH,String.valueOf(i)));
 		}
 		
-		return cartas;
+		return cards;
 	}
 		
 
 	@Override
-	public List<Mazo> getMazos(Hashtable<String,Carta> cartas) {
-		List<Mazo> mazos = new ArrayList<>();
+	public List<Deck> getDecks(Hashtable<String,Card> cards) {
+		List<Deck> decks = new ArrayList<>();
 		
 		/**Cargado de Mazos**/
 		Object obj = this.dpFile.getData(this.DECKS_PATH,"nombresMazos");
 
 		if(obj != null){
-			List<String> listado = (List<String>) obj;
+			List<String> list = (List<String>) obj;
 
-			for (String n : listado) {
-				Object Omazo = this.dpFile.getData(this.DECKS_PATH, n);
-				MazoSave m = (MazoSave) Omazo;
-
-				mazos.add(this.getMazo(m, cartas));
+			for (String n : list) {
+				Object Odeck = this.dpFile.getData(this.DECKS_PATH, n);
+				DeckSave m = (DeckSave) Odeck;
+				decks.add(this.getDeck(m, cards));
 
 			}
 		}
-		return mazos;
+		return decks;
 	}
 	
-	private Mazo getMazo(MazoSave m, Hashtable<String,Carta> cartas){
+	private Deck getDeck(DeckSave m, Hashtable<String,Card> cards){
 		
-		Mazo mazo = new Mazo(m.getNombre());
+		Deck deck = new Deck(m.getName());
 		
 		for(String id : m.getIds()){
-			mazo.agregarCarta(cartas.get(id));
+			deck.addCard(cards.get(id));
 		}
 		
-		mazo.setAtributo(m.getAtributos());
-		return mazo;
+		deck.setAttribute(m.getAttributes());
+		return deck;
 	}
 	
 }

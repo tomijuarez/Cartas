@@ -1,20 +1,21 @@
 package controller.events;
 
-import model.Jugador;
-import model.MazoJugador;
+
+import model.DeckPlayer;
+import model.Player;
 
 /**
  * Created by Gandalf on 21/2/2016.
  */
 public class WinRound implements GameEventAcceptor {
-    Jugador winner;
+    Player winner;
 
-    public WinRound(Jugador winner, MazoJugador accumulator) {
-        winner.agregarPosoGanador(accumulator);
+    public WinRound(Player winner, DeckPlayer accumulator) {
+        winner.addAccumulatorWinner(accumulator);
         this.winner = winner;
     }
 
-    public Jugador getWinner() {
+    public Player getWinner() {
         return this.winner;
     }
 

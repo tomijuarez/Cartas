@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import model.Mazo;
+import model.Deck;
 
 /**
  * Created by Gandalf on 13/2/2016.
@@ -16,11 +16,11 @@ public class DeckView extends ViewPackage {
 
     private final String deckImageName = "deckBackground";
 
-    private Mazo deck;
+    private Deck deck;
 
-    public DeckView(Mazo deck) {
+    public DeckView(Deck deck) {
         this.deck = deck;
-        String name = deck.getNombre();
+        String name = deck.getName();
 
         this.container = new Pane();
 
@@ -51,7 +51,7 @@ public class DeckView extends ViewPackage {
         this.container.setStyle("-fx-border-color: transparent;");
     }
 
-    public Mazo getDeck() {
+    public Deck getDeck() {
         return this.deck;
     }
 

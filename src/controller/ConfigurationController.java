@@ -5,10 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import model.DifficultStrategy;
-import model.EasyStrategy;
-import model.Estrategia;
-import model.MediumStrategy;
+import model.*;
 
 import java.net.URL;
 import java.util.List;
@@ -61,7 +58,7 @@ public class ConfigurationController extends MediableController implements Initi
 
     private List<String> userNames = new Vector<>();
     private List<Boolean> managedManually = new Vector<>();
-    Estrategia selectedStrategy;
+    private Strategy selectedStrategy;
 
     private int playersNum = 2;
     private ConfigurationMediator mediator;
@@ -95,6 +92,7 @@ public class ConfigurationController extends MediableController implements Initi
         this.acceptButton.setOnAction((event) -> {
             if( this.verifyInputs() ) {
                 this.mediator.rootControllerSetData(this.userNames, this.managedManually, this.selectedStrategy);
+                System.out.println("accepte a los jugadores");
                 this.context.close();
             }
         });

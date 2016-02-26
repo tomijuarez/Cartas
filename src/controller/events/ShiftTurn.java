@@ -1,19 +1,19 @@
 package controller.events;
 
-import model.Jugador;
+import model.Player;
 
 /**
  * Created by Gandalf on 21/2/2016.
  */
 public class ShiftTurn implements GameEventAcceptor {
 
-    private Jugador currentPlayer;
+    private Player currentPlayer;
 
-    public ShiftTurn(Jugador currentPlayer) {
+    public ShiftTurn(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 
-    public Jugador getCurrentPlayer() {
+    public Player getCurrentPlayer() {
         return this.currentPlayer;
     }
 

@@ -1,6 +1,6 @@
 package controller.events;
 
-import model.Carta;
+import model.Card;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import java.util.List;
  * Created by Gandalf on 21/2/2016.
  */
 public class ListCards implements ListArtifactsEventAcceptor {
-    List<Carta> cards;
+    List<Card> cards;
 
-    public ListCards(List<Carta> cards) {
+    public ListCards(List<Card> cards) {
         this.cards = cards;
     }
 

@@ -5,12 +5,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
-import model.Carta;
-import model.Mazo;
+import model.Card;
+import model.Deck;
 import view.model.CardView;
 import view.model.DeckView;
 
-import javax.smartcardio.Card;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,17 +29,17 @@ public class DeckCreatorController extends MediableController implements Initial
     @FXML
     private Button continueButton;
 
-    List<Carta> cards;
+    List<Card> cards;
 
     List<CardView> selectedCards = new Vector<>();
 
-    public DeckCreatorController(List<Carta> cards) {
+    public DeckCreatorController(List<Card> cards) {
         this.cards = cards;
     }
 
     private List<CardView> getCardsView() {
         List<CardView> cardsView = new Vector<>();
-        for (Carta card: this.cards) {
+        for (Card card: this.cards) {
             cardsView.add(new CardView(card));
         }
         return cardsView;

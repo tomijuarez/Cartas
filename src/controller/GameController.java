@@ -48,9 +48,9 @@ public class GameController extends MediableController implements Initializable,
      * Model
      */
 
-    private Juego game;
+    private Game game;
 
-    public GameController(Juego game) {
+    public GameController(Game game) {
         super();
         this.game = game;
     }
@@ -73,17 +73,17 @@ public class GameController extends MediableController implements Initializable,
 
     @Override
     public void visit(ShiftTurn event) {
-        Jugador currentPlayer = event.getCurrentPlayer();
-        currentPlayer.nombreAtributoSeleccionado();
+        Player currentPlayer = event.getCurrentPlayer();
+        currentPlayer.nameCurrentAttribute();
     }
 
     @Override
     public void visit(CardsSelection event) {
-        List<Jugador> players = event.getPlayers();
-        MazoJugador accumulatorDeck = new MazoJugador();
+        List<Player> players = event.getPlayers();
+        DeckPlayer accumulatorDeck = new DeckPlayer();
 
-        for(Jugador player: players) {
-            accumulatorDeck.agregarCarta(player.getCurrentCard());
+        for(Player player: players) {
+            accumulatorDeck.addCard(player.getCurrentCard());
         }
     }
 

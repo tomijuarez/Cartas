@@ -1,6 +1,7 @@
 package controller.events;
 
-import model.Mazo;
+import model.Deck;
+
 
 import java.util.List;
 
@@ -9,10 +10,10 @@ import java.util.List;
  */
 public class ListDecks implements ListArtifactsEventAcceptor {
 
-    List<Mazo> decks;
+    List<Deck> decks;
 
 
-    public ListDecks(List<Mazo> decks) {
+    public ListDecks(List<Deck> decks) {
         this.decks = decks;
     }
 

@@ -11,7 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.shape.Rectangle;
-import model.Mazo;
+import model.Deck;
 import view.model.DeckView;
 
 import java.net.URL;
@@ -30,18 +30,18 @@ public class DeckSelectorController extends MediableController implements Initia
     @FXML
     private Button continueButton;
 
-    private List<Mazo> decks;
+    private List<Deck> decks;
 
     private DeckSelectorMediator mediator;
     private DeckView selectedDeck;
 
-    public DeckSelectorController(List<Mazo> decks) {
+    public DeckSelectorController(List<Deck> decks) {
         this.decks = decks;
     }
 
     private List<DeckView> getDeckViews() {
         List<DeckView> decksView = new Vector<>();
-        for (Mazo deck: this.decks) {
+        for (Deck deck: this.decks) {
             decksView.add(new DeckView(deck));
         }
         return decksView;

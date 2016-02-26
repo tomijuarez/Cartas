@@ -12,10 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.Estrategia;
-import model.Juego;
-import model.Jugador;
-import model.Mazo;
+import model.Deck;
+import model.Game;
+import model.Strategy;
 import view.Context;
 import view.GameWindow;
 import view.Modal;
@@ -39,13 +38,13 @@ public class FirstController extends MediableController implements Initializable
 
     private Mediator mediator;
 
-    private Estrategia selectedStrategy;
+    private Strategy selectedStrategy;
     private List<String> playerNames;
     private List<Boolean> managedManually;
 
-    private Juego game;
+    private Game game;
 
-    public FirstController(Juego game) {
+    public FirstController(Game game) {
         game.addObserver(this);
         this.game = game;
     }
@@ -88,14 +87,14 @@ public class FirstController extends MediableController implements Initializable
         this.context.setChild(subWindow, new GameMediator());*/
     }
 
-    public void setGameArtifacts(List<String> playerNames, List<Boolean> managedManually, Estrategia selectedStrategy) {
+    public void setGameArtifacts(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy) {
         this.playerNames = playerNames;
         this.managedManually = managedManually;
         this.selectedStrategy = selectedStrategy;
         this.initDeckSelectorUI();
     }
 
-    public void setGameDeck(Mazo deck) {
+    public void setGameDeck(Deck deck) {
         this.game.createPlayers(this.playerNames, this.managedManually, this.selectedStrategy, deck);
     }
 

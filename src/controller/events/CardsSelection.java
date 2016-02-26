@@ -1,6 +1,6 @@
 package controller.events;
 
-import model.Jugador;
+import model.Player;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class CardsSelection implements GameEventAcceptor {
 
-    List<Jugador> players;
+    List<Player> players;
 
-    public CardsSelection(List<Jugador> players) {
+    public CardsSelection(List<Player> players) {
         this.players = players;
     }
 
-    public List<Jugador> getPlayers() {
+    public List<Player> getPlayers() {
         return this.players;
     }
 

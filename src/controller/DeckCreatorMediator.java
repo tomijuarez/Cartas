@@ -1,6 +1,6 @@
 package controller;
 
-import model.Mazo;
+import model.Deck;
 
 /**
  * Created by Gandalf on 23/2/2016.

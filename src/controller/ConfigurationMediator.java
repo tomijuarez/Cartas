@@ -1,10 +1,7 @@
 package controller;
 
 import javafx.scene.control.TextField;
-import model.Estrategia;
-import model.Jugador;
-import model.ManualStrategy;
-import model.Mazo;
+import model.*;
 
 import javax.xml.soap.Text;
 import java.util.List;
@@ -30,7 +27,7 @@ public class ConfigurationMediator implements Mediator {
         return this.subController;
     }
 
-    public void rootControllerSetData(List<String> userNames, List<Boolean> managedManually, Estrategia selectedStrategy) {
+    public void rootControllerSetData(List<String> userNames, List<Boolean> managedManually, Strategy selectedStrategy) {
         this.parentController.setGameArtifacts(userNames, managedManually, selectedStrategy);
     }
 

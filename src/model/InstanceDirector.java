@@ -11,12 +11,12 @@ public class InstanceDirector {
 		this.builder = b;
 	}
 	
-	public List<Mazo> getMazos(Hashtable<String, Carta> c){
-		return this.builder.getMazos(c);
+	public List<Deck> getDecks(Hashtable<String, Card> c){
+		return this.builder.getDecks(c);
 	}
 	
-	public Hashtable<String,Carta> getCartas(){
-		return this.builder.getCartas();
+	public Hashtable<String,Card> getCards(){
+		return this.builder.getCards();
 	}
 	
 }

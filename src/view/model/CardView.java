@@ -6,21 +6,21 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import model.Carta;
+import model.Card;
 
 /**
  * Created by Gandalf on 13/2/2016.
  */
 public class CardView extends ViewPackage {
 
-    private Carta card;
+    private Card card;
 
     /**
      *
      * @param card
      */
 
-    public CardView(Carta card) {
+    public CardView(Card card) {
         this.card = card;
 
         String nick = card.getNick();
@@ -50,7 +50,7 @@ public class CardView extends ViewPackage {
         this.container.setStyle("-fx-border-width: 2px; -fx-border-color: green;");
     }
 
-    public Carta getCard() {
+    public Card getCard() {
         return this.card;
     }
 }

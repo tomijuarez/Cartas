@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface Builder {
 
-	public Hashtable<String, Carta> getCartas();
-	public List<Mazo> getMazos(Hashtable<String, Carta> cartas);
+	public Hashtable<String, Card> getCards();
+	public List<Deck> getDecks(Hashtable<String, Card> cards);
+
 }
