@@ -55,6 +55,11 @@ public class Card extends Observable {
         }
     }
 
+    public List<String> getAttributes(){
+        List<String> aux = this.attributes;
+        return aux;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

@@ -1,41 +1,4 @@
-<model.Card>
-  <changed>false</changed>
-  <obs/>
-  <id>46</id>
-  <character class="model.Character">
-    <fictitiousName>Duende Verde</fictitiousName>
-    <nameReal>Norman Osborn</nameReal>
-    <attributes class="hashtable">
-      <entry>
-        <string>Destreza</string>
-        <double>9.0</double>
-      </entry>
-      <entry>
-        <string>Peso</string>
-        <double>60.0</double>
-      </entry>
-      <entry>
-        <string>Inteligencia</string>
-        <double>98.0</double>
-      </entry>
-      <entry>
-        <string>Velocidad</string>
-        <double>205.0</double>
-      </entry>
-      <entry>
-        <string>Bondad</string>
-        <double>10.0</double>
-      </entry>
-      <entry>
-        <string>Fuerza</string>
-        <double>830.0</double>
-      </entry>
-      <entry>
-        <string>Maldad</string>
-        <double>95.0</double>
-      </entry>
-    </attributes>
-  </character>
+<model.CardSave>
   <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
@@ -45,4 +8,5 @@
     <string>Peso</string>
     <string>Bondad</string>
   </attributes>
-</model.Card>
+  <idCharacter>Duende Verde</idCharacter>
+</model.CardSave>

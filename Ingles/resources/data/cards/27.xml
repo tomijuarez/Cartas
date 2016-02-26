@@ -1,41 +1,4 @@
-<model.Card>
-  <changed>false</changed>
-  <obs/>
-  <id>27</id>
-  <character class="model.Character">
-    <fictitiousName>Bestia</fictitiousName>
-    <nameReal>Henry Philip McCoy</nameReal>
-    <attributes class="hashtable">
-      <entry>
-        <string>Destreza</string>
-        <double>8.5</double>
-      </entry>
-      <entry>
-        <string>Peso</string>
-        <double>112.0</double>
-      </entry>
-      <entry>
-        <string>Inteligencia</string>
-        <double>95.0</double>
-      </entry>
-      <entry>
-        <string>Velocidad</string>
-        <double>86.0</double>
-      </entry>
-      <entry>
-        <string>Bondad</string>
-        <double>99.0</double>
-      </entry>
-      <entry>
-        <string>Fuerza</string>
-        <double>1000.0</double>
-      </entry>
-      <entry>
-        <string>Maldad</string>
-        <double>0.0</double>
-      </entry>
-    </attributes>
-  </character>
+<model.CardSave>
   <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
@@ -44,4 +7,5 @@
     <string>Peso</string>
     <string>Bondad</string>
   </attributes>
-</model.Card>
+  <idCharacter>Bestia</idCharacter>
+</model.CardSave>

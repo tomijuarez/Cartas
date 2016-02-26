@@ -1,0 +1,34 @@
+<model.Character>
+  <fictitiousName>Spider-Man</fictitiousName>
+  <nameReal>Peter Benjamin Parker Fitzpatrick</nameReal>
+  <attributes class="hashtable">
+    <entry>
+      <string>Destreza</string>
+      <double>10.0</double>
+    </entry>
+    <entry>
+      <string>Peso</string>
+      <double>83.0</double>
+    </entry>
+    <entry>
+      <string>Inteligencia</string>
+      <double>98.0</double>
+    </entry>
+    <entry>
+      <string>Velocidad</string>
+      <double>150.0</double>
+    </entry>
+    <entry>
+      <string>Bondad</string>
+      <double>99.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>10.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>500.0</double>
+    </entry>
+  </attributes>
+</model.Character>

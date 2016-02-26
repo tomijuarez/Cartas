@@ -1,41 +1,4 @@
-<model.Card>
-  <changed>false</changed>
-  <obs/>
-  <id>17</id>
-  <character class="model.Character">
-    <fictitiousName>Guason</fictitiousName>
-    <nameReal>Desconocido</nameReal>
-    <attributes class="hashtable">
-      <entry>
-        <string>Destreza</string>
-        <double>8.5</double>
-      </entry>
-      <entry>
-        <string>Peso</string>
-        <double>67.0</double>
-      </entry>
-      <entry>
-        <string>Inteligencia</string>
-        <double>97.0</double>
-      </entry>
-      <entry>
-        <string>Velocidad</string>
-        <double>45.0</double>
-      </entry>
-      <entry>
-        <string>Bondad</string>
-        <double>5.0</double>
-      </entry>
-      <entry>
-        <string>Fuerza</string>
-        <double>45.0</double>
-      </entry>
-      <entry>
-        <string>Maldad</string>
-        <double>98.0</double>
-      </entry>
-    </attributes>
-  </character>
+<model.CardSave>
   <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
@@ -45,4 +8,5 @@
     <string>Peso</string>
     <string>Bondad</string>
   </attributes>
-</model.Card>
+  <idCharacter>Guason</idCharacter>
+</model.CardSave>
