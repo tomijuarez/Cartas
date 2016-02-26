@@ -66,6 +66,11 @@ public class FirstController extends MediableController implements Initializable
             Modal deckCreatorWindow = new Modal("layouts/deckCreatorView.fxml", new DeckCreatorController(this.game.getCards()), new Stage(), this.context);
             this.context.setChild(deckCreatorWindow, new DeckCreatorMediator());
         });
+
+        createCharacterButton.setOnAction((event)->{
+            Modal characterCreatorWindow = new Modal("layouts/characterCreatorView.fxml", new CharacterCreatorController(new ArrayList<String>()/*this.game.getAttributes()*/), new Stage(), this.context);
+            this.context.setChild(characterCreatorWindow, new CharacterCreatorMediator());
+        });
         /*
         crearCartas.setOnAction((event)->{
             Modal subWindow = new Modal("layouts/secondView.fxml", new SecondController(), new Stage(), event);

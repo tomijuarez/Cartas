@@ -16,13 +16,7 @@ public class CardView extends ViewPackage {
     private Carta card;
 
     /**
-     * 		Path pathOrigin = Paths.get(imagePath);
-     Path pathTarget = Paths.get(super.getImagePath());
-     try {
-     Files.copy( pathOrigin, pathTarget,StandardCopyOption.REPLACE_EXISTING);
-     } catch (IOException e) {
-     System.out.printf("Error al guardar Imagen");
-     }
+     *
      * @param card
      */
 
