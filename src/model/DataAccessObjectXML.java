@@ -41,14 +41,14 @@ public class DataAccessObjectXML extends DataAccessObject{
         List<Deck> decks = new ArrayList<>();
 
         /**Cargado de Mazos**/
-        Object obj = this.dpFile.getData(this.DECKS_PATH,"nombresMazos");
+        Object obj = this.dpFile.getData(this.DECKS_PATH,"deckNames");
 
         if(obj != null){
             List<String> list = (List<String>) obj;
 
             for (String n : list) {
-                Object Odeck = this.dpFile.getData(this.DECKS_PATH, n);
-                DeckSave m = (DeckSave) Odeck;
+                Object oDeck = this.dpFile.getData(this.DECKS_PATH, n);
+                DeckSave m = (DeckSave) oDeck;
                 decks.add(this.getDeck(m, cards));
 
             }
@@ -114,7 +114,7 @@ public class DataAccessObjectXML extends DataAccessObject{
         }
 
         /**Guardo listado de nombre de mazos**/
-        this.dpFile.saveData(this.DECKS_PATH, "nombresMazos", names);
+        this.dpFile.saveData(this.DECKS_PATH, "deckNames", names);
     }
 
     private List<String> getIds(Deck m) {

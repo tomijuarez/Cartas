@@ -51,6 +51,24 @@ public class Game extends Observable {
     }
 
 
+    public Game() {
+
+        //this.crearEstPrueba();
+
+        this.characters = this.daoXML.getCharacters();
+        this.cards = this.daoXML.getCards(this.characters);
+        this.decks = this.daoXML.getDecks(this.cards);
+        this.attributes = this.daoXML.getAttributes();
+
+        /**Guardar Datos**/
+        this.daoXML.saveData(this.characters,this.attributes,this.decks,this.cards);
+
+        for(String aux : this.attributes){
+            System.out.println(aux);
+        }
+    }
+
+
     public void createDeck(List<Card> cards, String name, List<Map.Entry<String, Boolean>> attributes) {
         Deck newDeck = new MainDeck(name);
         for (model.Card c : cards) {
@@ -195,29 +213,6 @@ public class Game extends Observable {
     public List<Deck> getDecks() {
         return this.decks;
     }
-
-    public Game() {
-
-        /**Creo Cards y mazos**/
-       // this.director = new model.InstanceDirector(new model.HeroesBuilder());
-       // this.cards = this.director.getCards();
-       // this.decks = this.director.getDecks(this.cards);
-
-        //this.crearEstPrueba();
-        /**Guardar Datos**/
-        //this.daoXML.saveData(this.characters,this.attributes,this.decks,this.cards);
-
-        this.characters = this.daoXML.getCharacters();
-        this.cards = this.daoXML.getCards(this.characters);
-        this.decks = this.daoXML.getDecks(this.cards);
-        this.attributes = this.daoXML.getAttributes();
-
-        for(String aux : this.attributes){
-            System.out.println(aux);
-        }
-    }
-
-
 
     public void addPlayer(Player player) {
         this.players.add(player);
