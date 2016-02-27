@@ -55,6 +55,7 @@ public class CharacterCreatorController extends MediableController implements In
     public void initialize(URL url, ResourceBundle rb) {
         selectImageButton.setOnAction((event)->{
             FileChooser imageSelector = new FileChooser();
+            imageSelector.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG images","*.png"));
             imageSelector.setTitle("Elegir foto del personaje.");
             this.selectedImage = imageSelector.showOpenDialog(this.context.getStage());
             this.showImage(this.selectedImage);
