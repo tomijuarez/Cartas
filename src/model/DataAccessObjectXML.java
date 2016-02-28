@@ -25,13 +25,34 @@ public class DataAccessObjectXML extends DataAccessObject{
     }
 
     @Override
-    public Hashtable<String, Card> getCards(Hashtable<String, Character> character) {
+    public Hashtable<String, Character> getCharacters() {
+        Hashtable<String, Character> characters = new Hashtable<>();
+
+        for(int i=1; i <= this.dpFile.numberFiles(this.CHARACTER_PATH) ; i++){
+            Character aux = (Character) this.dpFile.getData(this.CHARACTER_PATH,String.valueOf(i));
+            if(aux != null) {
+                characters.put(String.valueOf(i), aux);
+            }
+        }
+
+        return characters;
+    }
+
+
+    @Override
+    public Hashtable<String, Card> getCards(Hashtable<String, Character> characters) {
 
         Hashtable<String, Card> cards = new Hashtable<>();
 
         for(int i=1; i <= this.dpFile.numberFiles(this.CHARACTER_PATH) ; i++){
-            CardSave aux = (CardSave) this.dpFile.getData(this.CARDS_PATH, String.valueOf(i));
-            cards.put(String.valueOf(i),new Card(character.get(String.valueOf(i))));
+            CardSave auxCard = (CardSave) this.dpFile.getData(this.CARDS_PATH, String.valueOf(i));
+            if(auxCard != null) {
+                Card newCard = new Card(characters.get(String.valueOf(i)));
+                for(String c : auxCard.getAttributes()){
+                    newCard.addAttribute(c);
+                }
+                cards.put(String.valueOf(i),newCard);
+            }
         }
         return cards;
     }
@@ -47,26 +68,20 @@ public class DataAccessObjectXML extends DataAccessObject{
             List<String> list = (List<String>) obj;
 
             for (String n : list) {
-                Object oDeck = this.dpFile.getData(this.DECKS_PATH, n);
-                DeckSave m = (DeckSave) oDeck;
-                decks.add(this.getDeck(m, cards));
+                DeckSave auxDeck = (DeckSave) this.dpFile.getData(this.DECKS_PATH, n);
+                if(obj!=null){
+                    Deck newDeck = new Deck(auxDeck.getName());
+                    for(String id : auxDeck.getIds()){
+                        newDeck.addCard(cards.get(id));
+                    }
+                    newDeck.setAttribute(auxDeck.getAttributes());
+                    decks.add(newDeck);
+
+                }
 
             }
         }
         return decks;
-    }
-
-
-    private Deck getDeck(DeckSave m, Hashtable<String,Card> cards){
-
-        Deck deck = new Deck(m.getName());
-
-        for(String id : m.getIds()){
-            deck.addCard(cards.get(id));
-        }
-
-        deck.setAttribute(m.getAttributes());
-        return deck;
     }
 
     @Override
@@ -74,16 +89,6 @@ public class DataAccessObjectXML extends DataAccessObject{
         return (List)this.dpFile.getData(this.ATTRIBUTES_PATH,this.NAME_FILE_ATTRIBUTTES);
     }
 
-    @Override
-    public Hashtable<String, Character> getCharacters() {
-        Hashtable<String, Character> characters = new Hashtable<>();
-
-        for(int i=1; i <= this.dpFile.numberFiles(this.CHARACTER_PATH) ; i++){
-            characters.put(String.valueOf(i),(Character) this.dpFile.getData(this.CHARACTER_PATH,String.valueOf(i)));
-        }
-
-        return characters;
-    }
 
     @Override
     public void saveData(Hashtable<String, Character> characters, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards) {
