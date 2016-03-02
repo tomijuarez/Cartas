@@ -28,8 +28,4 @@ public class GameMediator implements Mediator {
         this.controlador1 = (FirstController) controller1;
         this.controlador2 = (GameController) controller2;
     }
-
-    public void controller1ShowText(String text) {
-        this.controlador1.showText(text);
-    }
 }

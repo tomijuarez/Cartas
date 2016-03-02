@@ -11,12 +11,14 @@ public class Card extends Observable {
 
     private int id ;
     private AbstractCharacter character;
-    private List<String> attributes;
+    private List<String> attributes = new ArrayList<>();
 
-    public Card(AbstractCharacter pers){
-
+    public Card(AbstractCharacter pers) {
         this.character = pers;
-        this.attributes = new ArrayList<>();
+    }
+
+    public void setAttributes(List<String> selectedAttributes){
+        this.attributes = selectedAttributes;
     }
 
     public String getNick() {
@@ -32,7 +34,7 @@ public class Card extends Observable {
     }
 
     public void addAttribute(String attrib){
-        if(this.character.getAttribute(attrib) == 0.0){
+      if(this.character.getAttribute(attrib) == 0.0){
             System.out.println("El personaje no contiene el atributo solicitado");
             //notifico que el atributo no se encuentra
             this.notifyObservers("no_atributo");

@@ -2,6 +2,7 @@ package model;
 
 import org.w3c.dom.views.AbstractView;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -30,6 +31,11 @@ public class League extends AbstractCharacter {
         }
     }
 
+
+    @Override
+    public List<String> getAttributes() {
+        return null; // IMPLEMENTAR
+    }
 
     @Override
     public double getAttribute(String attrib) {
