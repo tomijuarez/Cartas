@@ -40,6 +40,10 @@ public class DeckSave {
         return a;
     }
 
+    public void addAttribute(String name ,boolean compareType){
+        this.attributes.put(name, new Boolean(compareType) );
+    }
+
     public void setAttributes(Hashtable<String, Boolean> attributes) {
         this.attributes = attributes;
     }

@@ -1,6 +1,7 @@
 <model.Character>
-  <fictitiousName>Manhunter</fictitiousName>
-  <nameReal>Dan Richards</nameReal>
+  <fictitiousName>Hulk</fictitiousName>
+  <id>41</id>
+  <nameReal>Robert Bruce Banner</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
@@ -8,27 +9,27 @@
     </entry>
     <entry>
       <string>Peso</string>
-      <double>86.0</double>
+      <double>450.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>97.0</double>
+      <double>80.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>85.0</double>
+      <double>130.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>98.5</double>
+      <double>60.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>0.0</double>
+      <double>25.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>400.0</double>
+      <double>2200.0</double>
     </entry>
   </attributes>
 </model.Character>

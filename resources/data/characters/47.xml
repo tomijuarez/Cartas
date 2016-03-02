@@ -1,22 +1,23 @@
 <model.Character>
-  <fictitiousName>Wolverine</fictitiousName>
-  <nameReal>James Hudson Howlett</nameReal>
+  <fictitiousName>Storm</fictitiousName>
+  <id>47</id>
+  <nameReal>Ororo Iqadi Munroe</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.0</double>
+      <double>9.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>81.0</double>
+      <double>66.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>96.0</double>
+      <double>97.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>215.0</double>
+      <double>110.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
@@ -24,11 +25,11 @@
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>2.0</double>
+      <double>0.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>900.0</double>
+      <double>120.0</double>
     </entry>
   </attributes>
 </model.Character>

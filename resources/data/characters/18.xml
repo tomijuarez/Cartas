@@ -1,34 +1,35 @@
 <model.Character>
-  <fictitiousName>Robin</fictitiousName>
-  <nameReal>Dick Grayson</nameReal>
+  <fictitiousName>Conmocionador</fictitiousName>
+  <id>18</id>
+  <nameReal>Herman Schultz</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.5</double>
+      <double>7.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>65.0</double>
+      <double>79.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>80.0</double>
+      <double>95.5</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>80.0</double>
+      <double>43.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>98.0</double>
+      <double>2.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>0.0</double>
+      <double>80.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>200.0</double>
+      <double>400.0</double>
     </entry>
   </attributes>
 </model.Character>

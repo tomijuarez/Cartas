@@ -6,6 +6,12 @@
     <string>Destreza</string>
     <string>Inteligencia</string>
     <string>Peso</string>
+    <string>Fuerza</string>
+    <string>Velocidad</string>
+    <string>Maldad</string>
+    <string>Destreza</string>
+    <string>Inteligencia</string>
+    <string>Peso</string>
   </attributes>
-  <idCharacter>Iron Monger</idCharacter>
+  <idCharacter>23</idCharacter>
 </model.CardSave>

@@ -57,8 +57,14 @@ public class Game extends Observable {
         this.decks = this.daoXML.getDecks(this.cards);
         this.attributes = this.daoXML.getAttributes();
 
+        for(League l : this.leagues.values()){
+            for(Character c : l.getCharacters()){
+                System.out.print(c.getFictitiousName() + "\n");
+            }
+        }
+
         /**Guardar Datos**/
-        //this.daoXML.saveData(this.characters,this.attributes,this.decks,this.cards);
+        this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
         for(String aux : this.attributes){
             System.out.println(aux);
@@ -260,10 +266,13 @@ public class Game extends Observable {
 
     private void crearEstPrueba() {
 
+        this.all = new Hashtable<String, AbstractCharacter>();
         this.cards = new Hashtable<String, Card>();
         this.decks = new ArrayList<Deck>();
         this.characters = new Hashtable<String, Character>();
+        this.leagues = new Hashtable<String, League>();
         this.attributes = new ArrayList<String>();
+
 
         //cargo atributos predeterminados
         this.attributes.add("Fuerza");
@@ -278,8 +287,16 @@ public class Game extends Observable {
 
         /**Card N°1**/
         Character p1 = new Character("Superman", "Clark Kent");
-        Map<String,Double>  attributtes1 = new Hashtable<>();
-        this.characters.put(p1.getFictitiousName(),p1);
+        p1.addAttribute("Fuerza", 2500.0);
+        p1.addAttribute("Velocidad", 120.0);
+        p1.addAttribute("Maldad", 0.0);
+        p1.addAttribute("Destreza", 9.0);
+        p1.addAttribute("Inteligencia", 90.0);
+        p1.addAttribute("Peso", 110.0);
+        p1.addAttribute("Bondad", 99.0);
+
+        this.characters.put(String.valueOf(1),p1);
+        this.all.put(String.valueOf(1),p1);
         Card c1 = new Card(p1);
         c1.addAttribute("Fuerza");
         c1.addAttribute("Velocidad");
@@ -300,7 +317,8 @@ public class Game extends Observable {
         p2.addAttribute("Inteligencia", 85.0);
         p2.addAttribute("Peso", 106.0);
         p2.addAttribute("Bondad", 70.0);
-        this.characters.put(p2.getFictitiousName(),p2);
+        this.characters.put(String.valueOf(2),p2);
+        this.all.put(String.valueOf(2),p2);
         Card c2 = new Card(p2);
         c2.addAttribute("Fuerza");
         c2.addAttribute("Velocidad");
@@ -321,7 +339,8 @@ public class Game extends Observable {
         p3.addAttribute("Inteligencia", 75.5);
         p3.addAttribute("Peso", 90.0);
         p3.addAttribute("Bondad", 95.5);
-        this.characters.put(p3.getFictitiousName(),p3);
+        this.characters.put(String.valueOf(3),p3);
+        this.all.put(String.valueOf(3),p3);
         Card c3 = new Card(p3);
         c3.addAttribute("Fuerza");
         c3.addAttribute("Velocidad");
@@ -342,7 +361,8 @@ public class Game extends Observable {
         p4.addAttribute("Inteligencia", 90.0);
         p4.addAttribute("Peso", 62.0);
         p4.addAttribute("Bondad", 97.0);
-        this.characters.put(p4.getFictitiousName(),p4);
+        this.characters.put(String.valueOf(4),p4);
+        this.all.put(String.valueOf(4),p4);
         Card c4 = new Card(p4);
         c4.addAttribute("Fuerza");
         c4.addAttribute("Velocidad");
@@ -363,7 +383,8 @@ public class Game extends Observable {
         p5.addAttribute("Inteligencia", 90.0);
         p5.addAttribute("Peso", 60.0);
         p5.addAttribute("Bondad", 97.5);
-        this.characters.put(p5.getFictitiousName(),p5);
+        this.characters.put(String.valueOf(5),p5);
+        this.all.put(String.valueOf(5),p5);
         Card c5 = new Card(p5);
         c5.addAttribute("Fuerza");
         c5.addAttribute("Velocidad");
@@ -384,7 +405,8 @@ public class Game extends Observable {
         p6.addAttribute("Inteligencia", 80.0);
         p6.addAttribute("Peso", 65.0);
         p6.addAttribute("Bondad", 98.0);
-        this.characters.put(p6.getFictitiousName(),p6);
+        this.characters.put(String.valueOf(6),p6);
+        this.all.put(String.valueOf(6),p6);
         Card c6 = new Card(p6);
         c6.addAttribute("Fuerza");
         c6.addAttribute("Velocidad");
@@ -405,7 +427,8 @@ public class Game extends Observable {
         p7.addAttribute("Inteligencia", 95.5);
         p7.addAttribute("Peso", 55.0);
         p7.addAttribute("Bondad", 97.0);
-        this.characters.put(p7.getFictitiousName(),p7);
+        this.characters.put(String.valueOf(7),p7);
+        this.all.put(String.valueOf(7),p7);
         Card c7 = new Card(p7);
         c7.addAttribute("Fuerza");
         c7.addAttribute("Velocidad");
@@ -426,7 +449,8 @@ public class Game extends Observable {
         p8.addAttribute("Inteligencia", 90.0);
         p8.addAttribute("Peso", 99.0);
         p8.addAttribute("Bondad", 98.5);
-        this.characters.put(p8.getFictitiousName(),p8);
+        this.characters.put(String.valueOf(8),p8);
+        this.all.put(String.valueOf(8),p8);
         Card c8 = new Card(p8);
         c8.addAttribute("Fuerza");
         c8.addAttribute("Velocidad");
@@ -447,7 +471,8 @@ public class Game extends Observable {
         p9.addAttribute("Inteligencia", 94.0);
         p9.addAttribute("Peso", 86.0);
         p9.addAttribute("Bondad", 99.0);
-        this.characters.put(p9.getFictitiousName(),p9);
+        this.characters.put(String.valueOf(9),p9);
+        this.all.put(String.valueOf(9),p9);
         Card c9 = new Card(p9);
 
         c9.addAttribute("Fuerza");
@@ -469,7 +494,8 @@ public class Game extends Observable {
         p10.addAttribute("Inteligencia", 95.5);
         p10.addAttribute("Peso", 86.5);
         p10.addAttribute("Bondad", 98.5);
-        this.characters.put(p10.getFictitiousName(),p10);
+        this.characters.put(String.valueOf(10),p10);
+        this.all.put(String.valueOf(10),p10);
         Card c10 = new Card(p10);
         c10.addAttribute("Fuerza");
         c10.addAttribute("Velocidad");
@@ -490,7 +516,8 @@ public class Game extends Observable {
         p11.addAttribute("Inteligencia", 95.5);
         p11.addAttribute("Peso", 1.5);
         p11.addAttribute("Bondad", 99.0);
-        this.characters.put(p11.getFictitiousName(),p11);
+        this.characters.put(String.valueOf(11),p11);
+        this.all.put(String.valueOf(11),p11);
         Card c11 = new Card(p11);
         c11.addAttribute("Fuerza");
         c11.addAttribute("Velocidad");
@@ -511,7 +538,8 @@ public class Game extends Observable {
         p12.addAttribute("Inteligencia", 92.0);
         p12.addAttribute("Peso", 55.0);
         p12.addAttribute("Bondad", 96.0);
-        this.characters.put(p12.getFictitiousName(),p12);
+        this.characters.put(String.valueOf(12),p12);
+        this.all.put(String.valueOf(12),p12);
         Card c12 = new Card(p12);
         c12.addAttribute("Fuerza");
         c12.addAttribute("Velocidad");
@@ -532,7 +560,8 @@ public class Game extends Observable {
         p13.addAttribute("Inteligencia", 97.0);
         p13.addAttribute("Peso", 86.0);
         p13.addAttribute("Bondad", 98.5);
-        this.characters.put(p13.getFictitiousName(),p13);
+        this.characters.put(String.valueOf(13),p13);
+        this.all.put(String.valueOf(13),p13);
         Card c13 = new Card(p13);
         c13.addAttribute("Fuerza");
         c13.addAttribute("Velocidad");
@@ -553,7 +582,8 @@ public class Game extends Observable {
         p14.addAttribute("Inteligencia", 97.0);
         p14.addAttribute("Peso", 55.0);
         p14.addAttribute("Bondad", 75.0);
-        this.characters.put(p14.getFictitiousName(),p14);
+        this.characters.put(String.valueOf(14),p14);
+        this.all.put(String.valueOf(14),p14);
         Card c14 = new Card(p14);
         c14.addAttribute("Fuerza");
         c14.addAttribute("Velocidad");
@@ -574,7 +604,8 @@ public class Game extends Observable {
         p15.addAttribute("Inteligencia", 89.0);
         p15.addAttribute("Peso", 57.0);
         p15.addAttribute("Bondad", 98.5);
-        this.characters.put(p15.getFictitiousName(),p15);
+        this.characters.put(String.valueOf(15),p15);
+        this.all.put(String.valueOf(15),p15);
         Card c15 = new Card(p15);
         c15.addAttribute("Fuerza");
         c15.addAttribute("Velocidad");
@@ -595,7 +626,8 @@ public class Game extends Observable {
         p16.addAttribute("Inteligencia", 95.5);
         p16.addAttribute("Peso", 110.0);
         p16.addAttribute("Bondad", 97.0);
-        this.characters.put(p16.getFictitiousName(),p16);
+        this.characters.put(String.valueOf(16),p16);
+        this.all.put(String.valueOf(16),p16);
         Card c16 = new Card(p16);
         c16.addAttribute("Fuerza");
         c16.addAttribute("Velocidad");
@@ -616,7 +648,8 @@ public class Game extends Observable {
         p17.addAttribute("Inteligencia", 97.0);
         p17.addAttribute("Peso", 67.0);
         p17.addAttribute("Bondad", 5.0);
-        this.characters.put(p17.getFictitiousName(),p17);
+        this.characters.put(String.valueOf(17),p17);
+        this.all.put(String.valueOf(17),p17);
         Card c17 = new Card(p17);
         c17.addAttribute("Fuerza");
         c17.addAttribute("Velocidad");
@@ -637,7 +670,8 @@ public class Game extends Observable {
         p18.addAttribute("Inteligencia", 99.0);
         p18.addAttribute("Peso", 90.0);
         p18.addAttribute("Bondad", 0.5);
-        this.characters.put(p18.getFictitiousName(),p18);
+        this.characters.put(String.valueOf(18),p18);
+        this.all.put(String.valueOf(18),p18);
         Card c18 = new Card(p18);
         c18.addAttribute("Fuerza");
         c18.addAttribute("Velocidad");
@@ -658,7 +692,8 @@ public class Game extends Observable {
         p19.addAttribute("Inteligencia", 90.0);
         p19.addAttribute("Peso", 62.0);
         p19.addAttribute("Bondad", 0.0);
-        this.characters.put(p19.getFictitiousName(),p19);
+        this.characters.put(String.valueOf(19),p19);
+        this.all.put(String.valueOf(19),p19);
         Card c19 = new Card(p19);
         c19.addAttribute("Fuerza");
         c19.addAttribute("Velocidad");
@@ -679,7 +714,8 @@ public class Game extends Observable {
         p20.addAttribute("Inteligencia", 90.0);
         p20.addAttribute("Peso", 60.5);
         p20.addAttribute("Bondad", 2.0);
-        this.characters.put(p20.getFictitiousName(),p20);
+        this.characters.put(String.valueOf(20),p20);
+        this.all.put(String.valueOf(20),p20);
         Card c20 = new Card(p20);
         c20.addAttribute("Fuerza");
         c20.addAttribute("Velocidad");
@@ -700,7 +736,8 @@ public class Game extends Observable {
         p21.addAttribute("Inteligencia", 98.0);
         p21.addAttribute("Peso", 95.0);
         p21.addAttribute("Bondad", 0.0);
-        this.characters.put(p21.getFictitiousName(),p21);
+        this.characters.put(String.valueOf(21),p21);
+        this.all.put(String.valueOf(21),p21);
         Card c21 = new Card(p21);
         c21.addAttribute("Fuerza");
         c21.addAttribute("Velocidad");
@@ -721,7 +758,8 @@ public class Game extends Observable {
         p22.addAttribute("Inteligencia", 89.5);
         p22.addAttribute("Peso", 90.0);
         p22.addAttribute("Bondad", 1.0);
-        this.characters.put(p22.getFictitiousName(),p22);
+        this.characters.put(String.valueOf(22),p22);
+        this.all.put(String.valueOf(22),p22);
         Card c22 = new Card(p22);
         c22.addAttribute("Fuerza");
         c22.addAttribute("Velocidad");
@@ -742,7 +780,8 @@ public class Game extends Observable {
         p23.addAttribute("Inteligencia", 97.0);
         p23.addAttribute("Peso", 77.0);
         p23.addAttribute("Bondad", 0.5);
-        this.characters.put(p23.getFictitiousName(),p23);
+        this.characters.put(String.valueOf(23),p23);
+        this.all.put(String.valueOf(23),p23);
         Card c23 = new Card(p23);
         c23.addAttribute("Fuerza");
         c23.addAttribute("Velocidad");
@@ -763,7 +802,8 @@ public class Game extends Observable {
         p24.addAttribute("Inteligencia", 97.0);
         p24.addAttribute("Peso", 80.0);
         p24.addAttribute("Bondad", 0.0);
-        this.characters.put(p24.getFictitiousName(),p24);
+        this.characters.put(String.valueOf(24),p24);
+        this.all.put(String.valueOf(24),p24);
         Card c24 = new Card(p24);
         c24.addAttribute("Fuerza");
         c24.addAttribute("Velocidad");
@@ -784,7 +824,8 @@ public class Game extends Observable {
         p25.addAttribute("Inteligencia", 95.0);
         p25.addAttribute("Peso", 103.0);
         p25.addAttribute("Bondad", 99.5);
-        this.characters.put(p25.getFictitiousName(),p25);
+        this.characters.put(String.valueOf(25),p25);
+        this.all.put(String.valueOf(25),p25);
         Card c25 = new Card(p25);
         c25.addAttribute("Fuerza");
         c25.addAttribute("Velocidad");
@@ -805,7 +846,8 @@ public class Game extends Observable {
         p26.addAttribute("Inteligencia", 96.0);
         p26.addAttribute("Peso", 74.0);
         p26.addAttribute("Bondad", 98.5);
-        this.characters.put(p26.getFictitiousName(),p26);
+        this.characters.put(String.valueOf(26),p26);
+        this.all.put(String.valueOf(26),p26);
         Card c26 = new Card(p26);
         c26.addAttribute("Fuerza");
         c26.addAttribute("Velocidad");
@@ -826,7 +868,8 @@ public class Game extends Observable {
         p27.addAttribute("Inteligencia", 95.0);
         p27.addAttribute("Peso", 112.0);
         p27.addAttribute("Bondad", 99.0);
-        this.characters.put(p27.getFictitiousName(),p27);
+        this.characters.put(String.valueOf(27),p27);
+        this.all.put(String.valueOf(27),p27);
         Card c27 = new Card(p27);
         c27.addAttribute("Fuerza");
         c27.addAttribute("Velocidad");
@@ -847,7 +890,8 @@ public class Game extends Observable {
         p28.addAttribute("Inteligencia", 96.0);
         p28.addAttribute("Peso", 81.0);
         p28.addAttribute("Bondad", 98.0);
-        this.characters.put(p28.getFictitiousName(),p28);
+        this.characters.put(String.valueOf(28),p28);
+        this.all.put(String.valueOf(28),p28);
         Card c28 = new Card(p28);
         c28.addAttribute("Fuerza");
         c28.addAttribute("Velocidad");
@@ -868,7 +912,8 @@ public class Game extends Observable {
         p29.addAttribute("Inteligencia", 97.0);
         p29.addAttribute("Peso", 66.0);
         p29.addAttribute("Bondad", 98.0);
-        this.characters.put(p29.getFictitiousName(),p29);
+        this.characters.put(String.valueOf(29),p29);
+        this.all.put(String.valueOf(29),p29);
         Card c29 = new Card(p29);
         c29.addAttribute("Fuerza");
         c29.addAttribute("Velocidad");
@@ -889,7 +934,8 @@ public class Game extends Observable {
         p30.addAttribute("Inteligencia", 100.0);
         p30.addAttribute("Peso", 90.0);
         p30.addAttribute("Bondad", 99.0);
-        this.characters.put(p30.getFictitiousName(),p30);
+        this.characters.put(String.valueOf(30),p30);
+        this.all.put(String.valueOf(30),p30);
         Card c30 = new Card(p30);
         c30.addAttribute("Fuerza");
         c30.addAttribute("Velocidad");
@@ -910,7 +956,8 @@ public class Game extends Observable {
         p31.addAttribute("Inteligencia", 98.0);
         p31.addAttribute("Peso", 83.0);
         p31.addAttribute("Bondad", 99.0);
-        this.characters.put(p31.getFictitiousName(),p31);
+        this.characters.put(String.valueOf(31),p31);
+        this.all.put(String.valueOf(31),p31);
         Card c31 = new Card(p31);
         c31.addAttribute("Fuerza");
         c31.addAttribute("Velocidad");
@@ -931,7 +978,8 @@ public class Game extends Observable {
         p32.addAttribute("Inteligencia", 99.0);
         p32.addAttribute("Peso", 587.0);
         p32.addAttribute("Bondad", 90.0);
-        this.characters.put(p32.getFictitiousName(),p32);
+        this.characters.put(String.valueOf(32),p32);
+        this.all.put(String.valueOf(32),p32);
         Card c32 = new Card(p32);
         c32.addAttribute("Fuerza");
         c32.addAttribute("Velocidad");
@@ -952,7 +1000,8 @@ public class Game extends Observable {
         p33.addAttribute("Inteligencia", 80.0);
         p33.addAttribute("Peso", 76.5);
         p33.addAttribute("Bondad", 85.0);
-        this.characters.put(p33.getFictitiousName(),p33);
+        this.characters.put(String.valueOf(33),p33);
+        this.all.put(String.valueOf(33),p33);
         Card c33 = new Card(p33);
         c33.addAttribute("Fuerza");
         c33.addAttribute("Velocidad");
@@ -973,7 +1022,8 @@ public class Game extends Observable {
         p34.addAttribute("Inteligencia", 97.0);
         p34.addAttribute("Peso", 55.0);
         p34.addAttribute("Bondad", 98.5);
-        this.characters.put(p34.getFictitiousName(),p34);
+        this.characters.put(String.valueOf(34),p34);
+        this.all.put(String.valueOf(34),p34);
         Card c34 = new Card(p34);
         c34.addAttribute("Fuerza");
         c34.addAttribute("Velocidad");
@@ -994,7 +1044,8 @@ public class Game extends Observable {
         p35.addAttribute("Inteligencia", 90.0);
         p35.addAttribute("Peso", 430.0);
         p35.addAttribute("Bondad", 98.0);
-        this.characters.put(p35.getFictitiousName(),p35);
+        this.characters.put(String.valueOf(35),p35);
+        this.all.put(String.valueOf(35),p35);
         Card c35 = new Card(p35);
         c35.addAttribute("Fuerza");
         c35.addAttribute("Velocidad");
@@ -1015,7 +1066,8 @@ public class Game extends Observable {
         p36.addAttribute("Inteligencia", 100.0);
         p36.addAttribute("Peso", 81.0);
         p36.addAttribute("Bondad", 98.5);
-        this.characters.put(p36.getFictitiousName(),p36);
+        this.characters.put(String.valueOf(36),p36);
+        this.all.put(String.valueOf(36),p36);
         Card c36 = new Card(p36);
         c36.addAttribute("Fuerza");
         c36.addAttribute("Velocidad");
@@ -1036,7 +1088,8 @@ public class Game extends Observable {
         p37.addAttribute("Inteligencia", 80.0);
         p37.addAttribute("Peso", 450.0);
         p37.addAttribute("Bondad", 60.0);
-        this.characters.put(p37.getFictitiousName(),p37);
+        this.characters.put(String.valueOf(37),p37);
+        this.all.put(String.valueOf(37),p37);
         Card c37 = new Card(p37);
         c37.addAttribute("Fuerza");
         c37.addAttribute("Velocidad");
@@ -1057,7 +1110,8 @@ public class Game extends Observable {
         p38.addAttribute("Inteligencia", 95.0);
         p38.addAttribute("Peso", 86.0);
         p38.addAttribute("Bondad", 100.0);
-        this.characters.put(p38.getFictitiousName(),p38);
+        this.characters.put(String.valueOf(38),p38);
+        this.all.put(String.valueOf(38),p38);
         Card c38 = new Card(p38);
         c38.addAttribute("Fuerza");
         c38.addAttribute("Velocidad");
@@ -1078,7 +1132,8 @@ public class Game extends Observable {
         p39.addAttribute("Inteligencia", 95.5);
         p39.addAttribute("Peso", 115.0);
         p39.addAttribute("Bondad", 0.0);
-        this.characters.put(p39.getFictitiousName(),p39);
+        this.characters.put(String.valueOf(39),p39);
+        this.all.put(String.valueOf(39),p39);
         Card c39 = new Card(p39);
         c39.addAttribute("Fuerza");
         c39.addAttribute("Velocidad");
@@ -1099,7 +1154,8 @@ public class Game extends Observable {
         p40.addAttribute("Inteligencia", 80.0);
         p40.addAttribute("Peso", 205.0);
         p40.addAttribute("Bondad", 25.0);
-        this.characters.put(p40.getFictitiousName(),p40);
+        this.characters.put(String.valueOf(40),p40);
+        this.all.put(String.valueOf(40),p40);
         Card c40 = new Card(p40);
         c40.addAttribute("Fuerza");
         c40.addAttribute("Velocidad");
@@ -1120,7 +1176,8 @@ public class Game extends Observable {
         p41.addAttribute("Inteligencia", 50.0);
         p41.addAttribute("Peso", 320.0);
         p41.addAttribute("Bondad", 0.0);
-        this.characters.put(p41.getFictitiousName(),p41);
+        this.characters.put(String.valueOf(41),p41);
+        this.all.put(String.valueOf(41),p41);
         Card c41 = new Card(p41);
         c41.addAttribute("Fuerza");
         c41.addAttribute("Velocidad");
@@ -1141,7 +1198,8 @@ public class Game extends Observable {
         p42.addAttribute("Inteligencia", 98.0);
         p42.addAttribute("Peso", 90.0);
         p42.addAttribute("Bondad", 40.0);
-        this.characters.put(p42.getFictitiousName(),p42);
+        this.characters.put(String.valueOf(42),p42);
+        this.all.put(String.valueOf(42),p42);
         Card c42 = new Card(p42);
         c42.addAttribute("Fuerza");
         c42.addAttribute("Velocidad");
@@ -1162,7 +1220,8 @@ public class Game extends Observable {
         p43.addAttribute("Inteligencia", 95.5);
         p43.addAttribute("Peso", 100.0);
         p43.addAttribute("Bondad", 0.0);
-        this.characters.put(p43.getFictitiousName(),p43);
+        this.characters.put(String.valueOf(43),p43);
+        this.all.put(String.valueOf(43),p43);
         Card c43 = new Card(p43);
         c43.addAttribute("Fuerza");
         c43.addAttribute("Velocidad");
@@ -1183,7 +1242,8 @@ public class Game extends Observable {
         p44.addAttribute("Inteligencia", 95.5);
         p44.addAttribute("Peso", 79.0);
         p44.addAttribute("Bondad", 2.0);
-        this.characters.put(p44.getFictitiousName(),p44);
+        this.characters.put(String.valueOf(44),p44);
+        this.all.put(String.valueOf(44),p44);
         Card c44 = new Card(p44);
         c44.addAttribute("Fuerza");
         c44.addAttribute("Velocidad");
@@ -1204,7 +1264,8 @@ public class Game extends Observable {
         p45.addAttribute("Inteligencia", 97.0);
         p45.addAttribute("Peso", 79.0);
         p45.addAttribute("Bondad", 1.0);
-        this.characters.put(p45.getFictitiousName(),p45);
+        this.characters.put(String.valueOf(45),p45);
+        this.all.put(String.valueOf(45),p45);
         Card c45 = new Card(p45);
         c45.addAttribute("Fuerza");
         c45.addAttribute("Velocidad");
@@ -1225,7 +1286,8 @@ public class Game extends Observable {
         p46.addAttribute("Inteligencia", 98.0);
         p46.addAttribute("Peso", 60.0);
         p46.addAttribute("Bondad", 10.0);
-        this.characters.put(p46.getFictitiousName(),p46);
+        this.characters.put(String.valueOf(46),p46);
+        this.all.put(String.valueOf(46),p46);
         Card c46 = new Card(p46);
         c46.addAttribute("Fuerza");
         c46.addAttribute("Velocidad");
@@ -1246,7 +1308,8 @@ public class Game extends Observable {
         p47.addAttribute("Inteligencia", 96.0);
         p47.addAttribute("Peso", 100.0);
         p47.addAttribute("Bondad", 10.0);
-        this.characters.put(p47.getFictitiousName(),p47);
+        this.characters.put(String.valueOf(47),p47);
+        this.all.put(String.valueOf(47),p47);
         Card c47 = new Card(p47);
         c47.addAttribute("Fuerza");
         c47.addAttribute("Velocidad");
@@ -1267,7 +1330,8 @@ public class Game extends Observable {
         p48.addAttribute("Inteligencia", 90.0);
         p48.addAttribute("Peso", 218.0);
         p48.addAttribute("Bondad", 0.0);
-        this.characters.put(p48.getFictitiousName(),p48);
+        this.characters.put(String.valueOf(48),p48);
+        this.all.put(String.valueOf(48),p48);
         Card c48 = new Card(p48);
         c48.addAttribute("Fuerza");
         c48.addAttribute("Velocidad");
@@ -1278,6 +1342,109 @@ public class Game extends Observable {
         c48.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(48), c48);
+
+        /**LIGAS**/
+        League l1 = new League("Los 4 Fantasticos");
+        l1.addCharacter(p33);
+        l1.addCharacter(p34);
+        l1.addCharacter(p35);
+        l1.addCharacter(p36);
+        this.leagues.put(String.valueOf(49),l1);
+        this.all.put(String.valueOf(49),l1);
+        Card c49 = new Card(l1);
+        c48.addAttribute("Fuerza");
+        c48.addAttribute("Velocidad");
+        c48.addAttribute("Maldad");
+        c48.addAttribute("Destreza");
+        c48.addAttribute("Inteligencia");
+        c48.addAttribute("Peso");
+        c48.addAttribute("Bondad");
+        this.cards.put(String.valueOf(49),c49);
+
+        /**MAZOS**/
+        Deck d1 = new Deck("Los Campeones 1");
+        d1.addAttribute("Fuerza",true);
+        d1.addAttribute("Velocidad",true);
+        d1.addAttribute("Maldad",true);
+        d1.addAttribute("Destreza",true);
+        d1.addAttribute("Inteligencia",true);
+        d1.addCard(c1);
+        d1.addCard(c2);
+        d1.addCard(c3);
+        d1.addCard(c4);
+        d1.addCard(c5);
+        d1.addCard(c6);
+        d1.addCard(c7);
+        d1.addCard(c8);
+        d1.addCard(c9);
+        d1.addCard(c10);
+        d1.addCard(c11);
+        d1.addCard(c12);
+
+        this.decks.add(d1);
+
+        Deck d2 = new Deck("Los Campeones 2");
+        d2.addAttribute("Fuerza",true);
+        d2.addAttribute("Velocidad",true);
+        d2.addAttribute("Maldad",true);
+        d2.addAttribute("Destreza",true);
+        d2.addAttribute("Inteligencia",true);
+        d2.addCard(c13);
+        d2.addCard(c14);
+        d2.addCard(c15);
+        d2.addCard(c16);
+        d2.addCard(c17);
+        d2.addCard(c18);
+        d2.addCard(c19);
+        d2.addCard(c20);
+        d2.addCard(c21);
+        d2.addCard(c22);
+        d2.addCard(c23);
+        d2.addCard(c24);
+
+        this.decks.add(d2);
+
+        Deck d3 = new Deck("Los Campeones 3");
+        d3.addAttribute("Fuerza",true);
+        d3.addAttribute("Velocidad",true);
+        d3.addAttribute("Maldad",true);
+        d3.addAttribute("Destreza",true);
+        d3.addAttribute("Inteligencia",true);
+        d3.addCard(c25);
+        d3.addCard(c26);
+        d3.addCard(c27);
+        d3.addCard(c28);
+        d3.addCard(c29);
+        d3.addCard(c30);
+        d3.addCard(c31);
+        d3.addCard(c32);
+        d3.addCard(c33);
+        d3.addCard(c34);
+        d3.addCard(c35);
+        d3.addCard(c36);
+
+        this.decks.add(d3);
+
+        Deck d4 = new Deck("Los Campeones 4");
+        d4.addAttribute("Fuerza",true);
+        d4.addAttribute("Velocidad",true);
+        d4.addAttribute("Maldad",true);
+        d4.addAttribute("Destreza",true);
+        d4.addAttribute("Inteligencia",true);
+        d4.addCard(c37);
+        d4.addCard(c38);
+        d4.addCard(c39);
+        d4.addCard(c40);
+        d4.addCard(c41);
+        d4.addCard(c42);
+        d4.addCard(c43);
+        d4.addCard(c44);
+        d4.addCard(c45);
+        d4.addCard(c46);
+        d4.addCard(c47);
+        d4.addCard(c48);
+
+        this.decks.add(d4);
 
 
     }

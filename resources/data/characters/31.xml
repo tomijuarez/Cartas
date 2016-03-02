@@ -1,14 +1,15 @@
 <model.Character>
-  <fictitiousName>Storm</fictitiousName>
-  <nameReal>Ororo Iqadi Munroe</nameReal>
+  <fictitiousName>Manhunter</fictitiousName>
+  <id>31</id>
+  <nameReal>Dan Richards</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.5</double>
+      <double>7.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>66.0</double>
+      <double>86.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
@@ -16,11 +17,11 @@
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>110.0</double>
+      <double>85.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>98.0</double>
+      <double>98.5</double>
     </entry>
     <entry>
       <string>Maldad</string>
@@ -28,7 +29,7 @@
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>120.0</double>
+      <double>400.0</double>
     </entry>
   </attributes>
 </model.Character>

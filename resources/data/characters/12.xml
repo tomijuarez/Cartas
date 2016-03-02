@@ -1,34 +1,35 @@
 <model.Character>
-  <fictitiousName>Sangre</fictitiousName>
-  <nameReal>Hermano Sangre</nameReal>
+  <fictitiousName>Mujer Maravilla</fictitiousName>
+  <id>12</id>
+  <nameReal>Princesa Diana</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>5.0</double>
+      <double>9.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>77.0</double>
+      <double>62.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>97.0</double>
-    </entry>
-    <entry>
-      <string>Velocidad</string>
-      <double>145.0</double>
-    </entry>
-    <entry>
-      <string>Bondad</string>
-      <double>0.5</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
       <double>90.0</double>
     </entry>
     <entry>
+      <string>Velocidad</string>
+      <double>70.0</double>
+    </entry>
+    <entry>
+      <string>Bondad</string>
+      <double>97.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>0.0</double>
+    </entry>
+    <entry>
       <string>Fuerza</string>
-      <double>1195.0</double>
+      <double>830.0</double>
     </entry>
   </attributes>
 </model.Character>

@@ -1,34 +1,35 @@
 <model.Character>
-  <fictitiousName>Cyborg</fictitiousName>
-  <nameReal>Victor &apos;Vic&apos; Stone</nameReal>
+  <fictitiousName>Raven</fictitiousName>
+  <id>22</id>
+  <nameReal>Rachel Roth</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>6.0</double>
+      <double>9.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>110.0</double>
+      <double>55.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>95.5</double>
-    </entry>
-    <entry>
-      <string>Velocidad</string>
-      <double>150.0</double>
-    </entry>
-    <entry>
-      <string>Bondad</string>
       <double>97.0</double>
     </entry>
     <entry>
+      <string>Velocidad</string>
+      <double>85.0</double>
+    </entry>
+    <entry>
+      <string>Bondad</string>
+      <double>75.0</double>
+    </entry>
+    <entry>
       <string>Maldad</string>
-      <double>0.0</double>
+      <double>8.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>1100.0</double>
+      <double>85.0</double>
     </entry>
   </attributes>
 </model.Character>
