@@ -63,9 +63,7 @@ public class DataAccessObjectXML extends DataAccessObject{
                     }
                     newLeague.setId(i+charactersCount);
                     leagues.put(String.valueOf(i+charactersCount),newLeague);
-                    System.out.println(String.valueOf(i+charactersCount));
                     all.put(String.valueOf(i+charactersCount), newLeague);
-                    this.charactersCount++;
                 }
             }
             this.leaguesLoaded = true;

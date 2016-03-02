@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Storm</fictitiousName>
+  <fictitiousName>Superman</fictitiousName>
   <id>21</id>
-  <nameReal>Ororo Iqadi Munroe</nameReal>
+  <nameReal>Clark Kent</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.5</double>
+      <double>9.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>66.0</double>
-    </entry>
-    <entry>
-      <string>Inteligencia</string>
-      <double>97.0</double>
-    </entry>
-    <entry>
-      <string>Velocidad</string>
       <double>110.0</double>
     </entry>
     <entry>
-      <string>Bondad</string>
-      <double>98.0</double>
+      <string>Inteligencia</string>
+      <double>90.0</double>
     </entry>
     <entry>
-      <string>Fuerza</string>
+      <string>Velocidad</string>
       <double>120.0</double>
+    </entry>
+    <entry>
+      <string>Bondad</string>
+      <double>99.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
       <double>0.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>2500.0</double>
     </entry>
   </attributes>
 </model.Character>

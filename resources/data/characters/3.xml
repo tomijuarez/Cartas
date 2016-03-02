@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Escorpion</fictitiousName>
+  <fictitiousName>Antorcha Humana</fictitiousName>
   <id>3</id>
-  <nameReal>Mac Gargan</nameReal>
+  <nameReal>Johnny Storm</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.5</double>
+      <double>8.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>100.0</double>
+      <double>76.5</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>95.5</double>
+      <double>80.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>103.0</double>
+      <double>160.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
+      <double>85.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
       <double>0.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>1300.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
-      <double>99.0</double>
+      <double>150.0</double>
     </entry>
   </attributes>
 </model.Character>

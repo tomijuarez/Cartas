@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Batman</fictitiousName>
+  <fictitiousName>Wolverine</fictitiousName>
   <id>2</id>
-  <nameReal>Bruce Wane</nameReal>
+  <nameReal>James Hudson Howlett</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.0</double>
+      <double>9.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>106.0</double>
+      <double>81.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>85.0</double>
+      <double>96.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>85.0</double>
+      <double>215.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>70.0</double>
-    </entry>
-    <entry>
-      <string>Fuerza</string>
-      <double>400.0</double>
+      <double>98.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>10.0</double>
+      <double>2.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>900.0</double>
     </entry>
   </attributes>
 </model.Character>

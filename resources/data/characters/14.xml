@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>El Pingüino</fictitiousName>
+  <fictitiousName>Starfire</fictitiousName>
   <id>14</id>
-  <nameReal>Oswald Chesterfield Cobblepot</nameReal>
+  <nameReal>Koriand&apos;r</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>4.0</double>
+      <double>9.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>90.0</double>
+      <double>57.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>99.0</double>
+      <double>89.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>15.0</double>
+      <double>110.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>0.5</double>
-    </entry>
-    <entry>
-      <string>Fuerza</string>
-      <double>30.0</double>
+      <double>98.5</double>
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>100.0</double>
+      <double>0.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>200.0</double>
     </entry>
   </attributes>
 </model.Character>

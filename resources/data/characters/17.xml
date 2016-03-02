@@ -24,12 +24,12 @@
       <double>5.0</double>
     </entry>
     <entry>
-      <string>Fuerza</string>
-      <double>45.0</double>
-    </entry>
-    <entry>
       <string>Maldad</string>
       <double>98.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>45.0</double>
     </entry>
   </attributes>
 </model.Character>

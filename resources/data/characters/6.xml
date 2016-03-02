@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Canario Negro</fictitiousName>
+  <fictitiousName>Iron Man</fictitiousName>
   <id>6</id>
-  <nameReal>Dinah Drake</nameReal>
+  <nameReal>Anthony Edward &apos;Tony&apos; Stark</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.5</double>
+      <double>8.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>55.0</double>
+      <double>587.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>92.0</double>
+      <double>99.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>110.0</double>
+      <double>197.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>96.0</double>
-    </entry>
-    <entry>
-      <string>Fuerza</string>
-      <double>100.0</double>
+      <double>90.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>2.0</double>
+      <double>0.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>930.0</double>
     </entry>
   </attributes>
 </model.Character>

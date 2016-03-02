@@ -1,9 +1,10 @@
 <model.LeagueSave>
   <idCharacters>
-    <string>25</string>
-    <string>18</string>
-    <string>27</string>
-    <string>33</string>
+    <string>8</string>
+    <string>5</string>
+    <string>2</string>
+    <string>47</string>
+    <string>15</string>
   </idCharacters>
-  <fictitiousName>Los 4 Fantasticos</fictitiousName>
+  <fictitiousName>X-Men</fictitiousName>
 </model.LeagueSave>

@@ -52,7 +52,6 @@ public class League extends AbstractCharacter {
         int total = 0;
         for (Character character : this.characters)
         {
-            System.out.println("hola");
             total += character.getAttribute(attrib);
         }
 
