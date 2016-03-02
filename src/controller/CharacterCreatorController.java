@@ -191,6 +191,7 @@ public class CharacterCreatorController extends MediableController implements In
                         if (selectedImage != null) {
                             this.imageManager.copyImage(this.selectedImage, this.inputName.getText());
                             this.mediator.createCharacter(this.inputName.getText(), this.inputRealName.getText(), selectedAttributes);
+                            this.context.close();
 
                         }
                         else

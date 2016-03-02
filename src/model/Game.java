@@ -30,9 +30,6 @@ public class Game extends Observable {
     private Hashtable<String, League> leagues;
     private List<String> attributes;
 
-    /*****/
-    private InstanceDirector director;
-
 
     private String currentAttribute;
     private DeckPlayer currentAccumulatorDeck;
@@ -65,7 +62,7 @@ public class Game extends Observable {
         }
 
         /**Guardar Datos**/
-        this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
+      //  this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
         for(String aux : this.attributes){
             System.out.println(aux);
@@ -239,10 +236,17 @@ public class Game extends Observable {
         Card card = new Card(character);
         card.setAttributes(selectedAttributes);
         this.cards.put(String.valueOf(this.cards.size()), card);
+        System.out.println("Cree la carta: "+card.getNick());
     }
 
     public void createCharacter(String characterName, String realName, Map<String, Double> selectedAttributes) {
-       // Character character = new Character(characterName, realName,selectedAttributes);
+        Character character = new Character(characterName, realName);
+        character.setAttributes(selectedAttributes);
+        character.setId(this.all.size()+1);
+        this.characters.put(String.valueOf(character.getId()),character);
+        this.all.put(String.valueOf(character.getId()),character);
+        System.out.println("Personaje guardado: "+character.getFictitiousName()+"/"+character.getnameReal());
+
     }
 
     public void createPlayers(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy, Deck deck) {
