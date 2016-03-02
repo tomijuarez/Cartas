@@ -10,16 +10,19 @@ import java.util.Vector;
 public class League extends AbstractCharacter {
 
 
-    private Vector<AbstractCharacter> characters;
+    private Vector<Character> characters;
 
     public League(String name) {
         super.setFictitiousName(name);
-        this.characters = new Vector<AbstractCharacter>();
+        this.characters = new Vector<Character>();
 
     }
 
+    public Vector<Character> getCharacters(){
+        return this.characters;
+    }
 
-    public void addCharacter(AbstractCharacter a){
+    public void addCharacter(Character a){
         if (!this.characters.contains(a)){
             this.characters.add(a);
         }else{
@@ -31,11 +34,12 @@ public class League extends AbstractCharacter {
     @Override
     public double getAttribute(String attrib) {
         int total = 0;
-        for (AbstractCharacter character : this.characters)
+        for (Character character : this.characters)
         {
             total += character.getAttribute(attrib);
         }
 
         return (total / this.characters.size());
     }
+
 }

@@ -15,8 +15,14 @@ public class DataAccessObjectXML extends DataAccessObject{
     private static final String CARDS_PATH = "resources/data/cards/";
     private static final String DECKS_PATH = "resources/data/decks/";
     private static  final String CHARACTER_PATH = "resources/data/characters/";
+    private static  final String LEAGUES_PATH = "resources/data/leagues/";
     private static final String ATTRIBUTES_PATH = "resources/data/";
     private static final String NAME_FILE_ATTRIBUTTES = "ListAttributes";
+
+    private Hashtable<String,AbstractCharacter> all = new Hashtable<>();
+    private int charactersCount = 0;
+    private boolean charactersLoaded = false;
+    private boolean leaguesLoaded = false;
 
     private XMLDataParser dpFile;
 
@@ -28,26 +34,66 @@ public class DataAccessObjectXML extends DataAccessObject{
     public Hashtable<String, Character> getCharacters() {
         Hashtable<String, Character> characters = new Hashtable<>();
 
+
         for(int i=1; i <= this.dpFile.numberFiles(this.CHARACTER_PATH) ; i++){
             Character aux = (Character) this.dpFile.getData(this.CHARACTER_PATH,String.valueOf(i));
             if(aux != null) {
+                this.charactersCount++;
+                aux.setId(i);
                 characters.put(String.valueOf(i), aux);
+                all.put(String.valueOf(i), aux);
             }
         }
+
+        this.charactersLoaded = true;
 
         return characters;
     }
 
+    @Override
+    public Hashtable<String, League> getLeagues(Hashtable<String,Character> characters) {
+        Hashtable<String, League> leagues = new Hashtable<>();
+        if(this.charactersLoaded){
+            for(int i=1; i <= this.dpFile.numberFiles(this.LEAGUES_PATH) ; i++) {
+                LeagueSave aux = (LeagueSave) this.dpFile.getData(this.LEAGUES_PATH, String.valueOf(i));
+                if (aux != null) {
+                    League newLeague = new League(aux.getFictitiousName());
+                    for(String s : aux.getIdCharacters()){
+                        newLeague.addCharacter(characters.get(s));
+                    }
+                    this.charactersCount++;
+                    newLeague.setId(i+charactersCount);
+                    leagues.put(String.valueOf(i+charactersCount),newLeague);
+                    all.put(String.valueOf(i+charactersCount), newLeague);
+                }
+            }
+            return leagues;
+        }else{
+            System.out.print("Primero cargar los Personajes");
+        }
+            return null;
+    }
 
     @Override
-    public Hashtable<String, Card> getCards(Hashtable<String, Character> characters) {
+    public Hashtable<String, AbstractCharacter> getAll() {
+        if(this.charactersLoaded && this.leaguesLoaded){
+            return this.all;
+        }else{
+            System.out.print("Primero cargar los Personajes y las Ligas");
+            return null;
+        }
+    }
+
+
+    @Override
+    public Hashtable<String, Card> getCards(Hashtable<String, AbstractCharacter> characters) {
 
         Hashtable<String, Card> cards = new Hashtable<>();
 
         for(int i=1; i <= this.dpFile.numberFiles(this.CHARACTER_PATH) ; i++){
             CardSave auxCard = (CardSave) this.dpFile.getData(this.CARDS_PATH, String.valueOf(i));
             if(auxCard != null) {
-                Card newCard = new Card(characters.get(String.valueOf(i)));
+                Card newCard = new Card(characters.get(auxCard.getIdCharacter()));
                 for(String c : auxCard.getAttributes()){
                     newCard.addAttribute(c);
                 }
@@ -91,26 +137,59 @@ public class DataAccessObjectXML extends DataAccessObject{
 
 
     @Override
-    public void saveData(Hashtable<String, Character> characters, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards) {
+    public void saveData(Hashtable<String, Character> characters,Hashtable<String, League> leagues, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards) {
+        saveAttributes(attributes);
+        saveCharacters(characters);
+        saveLeagues(leagues);
+        saveCards(cards);
+        saveDecks(decks);
+
+    }
+
+    @Override
+    public void saveAttributes(List<String> attributes) {
         /**Guardar Lista de atributos**/
         this.dpFile.saveData(this.ATTRIBUTES_PATH,this.NAME_FILE_ATTRIBUTTES,attributes);
+    }
 
+    @Override
+    public void saveCharacters(Hashtable<String, Character> characters) {
         /**Guardar Personajes**/
 
         int id = 1;
-        for(AbstractCharacter character : characters.values()){
+        for(Character character : characters.values()){
+            character.setId(id);
             this.dpFile.saveData(this.CHARACTER_PATH,String.valueOf(id),character);
             id++;
         }
+    }
 
+    @Override
+    public void saveLeagues(Hashtable<String, League> leagues) {
+        int id = 1;
+        for(League league : leagues.values()){
+            List<String> characters = new ArrayList<String>();
+            for(Character c : league.getCharacters()){
+                characters.add(String.valueOf(c.getId()));
+            }
+            LeagueSave leagueSave = new LeagueSave(league.getFictitiousName(),characters);
+            this.dpFile.saveData(this.LEAGUES_PATH,String.valueOf(id),leagueSave);
+            id++;
+        }
+    }
+
+    @Override
+    public void saveCards(Hashtable<String, Card> cards) {
         /**Guardar Cards**/
         for (int i = 1; i <= cards.size(); i++) {
             Card m = cards.get(String.valueOf(i));
             m.setId(i);
-            this.dpFile.saveData(this.CARDS_PATH, String.valueOf(i), new CardSave(m.getAttributes(),m.getCharacter().getFictitiousName()));
+            this.dpFile.saveData(this.CARDS_PATH, String.valueOf(i), new CardSave(m.getAttributes(),String.valueOf(m.getCharacter().getId())));
         }
+    }
 
-
+    @Override
+    public void saveDecks(List<Deck> decks) {
         /**Guardar Decks**/
         List<String> names = new ArrayList<>();
         for (Deck m : decks) {
