@@ -5,8 +5,6 @@
     <string>Maldad</string>
     <string>Destreza</string>
     <string>Inteligencia</string>
-    <string>Peso</string>
-    <string>Bondad</string>
   </attributes>
-  <idCharacter>27</idCharacter>
+  <idCharacter>5</idCharacter>
 </model.CardSave>

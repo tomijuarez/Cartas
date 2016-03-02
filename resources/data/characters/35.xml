@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Dr. Octopus</fictitiousName>
+  <fictitiousName>Gatubela</fictitiousName>
   <id>35</id>
-  <nameReal>Otto Octavius</nameReal>
+  <nameReal>Selina Kyle</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.0</double>
+      <double>9.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>90.0</double>
+      <double>60.5</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>98.0</double>
-    </entry>
-    <entry>
-      <string>Velocidad</string>
-      <double>42.0</double>
-    </entry>
-    <entry>
-      <string>Bondad</string>
-      <double>40.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
       <double>90.0</double>
     </entry>
     <entry>
+      <string>Velocidad</string>
+      <double>35.0</double>
+    </entry>
+    <entry>
+      <string>Bondad</string>
+      <double>2.0</double>
+    </entry>
+    <entry>
       <string>Fuerza</string>
-      <double>750.0</double>
+      <double>80.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>99.0</double>
     </entry>
   </attributes>
 </model.Character>

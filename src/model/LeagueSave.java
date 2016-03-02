@@ -7,13 +7,11 @@ import java.util.List;
  */
 public class LeagueSave {
     private List<String> idCharacters;
-    private List<String> attributes;
     private String fictitiousName;
 
-    public LeagueSave(String fictName, List<String> idCharacters,List<String> attributes){
+    public LeagueSave(String fictName, List<String> idCharacters){
         this.idCharacters = idCharacters;
         this.fictitiousName = fictName;
-        this.attributes = attributes;
     }
 
     public List<String> getIdCharacters(){
@@ -24,5 +22,4 @@ public class LeagueSave {
         return this.fictitiousName;
     }
 
-    public List<String> getAttributes(){ return this.attributes;}
 }

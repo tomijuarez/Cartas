@@ -48,8 +48,6 @@ public class Game extends Observable {
     public Game() {
 
         //this.crearEstPrueba();
-        /**Guardar Datos**/
-        //this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
 
         this.characters = this.daoXML.getCharacters();
@@ -60,12 +58,14 @@ public class Game extends Observable {
         this.attributes = this.daoXML.getAttributes();
 
         for(League l : this.leagues.values()){
-            System.out.println(l.getFictitiousName());
+            System.out.print(l.getFictitiousName() + "\n");
             for(Character c : l.getCharacters()){
                 System.out.print(c.getFictitiousName() + "\n");
             }
         }
 
+        /**Guardar Datos**/
+        this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
         for(String aux : this.attributes){
             System.out.println(aux);
@@ -304,8 +304,6 @@ public class Game extends Observable {
         c1.addAttribute("Maldad");
         c1.addAttribute("Destreza");
         c1.addAttribute("Inteligencia");
-        c1.addAttribute("Peso");
-        c1.addAttribute("Bondad");
 
         this.cards.put( String.valueOf(1 ), c1);
 
@@ -326,8 +324,6 @@ public class Game extends Observable {
         c2.addAttribute("Maldad");
         c2.addAttribute("Destreza");
         c2.addAttribute("Inteligencia");
-        c2.addAttribute("Peso");
-        c2.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(2), c2);
 
@@ -348,8 +344,6 @@ public class Game extends Observable {
         c3.addAttribute("Maldad");
         c3.addAttribute("Destreza");
         c3.addAttribute("Inteligencia");
-        c3.addAttribute("Peso");
-        c3.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(3), c3);
 
@@ -370,8 +364,6 @@ public class Game extends Observable {
         c4.addAttribute("Maldad");
         c4.addAttribute("Destreza");
         c4.addAttribute("Inteligencia");
-        c4.addAttribute("Peso");
-        c4.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(4), c4);
 
@@ -392,8 +384,6 @@ public class Game extends Observable {
         c5.addAttribute("Maldad");
         c5.addAttribute("Destreza");
         c5.addAttribute("Inteligencia");
-        c5.addAttribute("Peso");
-        c5.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(5), c5);
 
@@ -414,8 +404,6 @@ public class Game extends Observable {
         c6.addAttribute("Maldad");
         c6.addAttribute("Destreza");
         c6.addAttribute("Inteligencia");
-        c6.addAttribute("Peso");
-        c6.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(6), c6);
 
@@ -436,8 +424,6 @@ public class Game extends Observable {
         c7.addAttribute("Maldad");
         c7.addAttribute("Destreza");
         c7.addAttribute("Inteligencia");
-        c7.addAttribute("Peso");
-        c7.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(7), c7);
 
@@ -458,8 +444,6 @@ public class Game extends Observable {
         c8.addAttribute("Maldad");
         c8.addAttribute("Destreza");
         c8.addAttribute("Inteligencia");
-        c8.addAttribute("Peso");
-        c8.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(8), c8);
 
@@ -481,8 +465,6 @@ public class Game extends Observable {
         c9.addAttribute("Maldad");
         c9.addAttribute("Destreza");
         c9.addAttribute("Inteligencia");
-        c9.addAttribute("Peso");
-        c9.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(9), c9);
 
@@ -503,8 +485,6 @@ public class Game extends Observable {
         c10.addAttribute("Maldad");
         c10.addAttribute("Destreza");
         c10.addAttribute("Inteligencia");
-        c10.addAttribute("Peso");
-        c10.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(10), c10);
 
@@ -525,8 +505,6 @@ public class Game extends Observable {
         c11.addAttribute("Maldad");
         c11.addAttribute("Destreza");
         c11.addAttribute("Inteligencia");
-        c11.addAttribute("Peso");
-        c11.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(11), c11);
 
@@ -547,8 +525,6 @@ public class Game extends Observable {
         c12.addAttribute("Maldad");
         c12.addAttribute("Destreza");
         c12.addAttribute("Inteligencia");
-        c12.addAttribute("Peso");
-        c12.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(12), c12);
 
@@ -569,8 +545,6 @@ public class Game extends Observable {
         c13.addAttribute("Maldad");
         c13.addAttribute("Destreza");
         c13.addAttribute("Inteligencia");
-        c13.addAttribute("Peso");
-        c13.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(13), c13);
 
@@ -591,8 +565,6 @@ public class Game extends Observable {
         c14.addAttribute("Maldad");
         c14.addAttribute("Destreza");
         c14.addAttribute("Inteligencia");
-        c14.addAttribute("Peso");
-        c14.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(14), c14);
 
@@ -613,8 +585,6 @@ public class Game extends Observable {
         c15.addAttribute("Maldad");
         c15.addAttribute("Destreza");
         c15.addAttribute("Inteligencia");
-        c15.addAttribute("Peso");
-        c15.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(15), c15);
 
@@ -635,8 +605,6 @@ public class Game extends Observable {
         c16.addAttribute("Maldad");
         c16.addAttribute("Destreza");
         c16.addAttribute("Inteligencia");
-        c16.addAttribute("Peso");
-        c16.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(16), c16);
 
@@ -657,8 +625,6 @@ public class Game extends Observable {
         c17.addAttribute("Maldad");
         c17.addAttribute("Destreza");
         c17.addAttribute("Inteligencia");
-        c17.addAttribute("Peso");
-        c17.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(17), c17);
 
@@ -679,8 +645,6 @@ public class Game extends Observable {
         c18.addAttribute("Maldad");
         c18.addAttribute("Destreza");
         c18.addAttribute("Inteligencia");
-        c18.addAttribute("Peso");
-        c18.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(18), c18);
 
@@ -701,8 +665,6 @@ public class Game extends Observable {
         c19.addAttribute("Maldad");
         c19.addAttribute("Destreza");
         c19.addAttribute("Inteligencia");
-        c19.addAttribute("Peso");
-        c19.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(19), c19);
 
@@ -723,8 +685,6 @@ public class Game extends Observable {
         c20.addAttribute("Maldad");
         c20.addAttribute("Destreza");
         c20.addAttribute("Inteligencia");
-        c20.addAttribute("Peso");
-        c20.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(20), c20);
 
@@ -745,8 +705,6 @@ public class Game extends Observable {
         c21.addAttribute("Maldad");
         c21.addAttribute("Destreza");
         c21.addAttribute("Inteligencia");
-        c21.addAttribute("Peso");
-        c21.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(21), c21);
 
@@ -767,8 +725,6 @@ public class Game extends Observable {
         c22.addAttribute("Maldad");
         c22.addAttribute("Destreza");
         c22.addAttribute("Inteligencia");
-        c22.addAttribute("Peso");
-        c22.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(22), c22);
 
@@ -789,8 +745,6 @@ public class Game extends Observable {
         c23.addAttribute("Maldad");
         c23.addAttribute("Destreza");
         c23.addAttribute("Inteligencia");
-        c23.addAttribute("Peso");
-        c23.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(23), c23);
 
@@ -811,8 +765,6 @@ public class Game extends Observable {
         c24.addAttribute("Maldad");
         c24.addAttribute("Destreza");
         c24.addAttribute("Inteligencia");
-        c24.addAttribute("Peso");
-        c24.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(24), c24);
 
@@ -833,8 +785,6 @@ public class Game extends Observable {
         c25.addAttribute("Maldad");
         c25.addAttribute("Destreza");
         c25.addAttribute("Inteligencia");
-        c25.addAttribute("Peso");
-        c25.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(25), c25);
 
@@ -855,8 +805,6 @@ public class Game extends Observable {
         c26.addAttribute("Maldad");
         c26.addAttribute("Destreza");
         c26.addAttribute("Inteligencia");
-        c26.addAttribute("Peso");
-        c26.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(26), c26);
 
@@ -877,8 +825,6 @@ public class Game extends Observable {
         c27.addAttribute("Maldad");
         c27.addAttribute("Destreza");
         c27.addAttribute("Inteligencia");
-        c27.addAttribute("Peso");
-        c27.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(27), c27);
 
@@ -899,8 +845,6 @@ public class Game extends Observable {
         c28.addAttribute("Maldad");
         c28.addAttribute("Destreza");
         c28.addAttribute("Inteligencia");
-        c28.addAttribute("Peso");
-        c28.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(28), c28);
 
@@ -921,8 +865,6 @@ public class Game extends Observable {
         c29.addAttribute("Maldad");
         c29.addAttribute("Destreza");
         c29.addAttribute("Inteligencia");
-        c29.addAttribute("Peso");
-        c29.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(29), c29);
 
@@ -943,8 +885,6 @@ public class Game extends Observable {
         c30.addAttribute("Maldad");
         c30.addAttribute("Destreza");
         c30.addAttribute("Inteligencia");
-        c30.addAttribute("Peso");
-        c30.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(30), c30);
 
@@ -965,8 +905,6 @@ public class Game extends Observable {
         c31.addAttribute("Maldad");
         c31.addAttribute("Destreza");
         c31.addAttribute("Inteligencia");
-        c31.addAttribute("Peso");
-        c31.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(31), c31);
 
@@ -987,8 +925,6 @@ public class Game extends Observable {
         c32.addAttribute("Maldad");
         c32.addAttribute("Destreza");
         c32.addAttribute("Inteligencia");
-        c32.addAttribute("Peso");
-        c32.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(32), c32);
 
@@ -1009,8 +945,6 @@ public class Game extends Observable {
         c33.addAttribute("Maldad");
         c33.addAttribute("Destreza");
         c33.addAttribute("Inteligencia");
-        c33.addAttribute("Peso");
-        c33.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(33), c33);
 
@@ -1031,8 +965,6 @@ public class Game extends Observable {
         c34.addAttribute("Maldad");
         c34.addAttribute("Destreza");
         c34.addAttribute("Inteligencia");
-        c34.addAttribute("Peso");
-        c34.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(34), c34);
 
@@ -1053,8 +985,6 @@ public class Game extends Observable {
         c35.addAttribute("Maldad");
         c35.addAttribute("Destreza");
         c35.addAttribute("Inteligencia");
-        c35.addAttribute("Peso");
-        c35.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(35), c35);
 
@@ -1075,8 +1005,6 @@ public class Game extends Observable {
         c36.addAttribute("Maldad");
         c36.addAttribute("Destreza");
         c36.addAttribute("Inteligencia");
-        c36.addAttribute("Peso");
-        c36.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(36), c36);
 
@@ -1097,8 +1025,6 @@ public class Game extends Observable {
         c37.addAttribute("Maldad");
         c37.addAttribute("Destreza");
         c37.addAttribute("Inteligencia");
-        c37.addAttribute("Peso");
-        c37.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(37), c37);
 
@@ -1119,8 +1045,6 @@ public class Game extends Observable {
         c38.addAttribute("Maldad");
         c38.addAttribute("Destreza");
         c38.addAttribute("Inteligencia");
-        c38.addAttribute("Peso");
-        c38.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(38), c38);
 
@@ -1141,8 +1065,6 @@ public class Game extends Observable {
         c39.addAttribute("Maldad");
         c39.addAttribute("Destreza");
         c39.addAttribute("Inteligencia");
-        c39.addAttribute("Peso");
-        c39.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(39), c39);
 
@@ -1163,8 +1085,6 @@ public class Game extends Observable {
         c40.addAttribute("Maldad");
         c40.addAttribute("Destreza");
         c40.addAttribute("Inteligencia");
-        c40.addAttribute("Peso");
-        c40.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(40), c40);
 
@@ -1185,8 +1105,6 @@ public class Game extends Observable {
         c41.addAttribute("Maldad");
         c41.addAttribute("Destreza");
         c41.addAttribute("Inteligencia");
-        c41.addAttribute("Peso");
-        c41.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(41), c41);
 
@@ -1207,8 +1125,6 @@ public class Game extends Observable {
         c42.addAttribute("Maldad");
         c42.addAttribute("Destreza");
         c42.addAttribute("Inteligencia");
-        c42.addAttribute("Peso");
-        c42.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(42), c42);
 
@@ -1229,8 +1145,6 @@ public class Game extends Observable {
         c43.addAttribute("Maldad");
         c43.addAttribute("Destreza");
         c43.addAttribute("Inteligencia");
-        c43.addAttribute("Peso");
-        c43.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(43), c43);
 
@@ -1251,8 +1165,6 @@ public class Game extends Observable {
         c44.addAttribute("Maldad");
         c44.addAttribute("Destreza");
         c44.addAttribute("Inteligencia");
-        c44.addAttribute("Peso");
-        c44.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(44), c44);
 
@@ -1273,8 +1185,6 @@ public class Game extends Observable {
         c45.addAttribute("Maldad");
         c45.addAttribute("Destreza");
         c45.addAttribute("Inteligencia");
-        c45.addAttribute("Peso");
-        c45.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(45), c45);
 
@@ -1295,8 +1205,6 @@ public class Game extends Observable {
         c46.addAttribute("Maldad");
         c46.addAttribute("Destreza");
         c46.addAttribute("Inteligencia");
-        c46.addAttribute("Peso");
-        c46.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(46), c46);
 
@@ -1317,8 +1225,6 @@ public class Game extends Observable {
         c47.addAttribute("Maldad");
         c47.addAttribute("Destreza");
         c47.addAttribute("Inteligencia");
-        c47.addAttribute("Peso");
-        c47.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(47), c47);
 
@@ -1339,8 +1245,6 @@ public class Game extends Observable {
         c48.addAttribute("Maldad");
         c48.addAttribute("Destreza");
         c48.addAttribute("Inteligencia");
-        c48.addAttribute("Peso");
-        c48.addAttribute("Bondad");
 
         this.cards.put(String.valueOf(48), c48);
 
@@ -1358,8 +1262,7 @@ public class Game extends Observable {
         c49.addAttribute("Maldad");
         c49.addAttribute("Destreza");
         c49.addAttribute("Inteligencia");
-        c49.addAttribute("Peso");
-        c49.addAttribute("Bondad");
+
         this.cards.put(String.valueOf(49),c49);
 
         /**MAZOS**/
@@ -1447,44 +1350,6 @@ public class Game extends Observable {
 
         this.decks.add(d4);
 
-        /**LIGAS**/
-        League l2 = new League("Los Malvados");
-        l2.addCharacter(p45);
-        l2.addCharacter(p43);
-        l2.addCharacter(p22);
-        l2.addCharacter(p17);
-        l2.addCharacter(p47);
-        this.leagues.put(String.valueOf(50),l2);
-        this.all.put(String.valueOf(50),l2);
-        Card c50 = new Card(l2);
-        c50.addAttribute("Fuerza");
-        c50.addAttribute("Velocidad");
-        c50.addAttribute("Maldad");
-        c50.addAttribute("Destreza");
-        c50.addAttribute("Inteligencia");
-        c50.addAttribute("Peso");
-        c50.addAttribute("Bondad");
-        this.cards.put(String.valueOf(50),c50);
-
-
-        /**LIGAS**/
-        League l3 = new League("X-Mens");
-        l3.addCharacter(p26);
-        l3.addCharacter(p27);
-        l3.addCharacter(p28);
-        l3.addCharacter(p29);
-        l3.addCharacter(p30);
-        this.leagues.put(String.valueOf(51),l3);
-        this.all.put(String.valueOf(51),l3);
-        Card c51 = new Card(l3);
-        c51.addAttribute("Fuerza");
-        c51.addAttribute("Velocidad");
-        c51.addAttribute("Maldad");
-        c51.addAttribute("Destreza");
-        c51.addAttribute("Inteligencia");
-        c51.addAttribute("Peso");
-        c51.addAttribute("Bondad");
-        this.cards.put(String.valueOf(51),c51);
 
     }
 

@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Ciclope</fictitiousName>
+  <fictitiousName>Sangre</fictitiousName>
   <id>4</id>
-  <nameReal>Scott Summers</nameReal>
+  <nameReal>Hermano Sangre</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.0</double>
+      <double>5.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>74.0</double>
+      <double>77.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>96.0</double>
+      <double>97.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>90.0</double>
+      <double>145.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>98.5</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
-      <double>0.0</double>
+      <double>0.5</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>600.0</double>
+      <double>1195.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>90.0</double>
     </entry>
   </attributes>
 </model.Character>

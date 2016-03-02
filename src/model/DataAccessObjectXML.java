@@ -61,10 +61,11 @@ public class DataAccessObjectXML extends DataAccessObject{
                     for(String s : aux.getIdCharacters()){
                         newLeague.addCharacter(characters.get(s));
                     }
-                    this.charactersCount++;
                     newLeague.setId(i+charactersCount);
                     leagues.put(String.valueOf(i+charactersCount),newLeague);
+                    System.out.println(String.valueOf(i+charactersCount));
                     all.put(String.valueOf(i+charactersCount), newLeague);
+                    this.charactersCount++;
                 }
             }
             this.leaguesLoaded = true;
@@ -91,10 +92,11 @@ public class DataAccessObjectXML extends DataAccessObject{
 
         Hashtable<String, Card> cards = new Hashtable<>();
 
-        for(int i=1; i <= this.dpFile.numberFiles(this.CHARACTER_PATH) ; i++){
+        for(int i=1; i <= this.dpFile.numberFiles(this.CARDS_PATH) ; i++){
             CardSave auxCard = (CardSave) this.dpFile.getData(this.CARDS_PATH, String.valueOf(i));
             if(auxCard != null) {
-                Card newCard = new Card(characters.get(auxCard.getIdCharacter()));
+                AbstractCharacter aux = characters.get(auxCard.getIdCharacter());
+                Card newCard = new Card(aux);
                 for(String c : auxCard.getAttributes()){
                     newCard.addAttribute(c);
                 }
@@ -139,6 +141,7 @@ public class DataAccessObjectXML extends DataAccessObject{
 
     @Override
     public void saveData(Hashtable<String, Character> characters,Hashtable<String, League> leagues, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards) {
+        charactersCount = 0;
         saveAttributes(attributes);
         saveCharacters(characters);
         saveLeagues(leagues);
@@ -161,6 +164,7 @@ public class DataAccessObjectXML extends DataAccessObject{
         for(Character character : characters.values()){
             character.setId(id);
             this.dpFile.saveData(this.CHARACTER_PATH,String.valueOf(id),character);
+            charactersCount++;
             id++;
         }
     }
@@ -173,7 +177,8 @@ public class DataAccessObjectXML extends DataAccessObject{
             for(Character c : league.getCharacters()){
                 characters.add(String.valueOf(c.getId()));
             }
-            LeagueSave leagueSave = new LeagueSave(league.getFictitiousName(),characters,league.getAttributes());
+            league.setId(charactersCount+id);
+            LeagueSave leagueSave = new LeagueSave(league.getFictitiousName(),characters);
             this.dpFile.saveData(this.LEAGUES_PATH,String.valueOf(id),leagueSave);
             id++;
         }
@@ -182,15 +187,9 @@ public class DataAccessObjectXML extends DataAccessObject{
     @Override
     public void saveCards(Hashtable<String, Card> cards) {
         /**Guardar Cards**/
-        System.out.println("Cartas guardadas: ");
         for (int i = 1; i <= cards.size(); i++) {
             Card m = cards.get(String.valueOf(i));
             m.setId(i);
-            System.out.println(m.getCharacter().getFictitiousName()+"  "+i);
-            for(String a: m.getAttributes()){
-                System.out.println(a);
-            }
-            System.out.println("      ");
             this.dpFile.saveData(this.CARDS_PATH, String.valueOf(i), new CardSave(m.getAttributes(),String.valueOf(m.getCharacter().getId())));
         }
     }

@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Starfire</fictitiousName>
+  <fictitiousName>Prof. Xavier</fictitiousName>
   <id>23</id>
-  <nameReal>Koriand&apos;r</nameReal>
+  <nameReal>Bruce Wane</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.0</double>
+      <double>60.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>57.0</double>
+      <double>90.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>89.0</double>
+      <double>100.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>110.0</double>
+      <double>50.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>98.5</double>
+      <double>99.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>150.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
       <double>0.0</double>
-    </entry>
-    <entry>
-      <string>Fuerza</string>
-      <double>200.0</double>
     </entry>
   </attributes>
 </model.Character>

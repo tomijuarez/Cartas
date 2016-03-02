@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Acertijo</fictitiousName>
+  <fictitiousName>Flash</fictitiousName>
   <id>13</id>
-  <nameReal>Edward Nigma</nameReal>
+  <nameReal>Jay Garrick</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.0</double>
+      <double>9.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>62.0</double>
-    </entry>
-    <entry>
-      <string>Inteligencia</string>
       <double>90.0</double>
     </entry>
     <entry>
+      <string>Inteligencia</string>
+      <double>75.5</double>
+    </entry>
+    <entry>
       <string>Velocidad</string>
-      <double>45.0</double>
+      <double>800000.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>0.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
-      <double>98.0</double>
+      <double>95.5</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>625.0</double>
+      <double>840.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>0.0</double>
     </entry>
   </attributes>
 </model.Character>

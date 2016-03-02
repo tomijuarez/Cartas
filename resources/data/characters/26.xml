@@ -1,7 +1,7 @@
 <model.Character>
-  <fictitiousName>Raven</fictitiousName>
+  <fictitiousName>Starfire</fictitiousName>
   <id>26</id>
-  <nameReal>Rachel Roth</nameReal>
+  <nameReal>Koriand&apos;r</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
@@ -9,27 +9,27 @@
     </entry>
     <entry>
       <string>Peso</string>
-      <double>55.0</double>
+      <double>57.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>97.0</double>
+      <double>89.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>85.0</double>
+      <double>110.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>75.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
-      <double>8.0</double>
+      <double>98.5</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>85.0</double>
+      <double>200.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>0.0</double>
     </entry>
   </attributes>
 </model.Character>

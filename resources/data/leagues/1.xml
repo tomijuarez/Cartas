@@ -1,19 +1,9 @@
 <model.LeagueSave>
   <idCharacters>
-    <string>4</string>
-    <string>3</string>
-    <string>2</string>
-    <string>1</string>
-    <string>48</string>
+    <string>25</string>
+    <string>18</string>
+    <string>27</string>
+    <string>33</string>
   </idCharacters>
-  <attributes>
-    <string>Destreza</string>
-    <string>Peso</string>
-    <string>Inteligencia</string>
-    <string>Velocidad</string>
-    <string>Bondad</string>
-    <string>Maldad</string>
-    <string>Fuerza</string>
-  </attributes>
-  <fictitiousName>X-Mens</fictitiousName>
+  <fictitiousName>Los 4 Fantasticos</fictitiousName>
 </model.LeagueSave>

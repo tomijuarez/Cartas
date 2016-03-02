@@ -4,8 +4,6 @@
     <string>Velocidad</string>
     <string>Destreza</string>
     <string>Inteligencia</string>
-    <string>Peso</string>
-    <string>Bondad</string>
   </attributes>
-  <idCharacter>40</idCharacter>
+  <idCharacter>38</idCharacter>
 </model.CardSave>

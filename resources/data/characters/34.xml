@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>El Atomo</fictitiousName>
+  <fictitiousName>Loki</fictitiousName>
   <id>34</id>
-  <nameReal>Al Pratt</nameReal>
+  <nameReal>Loki Laufeyson</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.0</double>
+      <double>8.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>1.5</double>
+      <double>100.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>95.5</double>
+      <double>96.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>110.0</double>
+      <double>190.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>99.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
-      <double>0.0</double>
+      <double>10.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>800.0</double>
+      <double>1000.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>10.0</double>
     </entry>
   </attributes>
 </model.Character>
