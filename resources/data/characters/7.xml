@@ -1,23 +1,23 @@
 <model.Character>
-  <fictitiousName>El Pingüino</fictitiousName>
+  <fictitiousName>Sangre</fictitiousName>
   <id>7</id>
-  <nameReal>Oswald Chesterfield Cobblepot</nameReal>
+  <nameReal>Hermano Sangre</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>4.0</double>
+      <double>5.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>90.0</double>
+      <double>77.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>99.0</double>
+      <double>97.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>15.0</double>
+      <double>145.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
@@ -25,11 +25,11 @@
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>100.0</double>
+      <double>90.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>30.0</double>
+      <double>1195.0</double>
     </entry>
   </attributes>
 </model.Character>

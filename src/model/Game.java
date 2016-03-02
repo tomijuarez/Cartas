@@ -48,6 +48,8 @@ public class Game extends Observable {
     public Game() {
 
         //this.crearEstPrueba();
+        /**Guardar Datos**/
+        //this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
 
         this.characters = this.daoXML.getCharacters();
@@ -58,13 +60,12 @@ public class Game extends Observable {
         this.attributes = this.daoXML.getAttributes();
 
         for(League l : this.leagues.values()){
+            System.out.println(l.getFictitiousName());
             for(Character c : l.getCharacters()){
                 System.out.print(c.getFictitiousName() + "\n");
             }
         }
 
-        /**Guardar Datos**/
-        this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
         for(String aux : this.attributes){
             System.out.println(aux);
@@ -1352,13 +1353,13 @@ public class Game extends Observable {
         this.leagues.put(String.valueOf(49),l1);
         this.all.put(String.valueOf(49),l1);
         Card c49 = new Card(l1);
-        c48.addAttribute("Fuerza");
-        c48.addAttribute("Velocidad");
-        c48.addAttribute("Maldad");
-        c48.addAttribute("Destreza");
-        c48.addAttribute("Inteligencia");
-        c48.addAttribute("Peso");
-        c48.addAttribute("Bondad");
+        c49.addAttribute("Fuerza");
+        c49.addAttribute("Velocidad");
+        c49.addAttribute("Maldad");
+        c49.addAttribute("Destreza");
+        c49.addAttribute("Inteligencia");
+        c49.addAttribute("Peso");
+        c49.addAttribute("Bondad");
         this.cards.put(String.valueOf(49),c49);
 
         /**MAZOS**/
@@ -1446,6 +1447,44 @@ public class Game extends Observable {
 
         this.decks.add(d4);
 
+        /**LIGAS**/
+        League l2 = new League("Los Malvados");
+        l2.addCharacter(p45);
+        l2.addCharacter(p43);
+        l2.addCharacter(p22);
+        l2.addCharacter(p17);
+        l2.addCharacter(p47);
+        this.leagues.put(String.valueOf(50),l2);
+        this.all.put(String.valueOf(50),l2);
+        Card c50 = new Card(l2);
+        c50.addAttribute("Fuerza");
+        c50.addAttribute("Velocidad");
+        c50.addAttribute("Maldad");
+        c50.addAttribute("Destreza");
+        c50.addAttribute("Inteligencia");
+        c50.addAttribute("Peso");
+        c50.addAttribute("Bondad");
+        this.cards.put(String.valueOf(50),c50);
+
+
+        /**LIGAS**/
+        League l3 = new League("X-Mens");
+        l3.addCharacter(p26);
+        l3.addCharacter(p27);
+        l3.addCharacter(p28);
+        l3.addCharacter(p29);
+        l3.addCharacter(p30);
+        this.leagues.put(String.valueOf(51),l3);
+        this.all.put(String.valueOf(51),l3);
+        Card c51 = new Card(l3);
+        c51.addAttribute("Fuerza");
+        c51.addAttribute("Velocidad");
+        c51.addAttribute("Maldad");
+        c51.addAttribute("Destreza");
+        c51.addAttribute("Inteligencia");
+        c51.addAttribute("Peso");
+        c51.addAttribute("Bondad");
+        this.cards.put(String.valueOf(51),c51);
 
     }
 

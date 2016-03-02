@@ -1,27 +1,27 @@
 <model.Character>
-  <fictitiousName>Aquaman</fictitiousName>
+  <fictitiousName>Mujer Invisible</fictitiousName>
   <id>44</id>
-  <nameReal>Arthur Curry</nameReal>
+  <nameReal>Susan Storm</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.5</double>
+      <double>8.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>86.0</double>
+      <double>55.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>94.0</double>
+      <double>97.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>220.0</double>
+      <double>80.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>99.0</double>
+      <double>98.5</double>
     </entry>
     <entry>
       <string>Maldad</string>
@@ -29,7 +29,7 @@
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>700.0</double>
+      <double>250.0</double>
     </entry>
   </attributes>
 </model.Character>

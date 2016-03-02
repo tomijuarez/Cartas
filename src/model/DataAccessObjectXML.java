@@ -173,7 +173,7 @@ public class DataAccessObjectXML extends DataAccessObject{
             for(Character c : league.getCharacters()){
                 characters.add(String.valueOf(c.getId()));
             }
-            LeagueSave leagueSave = new LeagueSave(league.getFictitiousName(),characters);
+            LeagueSave leagueSave = new LeagueSave(league.getFictitiousName(),characters,league.getAttributes());
             this.dpFile.saveData(this.LEAGUES_PATH,String.valueOf(id),leagueSave);
             id++;
         }
@@ -182,9 +182,15 @@ public class DataAccessObjectXML extends DataAccessObject{
     @Override
     public void saveCards(Hashtable<String, Card> cards) {
         /**Guardar Cards**/
+        System.out.println("Cartas guardadas: ");
         for (int i = 1; i <= cards.size(); i++) {
             Card m = cards.get(String.valueOf(i));
             m.setId(i);
+            System.out.println(m.getCharacter().getFictitiousName()+"  "+i);
+            for(String a: m.getAttributes()){
+                System.out.println(a);
+            }
+            System.out.println("      ");
             this.dpFile.saveData(this.CARDS_PATH, String.valueOf(i), new CardSave(m.getAttributes(),String.valueOf(m.getCharacter().getId())));
         }
     }

@@ -1,0 +1,18 @@
+<model.DeckSave>
+  <name>Los campeones3</name>
+  <ids>
+    <string>25</string>
+    <string>26</string>
+    <string>27</string>
+    <string>28</string>
+    <string>29</string>
+    <string>30</string>
+    <string>31</string>
+    <string>32</string>
+    <string>33</string>
+    <string>34</string>
+    <string>35</string>
+    <string>36</string>
+  </ids>
+  <attributes/>
+</model.DeckSave>

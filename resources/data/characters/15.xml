@@ -1,11 +1,11 @@
 <model.Character>
-  <fictitiousName>Prof. Xavier</fictitiousName>
+  <fictitiousName>El Pingüino</fictitiousName>
   <id>15</id>
-  <nameReal>Bruce Wane</nameReal>
+  <nameReal>Oswald Chesterfield Cobblepot</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>60.5</double>
+      <double>4.0</double>
     </entry>
     <entry>
       <string>Peso</string>
@@ -13,23 +13,23 @@
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>100.0</double>
-    </entry>
-    <entry>
-      <string>Velocidad</string>
-      <double>50.0</double>
-    </entry>
-    <entry>
-      <string>Bondad</string>
       <double>99.0</double>
     </entry>
     <entry>
+      <string>Velocidad</string>
+      <double>15.0</double>
+    </entry>
+    <entry>
+      <string>Bondad</string>
+      <double>0.5</double>
+    </entry>
+    <entry>
       <string>Maldad</string>
-      <double>0.0</double>
+      <double>100.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>150.0</double>
+      <double>30.0</double>
     </entry>
   </attributes>
 </model.Character>

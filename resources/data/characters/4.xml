@@ -1,27 +1,27 @@
 <model.Character>
-  <fictitiousName>Chica Halcon</fictitiousName>
+  <fictitiousName>Ciclope</fictitiousName>
   <id>4</id>
-  <nameReal>Shiera Sanders</nameReal>
+  <nameReal>Scott Summers</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.5</double>
+      <double>8.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>55.0</double>
+      <double>74.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>95.5</double>
+      <double>96.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>300.0</double>
+      <double>90.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>97.0</double>
+      <double>98.5</double>
     </entry>
     <entry>
       <string>Maldad</string>
@@ -29,7 +29,7 @@
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>340.0</double>
+      <double>600.0</double>
     </entry>
   </attributes>
 </model.Character>

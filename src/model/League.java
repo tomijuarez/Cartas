@@ -2,6 +2,8 @@ package model;
 
 import org.w3c.dom.views.AbstractView;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
@@ -16,7 +18,6 @@ public class League extends AbstractCharacter {
     public League(String name) {
         super.setFictitiousName(name);
         this.characters = new Vector<Character>();
-
     }
 
     public Vector<Character> getCharacters(){
@@ -32,10 +33,6 @@ public class League extends AbstractCharacter {
     }
 
 
-    @Override
-    public List<String> getAttributes() {
-        return null; // IMPLEMENTAR
-    }
 
     @Override
     public double getAttribute(String attrib) {
@@ -46,6 +43,23 @@ public class League extends AbstractCharacter {
         }
 
         return (total / this.characters.size());
+    }
+
+    @Override
+    public List<String> getAttributes(){
+        List<String> attribAux = new ArrayList<>();
+        for (Character character : this.characters)
+        {
+            for(String s : character.getAttributes()){
+                if(!attribAux.contains(s)){
+                    attribAux.add(s);
+                }
+            }
+
+
+        }
+
+        return attribAux;
     }
 
 }
