@@ -228,7 +228,7 @@ public class Game extends Observable {
         this.turns.add(player);
     }
 
-    public void createCard(Character character, List<String> selectedAttributes) {
+    public void createCard(AbstractCharacter character, List<String> selectedAttributes) {
         Card card = new Card(character);
         card.setAttributes(selectedAttributes);
         this.cards.put(String.valueOf(this.cards.size()), card);

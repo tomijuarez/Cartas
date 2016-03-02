@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Character;
+import model.AbstractCharacter;
 import model.Deck;
 import model.Game;
 import model.Strategy;
@@ -67,14 +69,14 @@ public class FirstController extends MediableController implements Initializable
         });
 
         createCharacterButton.setOnAction((event)->{
-            Modal characterCreatorWindow = new Modal("layouts/characterCreatorView.fxml", new CharacterCreatorController(new ArrayList<String>()/*this.game.getAttributes()*/), new Stage(), this.context);
+            Modal characterCreatorWindow = new Modal("layouts/characterCreatorView.fxml", new CharacterCreatorController(this.game, this.game.getAttributes()), new Stage(), this.context);
             this.context.setChild(characterCreatorWindow, new CharacterCreatorMediator());
         });
-        /*
-        crearCartas.setOnAction((event)->{
-            Modal subWindow = new Modal("layouts/secondView.fxml", new SecondController(), new Stage(), event);
-            this.context.setChild(subWindow, this.mediator);
-        });*/
+
+        createCardButton.setOnAction((event)->{
+            Modal cardCreatorWindow = new Modal("layouts/cardsCreatorView.fxml", new CardCreatorController(this.game.getCharacters()), new Stage(), this.context);
+            this.context.setChild(cardCreatorWindow, new CardCreatorMediator());
+        });
     }
 
     public void initDeckSelectorUI() {
@@ -98,12 +100,12 @@ public class FirstController extends MediableController implements Initializable
         this.game.createPlayers(this.playerNames, this.managedManually, this.selectedStrategy, deck);
     }
 
-    private void showCardsCreatorPane() {
-
+    public void createCard(AbstractCharacter character, List<String> attributes) {
+        this.game.createCard(character, attributes);
     }
 
-    public void showText(String text) {
-        //ji
+    public void createCharacter(String characterName, String realName, Map<String, Double> attributes) {
+        this.game.createCharacter(characterName, realName, attributes);
     }
 
     @Override

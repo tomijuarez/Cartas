@@ -67,6 +67,7 @@ public class DataAccessObjectXML extends DataAccessObject{
                     all.put(String.valueOf(i+charactersCount), newLeague);
                 }
             }
+            this.leaguesLoaded = true;
             return leagues;
         }else{
             System.out.print("Primero cargar los Personajes");
