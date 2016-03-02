@@ -10,14 +10,6 @@ import java.util.*;
  */
 public class Game extends Observable {
 
-    /*
-    private static final String CARDS_PATH = "resources/data/cards/";
-    private static final String DECKS_PATH = "resources/data/decks/";
-    private static  final String CHARACTER_PATH = "resources/data/characters/";
-    private static final String ATTRIBUTES_PATH = "resources/data/";
-    private static final String NAME_FILE_ATTRIBUTTES = "ListAttributes";
-    */
-
     private static final int CARDS_LIMIT = 0;
     private static final int CANT_MIN_PLAYERS = 2;
 
@@ -33,7 +25,9 @@ public class Game extends Observable {
     private Hashtable<String, Card> cards;
     private Confrontation confrontation;
 
+    private Hashtable<String, AbstractCharacter> all;
     private Hashtable<String, Character> characters;
+    private Hashtable<String, League> leagues;
     private List<String> attributes;
 
     /*****/
@@ -55,19 +49,26 @@ public class Game extends Observable {
 
         //this.crearEstPrueba();
 
+
         this.characters = this.daoXML.getCharacters();
-        this.cards = this.daoXML.getCards(this.characters);
+        this.leagues = this.daoXML.getLeagues(this.characters);
+        this.all =this.daoXML.getAll();
+        this.cards = this.daoXML.getCards(this.all);
         this.decks = this.daoXML.getDecks(this.cards);
         this.attributes = this.daoXML.getAttributes();
 
         /**Guardar Datos**/
-        this.daoXML.saveData(this.characters,this.attributes,this.decks,this.cards);
+        //this.daoXML.saveData(this.characters,this.attributes,this.decks,this.cards);
 
         for(String aux : this.attributes){
             System.out.println(aux);
         }
     }
 
+    /**Operaciones**/
+    //public abstract void deleteCharacter();
+    //public abstract void deleteCard();
+    //public abstract void deleteDeck();
 
     public void createDeck(List<Card> cards, String name, List<Map.Entry<String, Boolean>> attributes) {
         Deck newDeck = new MainDeck(name);
@@ -214,9 +215,27 @@ public class Game extends Observable {
         return this.decks;
     }
 
+    public List<String> getAttributes(){
+        return this.attributes;
+    }
+
+    public List<AbstractCharacter> getCharacters() {
+        return new ArrayList<AbstractCharacter>(this.all.values());
+    }
+
     public void addPlayer(Player player) {
         this.players.add(player);
         this.turns.add(player);
+    }
+
+    public void createCard(Character character, List<String> selectedAttributes) {
+        Card card = new Card(character);
+        card.setAttributes(selectedAttributes);
+        this.cards.put(String.valueOf(this.cards.size()), card);
+    }
+
+    public void createCharacter(String characterName, String realName, Map<String, Double> selectedAttributes) {
+       // Character character = new Character(characterName, realName,selectedAttributes);
     }
 
     public void createPlayers(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy, Deck deck) {
@@ -259,13 +278,7 @@ public class Game extends Observable {
 
         /**Card N°1**/
         Character p1 = new Character("Superman", "Clark Kent");
-        p1.addAttribute("Fuerza", 2000.0);
-        p1.addAttribute("Velocidad", 400.0);
-        p1.addAttribute("Maldad", 0.0);
-        p1.addAttribute("Destreza", 7.0);
-        p1.addAttribute("Inteligencia", 80.0);
-        p1.addAttribute("Peso", 110.0);
-        p1.addAttribute("Bondad", 100.0);
+        Map<String,Double>  attributtes1 = new Hashtable<>();
         this.characters.put(p1.getFictitiousName(),p1);
         Card c1 = new Card(p1);
         c1.addAttribute("Fuerza");
@@ -436,6 +449,7 @@ public class Game extends Observable {
         p9.addAttribute("Bondad", 99.0);
         this.characters.put(p9.getFictitiousName(),p9);
         Card c9 = new Card(p9);
+
         c9.addAttribute("Fuerza");
         c9.addAttribute("Velocidad");
         c9.addAttribute("Maldad");
