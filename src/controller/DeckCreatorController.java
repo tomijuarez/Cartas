@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import model.Card;
@@ -11,9 +12,7 @@ import view.model.CardView;
 import view.model.DeckView;
 
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * Created by Gandalf on 23/2/2016.
@@ -29,12 +28,15 @@ public class DeckCreatorController extends MediableController implements Initial
     @FXML
     private Button continueButton;
 
+
     List<Card> cards;
+    Map<String,Boolean> attributes;
 
     List<CardView> selectedCards = new Vector<>();
 
     public DeckCreatorController(List<Card> cards) {
         this.cards = cards;
+        this.attributes = new Hashtable<>();
     }
 
     private List<CardView> getCardsView() {
@@ -68,6 +70,10 @@ public class DeckCreatorController extends MediableController implements Initial
 
         this.setCardsEvents(cardsView);
         this.showCards(cardsView);
+
+        continueButton.setOnAction((event)-> {
+           this.mediator.createDeck(this.cards,this.deckName.getText(),this.attributes);
+        });
 
     }
 

@@ -12,11 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.*;
 import model.Character;
-import model.AbstractCharacter;
-import model.Deck;
-import model.Game;
-import model.Strategy;
 import view.Context;
 import view.GameWindow;
 import view.Modal;
@@ -106,6 +103,10 @@ public class FirstController extends MediableController implements Initializable
 
     public void createCharacter(String characterName, String realName, Map<String, Double> attributes) {
         this.game.createCharacter(characterName, realName, attributes);
+    }
+
+    public void createDeck(List<Card> cards, String name,Map<String,Boolean> attributes){
+        this.game.createDeck(cards,name,attributes);
     }
 
     @Override
