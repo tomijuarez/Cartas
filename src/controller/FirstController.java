@@ -34,6 +34,8 @@ public class FirstController extends MediableController implements Initializable
     private Button createDeckButton;
     @FXML
     private Button createCardButton;
+    @FXML
+    private Button createLeagueButton;
 
     private Mediator mediator;
 
@@ -74,6 +76,12 @@ public class FirstController extends MediableController implements Initializable
             Modal cardCreatorWindow = new Modal("layouts/cardsCreatorView.fxml", new CardCreatorController(this.game.getCharacters()), new Stage(), this.context);
             this.context.setChild(cardCreatorWindow, new CardCreatorMediator());
         });
+
+        createLeagueButton.setOnAction((event)->{
+            Modal leagueCreatorWindow = new Modal("layouts/leagueCreatorView.fxml", new LeagueCreatorController(this.game.getOnlyCharacters()), new Stage(), this.context);
+            this.context.setChild(leagueCreatorWindow, new LeagueCreatorMediator());
+        });
+
     }
 
     public void initDeckSelectorUI() {

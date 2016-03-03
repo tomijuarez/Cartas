@@ -42,6 +42,7 @@ public class Game extends Observable {
     }
 
 
+
     public Game() {
 
       //  this.crearEstPrueba();
@@ -225,6 +226,10 @@ public class Game extends Observable {
 
     public List<AbstractCharacter> getCharacters() {
         return new ArrayList<AbstractCharacter>(this.all.values());
+    }
+
+    public List<Character> getOnlyCharacters() {
+        return new ArrayList<>(this.characters.values());
     }
 
     public void addPlayer(Player player) {
