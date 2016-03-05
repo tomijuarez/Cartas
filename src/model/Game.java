@@ -117,17 +117,11 @@ public class Game extends Observable {
         return this.losers;
     }
 
-    private Player tieBreakRound(String attrib, DeckPlayer gameDeck) {
-        this.handleCardsSelection(this.deadHeadList);
-        this.winner = this.getRoundWinner(this.deadHeadList, attrib);//obtengo lso ganadores del la ronda desempate
-
-        //El juego sigue en empate
-        if (this.winner == null) {
-            return this.tieBreakRound(attrib, gameDeck);
+    private void tieBreakRound(String attrib, DeckPlayer gameDeck) {
+        while(this.winner == null) {
+            this.handleCardsSelection(this.deadHeadList);
+            this.winner = this.getRoundWinner(this.deadHeadList, attrib);//obtengo lso ganadores del la ronda desempate
         }
-
-        return this.winner;
-
     }
 
     /**
@@ -207,7 +201,7 @@ public class Game extends Observable {
             if (this.winner == null) {
                 // notifico a la VISTA que se produjo un empate
               //  this.handleDeadHeatRound();
-                this.winner = this.tieBreakRound(this.currentAttribute, this.currentAccumulatorDeck);
+                  this.tieBreakRound(this.currentAttribute, this.currentAccumulatorDeck);
             }
 
             //Notifico quién es el ganador de la ronda.
