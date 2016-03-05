@@ -46,7 +46,7 @@ public class Game extends Observable {
     public Game() {
 
       //  this.crearEstPrueba();
-
+        this.turns = new LinkedList<>();
 
         this.characters = this.daoXML.getCharacters();
         this.leagues = this.daoXML.getLeagues(this.characters);
@@ -65,15 +65,8 @@ public class Game extends Observable {
         /**Guardar Datos**/
       // this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
-        for(String aux : this.attributes){
-            System.out.println(aux);
-        }
     }
 
-    /**Operaciones**/
-    //public abstract void deleteCharacter();
-    //public abstract void deleteCard();
-    //public abstract void deleteDeck();
 
     public void createDeck(List<Card> cards, String name,Map<String,Boolean> attributes) {
         Deck newDeck = new MainDeck(name);
@@ -188,22 +181,37 @@ public class Game extends Observable {
      */
     public void startGame() {
 
-        while (this.turns.size() >= CANT_MIN_PLAYERS) {
-            this.handleShiftTurn(this.currentPlayer());
-            // notifico el comienzo de la seleccion de Cards de cada uno de los jugadores en juego
-            this.handleCardsSelection(this.players);
+        System.out.println("COMENCE EL JUEGO");
 
+       // while (this.turns.size() >= CANT_MIN_PLAYERS) {
+
+            //this.handleShiftTurn(this.currentPlayer());
+            // notifico el comienzo de la seleccion de Cards de cada uno de los jugadores en juego
+            //this.handleCardsSelection(this.players);
+
+            Player current = this.currentPlayer();
+            System.out.println("Nombre de jugador Actual: " + current.getName());
+             // current.getCurrentCard();
+            //selecciono el atributo
+            current.selectAttribute();
+            //solicito el atributo seleccionado
+            this.currentAttribute = current.nameCurrentAttribute();
+
+            System.out.println("atributo actual: "+ this.currentAttribute);
+
+       // }
+/*
             this.winner = this.getRoundWinner(this.players, this.currentAttribute);
 
             //Verifico si la ronda esta empatada.
             if (this.winner == null) {
                 // notifico a la VISTA que se produjo un empate
-                this.handleDeadHeatRound();
+              //  this.handleDeadHeatRound();
                 this.winner = this.tieBreakRound(this.currentAttribute, this.currentAccumulatorDeck);
             }
 
             //Notifico quién es el ganador de la ronda.
-            this.handleWinRound(this.winner, this.currentAccumulatorDeck);
+            //this.handleWinRound(this.winner, this.currentAccumulatorDeck);
 
             //Reintegro el jugador actual al final de la cola de turnos.
             this.turns.add(this.currentPlayer());
@@ -217,6 +225,7 @@ public class Game extends Observable {
             //actualizo VISTA con informacion de la partida
             //notifico al la VISTA de la actualizacion
         }
+*/
     }
 
     public List<Card> getCards() {
@@ -263,6 +272,7 @@ public class Game extends Observable {
 
     public void createPlayers(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy, Deck deck) {
         this.deck = deck;
+        List<DeckPlayer> decksPlayers = this.deck.share(playerNames.size());
 
         for (int i = 0; i < playerNames.size(); i++) {
 
@@ -275,7 +285,7 @@ public class Game extends Observable {
                     new Player(
                             strategy,
                             playerNames.get(i),
-                            new DeckPlayer()
+                            decksPlayers.get(i)
                     )
             );
         }

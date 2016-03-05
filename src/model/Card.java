@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Map;
+import java.util.Hashtable;
 
 /**
  * Created by Guillermo on 25/2/2016.
@@ -13,8 +15,10 @@ public class Card extends Observable {
     private AbstractCharacter character;
     private List<String> attributes = new ArrayList<>();
 
+
     public Card(AbstractCharacter pers) {
         this.character = pers;
+
     }
 
     public void setAttributes(List<String> selectedAttributes){
@@ -60,6 +64,8 @@ public class Card extends Observable {
         List<String> aux = this.attributes;
         return aux;
     }
+
+
 
     public void setId(int id) {
         this.id = id;

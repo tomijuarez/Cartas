@@ -4,10 +4,10 @@ package model;
  * Created by Guillermo on 25/2/2016.
  */
 
-import java.util.List;
+import java.util.Map;
 
 public interface Strategy {
 
-    public String getAttribute(List<String> attributes);
+    public String getAttribute(Map<String,Double> attributes);
 
 }

@@ -13,6 +13,7 @@ public class Deck {
     protected List<Card> cards;
     private Hashtable<String,Boolean> attributes;
 
+
     public Deck(String n){
         this.setName(n);
         this.attributes  = new Hashtable<>();
@@ -34,13 +35,22 @@ public class Deck {
     }
 
     public List<String> getAttributes(){
+
         List<String> attrib = new ArrayList<>();
+        /*
         Enumeration<String> e = this.attributes.keys();
+
         Object key;
         while( e.hasMoreElements() ){
             key = e.nextElement();
             attrib.add((String)key);
 
+        }
+        */
+        System.out.println(this.attributes.size());
+        for(String a: this.attributes.keySet()){
+
+            attrib.add(a);
         }
         return attrib;
     }
@@ -77,5 +87,25 @@ public class Deck {
 
     public void addCard(Card c){
         this.cards.add(c);
+    }
+
+    public List<DeckPlayer> share(int numbersPlayers){
+
+        List<DeckPlayer> decks = new ArrayList<>();
+        for(int i=0; i < numbersPlayers; i++){
+            DeckPlayer cj = new DeckPlayer();
+            decks.add(i, cj);
+        }
+
+        while(!this.cards.isEmpty()){
+            for(int i=0;i < numbersPlayers; i++){
+                DeckPlayer m = decks.remove(i);
+                m.addCard(this.cards.remove(0));
+                decks.add(m);
+            }
+        }
+        //notificar que se repartieron las cartas en el metodo que invoco a esta funcion
+        return decks;
+
     }
 }
