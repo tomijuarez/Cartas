@@ -1,6 +1,7 @@
 package controller;
 
 import model.Card;
+import model.Character;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,10 @@ public class LeagueCreatorMediator implements Mediator {
 
     public MediableController getSecondController() {
         return this.subController;
+    }
+
+    public void setSelectedCharacters(String leagueName, List<Character> characters) {
+        this.parentController.createLeague(leagueName, characters);
     }
 
     @Override

@@ -86,6 +86,13 @@ public class Game extends Observable {
         this.decks.add(newDeck);
     }
 
+    public void createLeague(String leagueName, List<Character> characters) {
+        League newLeague = new League(leagueName);
+        newLeague.setCharacters(characters);
+        this.leagues.put(leagueName, newLeague);
+        this.all.put(leagueName, newLeague);
+    }
+
     private void checkPlayers() {
         for (int i = 0; i < this.players.size(); i++) {
             if (this.players.get(i).numberCards() == this.CARDS_LIMIT) {

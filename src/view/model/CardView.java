@@ -50,6 +50,10 @@ public class CardView extends ViewPackage {
         this.container.setStyle("-fx-border-width: 2px; -fx-border-color: green;");
     }
 
+    public void unselect() {
+        this.container.setStyle("-fx-border-width: 2px; -fx-border-color: transparent;");
+    }
+
     public Card getCard() {
         return this.card;
     }

@@ -1,11 +1,13 @@
 package controller;
 
+import controller.utils.AlertUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -26,14 +28,18 @@ public class DeckSelectorController extends MediableController implements Initia
 
     @FXML
     private TilePane container;
-
     @FXML
     private Button continueButton;
+
+    private List<String> selectedAttributes;
 
     private List<Deck> decks;
 
     private DeckSelectorMediator mediator;
     private DeckView selectedDeck;
+    private List<String> attributes;
+
+    private AlertUtils alertUtils = new AlertUtils();
 
     public DeckSelectorController(List<Deck> decks) {
         this.decks = decks;
@@ -66,8 +72,12 @@ public class DeckSelectorController extends MediableController implements Initia
         this.showDecks(decksView);
 
         this.continueButton.setOnAction((event)->{
-            this.mediator.setDeck(this.selectedDeck.getDeck());
-            this.context.close();
+            if (this.selectedDeck != null) {
+                this.mediator.setDeck(this.selectedDeck.getDeck());
+                this.context.close();
+            }
+            else
+                this.alertUtils.throwUIError("Debes seleccionar al menos un mazo.");
         });
     }
 

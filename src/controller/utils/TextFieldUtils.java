@@ -25,7 +25,6 @@ public class TextFieldUtils {
 
     public void setErrorStateInput(TextField input) {
         input.getStyleClass().clear();
-        System.out.println("AAAAAH");
         input.getStyleClass().add("errorStateTextInput");
     }
 

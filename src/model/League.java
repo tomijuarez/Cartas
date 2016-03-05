@@ -12,7 +12,7 @@ import java.util.Vector;
 public class League extends AbstractCharacter {
 
 
-    private Vector<Character> characters;
+    private List<Character> characters;
 
     public League(String name) {
         super.setFictitiousName(name);
@@ -20,7 +20,11 @@ public class League extends AbstractCharacter {
 
     }
 
-    public Vector<Character> getCharacters(){
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
+    }
+
+    public List<Character> getCharacters(){
         return this.characters;
     }
 

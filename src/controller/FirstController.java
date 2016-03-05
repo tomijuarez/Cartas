@@ -63,7 +63,7 @@ public class FirstController extends MediableController implements Initializable
         });
 
         createDeckButton.setOnAction((event)->{
-            Modal deckCreatorWindow = new Modal("layouts/deckCreatorView.fxml", new DeckCreatorController(this.game.getCards()), new Stage(), this.context);
+            Modal deckCreatorWindow = new Modal("layouts/deckCreatorView.fxml", new DeckCreatorController(this.game.getAttributes(), this.game.getCards()), new Stage(), this.context);
             this.context.setChild(deckCreatorWindow, new DeckCreatorMediator());
         });
 
@@ -111,6 +111,10 @@ public class FirstController extends MediableController implements Initializable
 
     public void createCharacter(String characterName, String realName, Map<String, Double> attributes) {
         this.game.createCharacter(characterName, realName, attributes);
+    }
+
+    public void createLeague(String leagueName, List<Character> league) {
+        this.game.createLeague(leagueName, league);
     }
 
     public void createDeck(List<Card> cards, String name,Map<String,Boolean> attributes){
