@@ -180,10 +180,13 @@ public class Game extends Observable {
 
         System.out.println("COMENCE EL JUEGO");
 
-       // while (this.turns.size() >= CANT_MIN_PLAYERS) {
-
+       while (this.turns.size() >= CANT_MIN_PLAYERS) {
             //this.handleShiftTurn(this.currentPlayer());
             // notifico el comienzo de la seleccion de Cards de cada uno de los jugadores en juego
+            /*Cada Jugador en turns (Jugadores en juego, tienen al menos una carta) Sacan una carta de su mazo*/
+            for(Player p : this.turns){
+                p.takeCard();
+            }
             //this.handleCardsSelection(this.players);
 
             Player current = this.currentPlayer();
@@ -199,7 +202,7 @@ public class Game extends Observable {
 
             System.out.println("GANADOR RONDA: "+ this.winner.getName() );
 
-       // }
+       }
 /*
             this.winner = this.getRoundWinner(this.players, this.currentAttribute);
 
@@ -270,6 +273,7 @@ public class Game extends Observable {
 
     }
 
+    /*Repartimos el mazo acá o al iniciar startGame????*/
     public void createPlayers(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy, Deck deck) {
         this.deck = deck;
         List<DeckPlayer> decksPlayers = this.deck.share(playerNames.size());

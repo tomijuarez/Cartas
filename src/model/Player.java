@@ -29,14 +29,28 @@ public class Player {
         return this.currentCard;
     }
 
-
+    public void takeCard(){this.currentCard = this.deck.getCard();}
 
     public int numberCards() {
         return this.deck.getNumberCards();
     }
 
+<<<<<<< HEAD
     public void selectAttribute(Card c){
         this.selectCurrentAttribute = this.strategy.getAttribute(c);// la estrategia interactua con la vista
+=======
+
+    public void selectAttribute() {
+        Map<String,Double> attributes = new Hashtable<>();
+
+        for(String s : this.deck.getAttributes()){
+            attributes.put(s,new Double(this.currentCard.getAttribute(s)));
+            System.out.println("Entre a agrego atributo: "+ s);
+        }
+
+
+        this.selectCurrentAttribute = this.strategy.getAttribute(attributes);// la estrategia interactua con la vista
+>>>>>>> origin/master
     }
 
     public String nameCurrentAttribute() {
