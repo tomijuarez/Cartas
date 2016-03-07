@@ -11,7 +11,7 @@ import java.util.List;
 public class Deck {
     protected String name;
     protected List<Card> cards;
-    private Hashtable<String,Boolean> attributes;
+    protected Hashtable<String,Boolean> attributes;
 
 
     public Deck(String n){
@@ -97,13 +97,21 @@ public class Deck {
             decks.add(i, cj);
         }
 
+        List<Card> auxiliar = new ArrayList<>();
+
         while(!this.cards.isEmpty()){
             for(int i=0;i < numbersPlayers; i++){
                 DeckPlayer m = decks.remove(i);
-                m.addCard(this.cards.remove(0));
-                decks.add(m);
+
+                Card c = this.cards.remove(0);
+                auxiliar.add(c);
+
+                m.addCard(c);
+                decks.add(i,m);
             }
         }
+
+        this.cards = auxiliar;
         //notificar que se repartieron las cartas en el metodo que invoco a esta funcion
         return decks;
 

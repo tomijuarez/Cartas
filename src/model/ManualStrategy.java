@@ -9,7 +9,7 @@ import java.util.Observable;
 public class ManualStrategy extends Observable implements Strategy {
 
     @Override
-    public String getAttribute(Map<String,Double> attributes) {
+    public String getAttribute(Card c) {
 
         return "";
     }

@@ -8,7 +8,7 @@ import java.util.Map;
 public class DifficultStrategy implements Strategy {
 
     @Override
-    public String getAttribute(Map<String,Double> attributes) {
+    public String getAttribute(Card c) {
         return "";
     }
 }

@@ -1,14 +1,13 @@
 package model;
 
-import java.util.Map;
-
+import java.util.List;
 /**
  * Created by Gandalf on 21/2/2016.
  */
 public class MediumStrategy implements Strategy {
 
     @Override
-    public String getAttribute(Map<String,Double> attributes) {
+    public String getAttribute(Card c) {
         return "";
     }
 }

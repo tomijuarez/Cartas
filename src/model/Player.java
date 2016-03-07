@@ -20,7 +20,12 @@ public class Player {
         this.deck = m;
     }
 
+    public Deck getDeck(){
+        return this.deck;
+    }
+
     public Card getCurrentCard() {
+        this.currentCard = this.deck.getCard();
         return this.currentCard;
     }
 
@@ -30,19 +35,8 @@ public class Player {
         return this.deck.getNumberCards();
     }
 
-    public void selectAttribute() {
-        this.currentCard = this.deck.getCard();
-
-
-        Map<String,Double> attributes = new Hashtable<>();
-
-        for(String s : this.deck.getAttributes()){
-            attributes.put(s,new Double(this.currentCard.getAttribute(s)));
-            System.out.println("Entre a agrego atributo: "+ s);
-        }
-
-
-        this.selectCurrentAttribute = this.strategy.getAttribute(attributes);// la estrategia interactua con la vista
+    public void selectAttribute(Card c){
+        this.selectCurrentAttribute = this.strategy.getAttribute(c);// la estrategia interactua con la vista
     }
 
     public String nameCurrentAttribute() {
@@ -50,13 +44,6 @@ public class Player {
         return aux;
     }
 
-    /* Con esta funcion ya no es necesario obtener obtener la cartaActual,
-    primero obtengo la carta,despues pido el atributo con la estrategia,
-    y por ultimo, obtengo el valor de ese atributo
-    */
-    public double getAttribute(String attrib) {
-        return this.currentCard.getAttribute(attrib);
-    }
 
     public void addAccumulatorWinner(DeckPlayer accumulator) {
         this.deck.addCards(accumulator);
@@ -64,5 +51,9 @@ public class Player {
 
     public String getName(){
         return this.userName;
+    }
+
+    public double getAttribute(String a){
+       return this.currentCard.getAttribute(a);
     }
 }

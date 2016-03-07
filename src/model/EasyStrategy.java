@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * Created by Gandalf on 21/2/2016.
@@ -8,15 +8,17 @@ import java.util.Map;
 public class EasyStrategy implements Strategy {
 
     @Override
-    public String getAttribute(Map<String,Double> attributes) {
+    public String getAttribute(Card c) {
         System.out.println("EAsy");
         String nameAttribLess = "-";
         Double valueLess = 10000.0;
-        for(String attrib: attributes.keySet()){
+        List<String> attributes = c.getAttributes();
+
+        for(String attrib: attributes){
             System.out.println(attrib);
-            if(attributes.get(attrib) < valueLess){
+            if(c.getAttribute(attrib) < valueLess){
                 nameAttribLess = attrib;
-                valueLess = attributes.get(attrib);
+                valueLess = c.getAttribute(attrib) ;
             }
         }
 

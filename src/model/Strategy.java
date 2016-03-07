@@ -8,6 +8,6 @@ import java.util.Map;
 
 public interface Strategy {
 
-    public String getAttribute(Map<String,Double> attributes);
+    public String getAttribute(Card c);
 
 }

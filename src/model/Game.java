@@ -47,6 +47,9 @@ public class Game extends Observable {
 
       //  this.crearEstPrueba();
         this.turns = new LinkedList<>();
+        this.confrontation = new HeroesConfrontation();
+        this.losers = new ArrayList<>();
+        this.
 
         this.characters = this.daoXML.getCharacters();
         this.leagues = this.daoXML.getLeagues(this.characters);
@@ -185,13 +188,16 @@ public class Game extends Observable {
 
             Player current = this.currentPlayer();
             System.out.println("Nombre de jugador Actual: " + current.getName());
-             // current.getCurrentCard();
-            //selecciono el atributo
-            current.selectAttribute();
+            Card currentCard = current.getCurrentCard();
+            current.selectAttribute(currentCard);
             //solicito el atributo seleccionado
             this.currentAttribute = current.nameCurrentAttribute();
 
-            System.out.println("atributo actual: "+ this.currentAttribute);
+            System.out.println("carta actual: "+currentCard.getNick() + " atributo actual: "+ this.currentAttribute);
+
+            this.winner = this.getRoundWinner(this.players,this.currentAttribute);
+
+            System.out.println("GANADOR RONDA: "+ this.winner.getName() );
 
        // }
 /*
