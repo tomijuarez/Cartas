@@ -24,16 +24,14 @@ public class Player {
         return this.currentCard;
     }
 
-
+    public void takeCard(){this.currentCard = this.deck.getCard();}
 
     public int numberCards() {
         return this.deck.getNumberCards();
     }
 
+
     public void selectAttribute() {
-        this.currentCard = this.deck.getCard();
-
-
         Map<String,Double> attributes = new Hashtable<>();
 
         for(String s : this.deck.getAttributes()){
