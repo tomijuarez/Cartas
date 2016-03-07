@@ -6,6 +6,7 @@ package controller.events;
 public interface GameEventVisitor {
     public void visit(InitGame event);
     public void visit(CardsSelection event);
+    public void visit(TieBreakCardsSelection event);
     public void visit(ShiftTurn event);
     public void visit(DeadHeatRound event);
     public void visit(WinRound event);

@@ -13,13 +13,12 @@ public class Game extends Observable {
     private static final int CARDS_LIMIT = 0;
     private static final int CANT_MIN_PLAYERS = 2;
 
-    private Boolean deadHead;
     private XStream xstream;
     private Queue<Player> turns;
     private Deck deck;
     private List<Player> players = new Vector<>();
     private Player winner;
-    private List<Player> deadHeadList;
+    private List<Player> deadHeatList = new Vector<>();
     private List<Player> losers;
     private List<Deck> decks;
     private Hashtable<String, Card> cards;
@@ -47,9 +46,6 @@ public class Game extends Observable {
 
       //  this.crearEstPrueba();
         this.turns = new LinkedList<>();
-        this.confrontation = new HeroesConfrontation();
-        this.losers = new ArrayList<>();
-        this.
 
         this.characters = this.daoXML.getCharacters();
         this.leagues = this.daoXML.getLeagues(this.characters);
@@ -57,6 +53,7 @@ public class Game extends Observable {
         this.cards = this.daoXML.getCards(this.all);
         this.decks = this.daoXML.getDecks(this.cards);
         this.attributes = this.daoXML.getAttributes();
+        this.confrontation = new HeroesConfrontation();
 
         for(League l : this.leagues.values()){
             System.out.print(l.getFictitiousName() + "\n");
@@ -92,9 +89,12 @@ public class Game extends Observable {
     private void checkPlayers() {
         for (int i = 0; i < this.players.size(); i++) {
             if (this.players.get(i).numberCards() == this.CARDS_LIMIT) {
-                // notifico el jugador que perdio, y se lo envio al observador
+                // notifico el jugador que perdio, y se lo envio al observador ESTO????????
                 this.losers.add(this.players.remove(i));// lo agrego a la cola de perdedores
                 this.turns.remove(this.players.get(i));//elimino al perdedor de la lista de turnos
+                if(this.deadHeatList.contains(this.players.get(i))){ //elimino al perdedor de la lista de desempate
+                    this.deadHeatList.remove(this.players.get(i));
+                }
             }
         }
     }
@@ -109,22 +109,30 @@ public class Game extends Observable {
     }
 
     public Player getRoundWinner(List<Player> gamePlayers, String attrib) {
-        return this.confrontation.getWinnerRound(gamePlayers, this.deadHeadList, attrib);             /********/
+        return this.confrontation.getWinnerRound(gamePlayers, this.deadHeatList, attrib);             /********/
     }
 
     public List<Player> getDeadHeadList() {
-        return this.deadHeadList;
+        return this.deadHeatList;
     }
 
     public List<Player> getLosers() {
         return this.losers;
     }
 
-    private void tieBreakRound(String attrib, DeckPlayer gameDeck) {
-        while(this.winner == null) {
-            this.handleCardsSelection(this.deadHeadList);
-            this.winner = this.getRoundWinner(this.deadHeadList, attrib);//obtengo lso ganadores del la ronda desempate
+    private void tieBreakRound(String attrib) {
+        /*Cada jugador empatado saca una carta*/
+        List<Player> copiedDeadHeat = new Vector<>();
+        for(Player p : this.deadHeatList ){
+            p.takeCard();
+            copiedDeadHeat.add(p);
         }
+        this.handleTieBreakCardsSelection(this.deadHeatList);
+
+        /*OJO CUANDO SE LLAMA CON this.deadHeatList como primer parametro en el desempate hay que hacer una copia de la lista
+        ya que la funcion la modifica*/
+
+        this.winner = this.getRoundWinner(copiedDeadHeat, attrib);
     }
 
     /**
@@ -149,6 +157,11 @@ public class Game extends Observable {
     private void handleCardsSelection(List<Player> players) {
         setChanged();
         this.notifyObservers(new CardsSelection(players));
+    }
+
+    private void handleTieBreakCardsSelection(List<Player> players) {
+        setChanged();
+        this.notifyObservers(new TieBreakCardsSelection(players));
     }
 
     private void handleDeadHeatRound() {
@@ -191,28 +204,44 @@ public class Game extends Observable {
 
             Player current = this.currentPlayer();
             System.out.println("Nombre de jugador Actual: " + current.getName());
-            Card currentCard = current.getCurrentCard();
-            current.selectAttribute(currentCard);
-            //solicito el atributo seleccionado
+             // current.getCurrentCard();
+            /*El jugador actual elige el atributo*/
+            current.selectAttribute();
             this.currentAttribute = current.nameCurrentAttribute();
 
-            System.out.println("carta actual: "+currentCard.getNick() + " atributo actual: "+ this.currentAttribute);
+            System.out.println("atributo actual: "+ this.currentAttribute);
 
-            this.winner = this.getRoundWinner(this.players,this.currentAttribute);
+           /*Realizamos la comparacion entre las cartas de los jugadores*/
+           this.winner = this.getRoundWinner(this.players, this.currentAttribute);
 
-            System.out.println("GANADOR RONDA: "+ this.winner.getName() );
+           /*Ver posible empate*/
+           if(this.winner == null) {
+               while (this.winner == null) {
+                   //this.handleDeadHeatRound();
+                   /*Poner las cartas de los jugadores en el acumulador*/
+                   for (Player p : this.deadHeatList) {
+                       this.currentAccumulatorDeck.addCard(p.getCurrentCard());
+                   }
+                   /*Verificar que nadie se haya quedado sin cartas en la ronda*/
 
+                   this.checkPlayers();
+
+                   /*Verificar que los empatados tengan cartas para desempatar*/
+                   if (this.deadHeatList.size() < 2) {
+                       if (this.deadHeatList.size() == 1) { // Se le entregan las cartas al único empatado que quedo
+                            this.winner = this.deadHeatList.get(0);
+                       } /*Si pierden todos los empatados al mismo tiempo, el ganador de la proxima ronda se lleva
+                         todo el pozo*/
+                   } else {
+                       /*Realizar el desempate entre los empatados*/
+                       this.tieBreakRound(this.currentAttribute);
+                   }
+               }
+           }else{
+               /*Entregar las cartas al ganador*/
+           }
        }
 /*
-            this.winner = this.getRoundWinner(this.players, this.currentAttribute);
-
-            //Verifico si la ronda esta empatada.
-            if (this.winner == null) {
-                // notifico a la VISTA que se produjo un empate
-              //  this.handleDeadHeatRound();
-                  this.tieBreakRound(this.currentAttribute, this.currentAccumulatorDeck);
-            }
-
             //Notifico quién es el ganador de la ronda.
             //this.handleWinRound(this.winner, this.currentAccumulatorDeck);
 
@@ -220,7 +249,7 @@ public class Game extends Observable {
             this.turns.add(this.currentPlayer());
 
             //actualizo seteo cada una de las estructuras involucradas en la partida
-            this.deadHeadList.clear();
+            this.deadHeatList.clear();
             this.winner = null;
             this.currentAccumulatorDeck.clear();
 

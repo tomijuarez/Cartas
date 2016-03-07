@@ -20,12 +20,7 @@ public class Player {
         this.deck = m;
     }
 
-    public Deck getDeck(){
-        return this.deck;
-    }
-
     public Card getCurrentCard() {
-        this.currentCard = this.deck.getCard();
         return this.currentCard;
     }
 
@@ -35,22 +30,9 @@ public class Player {
         return this.deck.getNumberCards();
     }
 
-<<<<<<< HEAD
-    public void selectAttribute(Card c){
-        this.selectCurrentAttribute = this.strategy.getAttribute(c);// la estrategia interactua con la vista
-=======
 
     public void selectAttribute() {
-        Map<String,Double> attributes = new Hashtable<>();
-
-        for(String s : this.deck.getAttributes()){
-            attributes.put(s,new Double(this.currentCard.getAttribute(s)));
-            System.out.println("Entre a agrego atributo: "+ s);
-        }
-
-
-        this.selectCurrentAttribute = this.strategy.getAttribute(attributes);// la estrategia interactua con la vista
->>>>>>> origin/master
+        this.selectCurrentAttribute = this.strategy.getAttribute(this.currentCard);// la estrategia interactua con la vista
     }
 
     public String nameCurrentAttribute() {
@@ -58,6 +40,9 @@ public class Player {
         return aux;
     }
 
+    public double getAttribute(String a) {
+        return this.currentCard.getAttribute(a);
+    }
 
     public void addAccumulatorWinner(DeckPlayer accumulator) {
         this.deck.addCards(accumulator);
@@ -65,9 +50,5 @@ public class Player {
 
     public String getName(){
         return this.userName;
-    }
-
-    public double getAttribute(String a){
-       return this.currentCard.getAttribute(a);
     }
 }

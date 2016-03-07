@@ -88,6 +88,11 @@ public class GameController extends MediableController implements Initializable,
     }
 
     @Override
+    public void visit(TieBreakCardsSelection event) {
+
+    }
+
+    @Override
     public void visit(DeadHeatRound event) {
 
     }
