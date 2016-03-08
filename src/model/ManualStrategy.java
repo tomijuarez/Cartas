@@ -10,7 +10,7 @@ public class ManualStrategy extends Observable implements Strategy {
 
     @Override
     public String getAttribute(Card c) {
-
+        System.out.println("POR ACÄ ESTA LA PAPA.");
         return "";
     }
 

@@ -24,14 +24,18 @@ public class Player {
         return this.currentCard;
     }
 
-    public void takeCard(){this.currentCard = this.deck.getCard();}
+    public void takeCard() {
+        this.currentCard = this.deck.getCard();
+        System.out.println(this.getName() + " SELECCIONA LA CARTA " + this.currentCard);
+    }
 
     public int numberCards() {
         return this.deck.getNumberCards();
     }
 
-
     public void selectAttribute() {
+        System.out.println("kimismfgrgr");
+        System.out.println(this.strategy);
         this.selectCurrentAttribute = this.strategy.getAttribute(this.currentCard);// la estrategia interactua con la vista
     }
 

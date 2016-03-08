@@ -15,8 +15,9 @@ public class CardView extends ViewPackage {
 
     private Card card;
 
-    private static int SMALL_HEIGHT = 170;
-    private static int SMALL_WIDTH  = 120;
+    private static int SMALL_HEIGHT = 150;
+    private static int SMALL_WIDTH  = 110;
+
     private static int BIG_HEIGHT   = 170;
     private static int BIG_WIDTH    = 150;
 
@@ -38,20 +39,25 @@ public class CardView extends ViewPackage {
         VBox verticalCardElements = new VBox();
         BorderPane positionalPane = new BorderPane();
 
-        cardImageView.setFitWidth(150);
-        cardImageView.setFitHeight(150);
-        cardImageView.setImage(new Image(this.getImagePath(nick)));
-
         cardName.setText(nick.toUpperCase());
 
-        if(big)
+        if(big) {
+            positionalPane.setPrefSize(BIG_WIDTH, BIG_HEIGHT);
+            cardImageView.setFitWidth(BIG_WIDTH);
+            cardImageView.setFitHeight(BIG_WIDTH);
             verticalCardElements.setPrefSize(BIG_HEIGHT, BIG_WIDTH);
-        else
+        }
+        else {
+            positionalPane.setPrefSize(120, 170);
+            cardImageView.setFitWidth(SMALL_WIDTH);
+            cardImageView.setFitHeight(SMALL_WIDTH);
             verticalCardElements.setPrefSize(SMALL_WIDTH, SMALL_HEIGHT);
+        }
+        cardImageView.setImage(new Image(this.getImagePath(nick)));
 
         verticalCardElements.getChildren().addAll(cardImageView, cardName);
-
-        this.container.getChildren().add(verticalCardElements);
+        positionalPane.setCenter(verticalCardElements);
+        this.container.getChildren().add(positionalPane);
     }
 
     public void select() {

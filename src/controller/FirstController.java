@@ -97,6 +97,7 @@ public class FirstController extends MediableController implements Initializable
     public void setGameArtifacts(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy) {
         this.playerNames = playerNames;
         this.managedManually = managedManually;
+        System.out.println("SELECCIONADA________________" + selectedStrategy);
         this.selectedStrategy = selectedStrategy;
         this.initDeckSelectorUI();
     }

@@ -169,9 +169,9 @@ public class Game extends Observable {
         this.notifyObservers(new DeadHeatRound());
     }
 
-    private void handleWinRound(Player winner, DeckPlayer accumulator) {
+    private void handleWinRound(Player winner) {
         setChanged();
-        this.notifyObservers(new WinRound(winner, accumulator));
+        this.notifyObservers(new WinRound(winner));
     }
 
     /**
@@ -191,55 +191,56 @@ public class Game extends Observable {
      */
     public void startGame() {
 
-        System.out.println("COMENCE EL JUEGO");
-
        while (this.turns.size() >= CANT_MIN_PLAYERS) {
-            //this.handleShiftTurn(this.currentPlayer());
-            // notifico el comienzo de la seleccion de Cards de cada uno de los jugadores en juego
-            /*Cada Jugador en turns (Jugadores en juego, tienen al menos una carta) Sacan una carta de su mazo*/
-            for(Player p : this.turns){
-                p.takeCard();
-            }
-            //this.handleCardsSelection(this.players);
+           /*Cada Jugador en turns (Jugadores en juego, tienen al menos una carta) Sacan una carta de su mazo*/
 
-            Player current = this.currentPlayer();
-            System.out.println("Nombre de jugador Actual: " + current.getName());
-             // current.getCurrentCard();
-            /*El jugador actual elige el atributo*/
-            current.selectAttribute();
-            this.currentAttribute = current.nameCurrentAttribute();
+           for(Player p : this.turns)
+               p.takeCard();
 
-            System.out.println("atributo actual: "+ this.currentAttribute);
+           Player currentPlayer = this.currentPlayer();
 
-           /*Realizamos la comparacion entre las cartas de los jugadores*/
+           this.handleShiftTurn(currentPlayer);
+
+           this.handleCardsSelection(this.players);
+
+           //El jugador actual elige el atributo*/
+            currentPlayer.selectAttribute();
+
+           this.currentAttribute = currentPlayer.nameCurrentAttribute();
+
+           //Realizamos la comparacion entre las cartas de los jugadores
            this.winner = this.getRoundWinner(this.players, this.currentAttribute);
 
-           /*Ver posible empate*/
+           //Ver posible empate
            if(this.winner == null) {
                while (this.winner == null) {
                    //this.handleDeadHeatRound();
-                   /*Poner las cartas de los jugadores en el acumulador*/
+                   //Poner las cartas de los jugadores en el acumulador
                    for (Player p : this.deadHeatList) {
                        this.currentAccumulatorDeck.addCard(p.getCurrentCard());
                    }
-                   /*Verificar que nadie se haya quedado sin cartas en la ronda*/
+                   //Verificar que nadie se haya quedado sin cartas en la ronda
 
                    this.checkPlayers();
 
-                   /*Verificar que los empatados tengan cartas para desempatar*/
+                   //Verificar que los empatados tengan cartas para desempatar
                    if (this.deadHeatList.size() < 2) {
                        if (this.deadHeatList.size() == 1) { // Se le entregan las cartas al único empatado que quedo
                             this.winner = this.deadHeatList.get(0);
-                       } /*Si pierden todos los empatados al mismo tiempo, el ganador de la proxima ronda se lleva
-                         todo el pozo*/
+                       } //Si pierden todos los empatados al mismo tiempo, el ganador de la proxima ronda se lleva
+
                    } else {
-                       /*Realizar el desempate entre los empatados*/
+                       //Realizar el desempate entre los empatados
                        this.tieBreakRound(this.currentAttribute);
                    }
+
                }
            }else{
-               /*Entregar las cartas al ganador*/
+               System.out.println("EL GANADOR ES: " + this.winner);
+               this.handleWinRound(this.winner);
+               //Entregar las cartas al ganador
            }
+
        }
 /*
             //Notifico quién es el ganador de la ronda.
@@ -289,7 +290,6 @@ public class Game extends Observable {
         Card card = new Card(character);
         card.setAttributes(selectedAttributes);
         this.cards.put(String.valueOf(this.cards.size()), card);
-        System.out.println("Cree la carta: "+card.getNick());
     }
 
     public void createCharacter(String characterName, String realName, Map<String, Double> selectedAttributes) {
@@ -298,20 +298,19 @@ public class Game extends Observable {
         character.setId(this.all.size()+1);
         this.characters.put(String.valueOf(character.getId()),character);
         this.all.put(String.valueOf(character.getId()),character);
-        System.out.println("Personaje guardado: "+character.getFictitiousName()+"/"+character.getnameReal());
-
     }
 
     /*Repartimos el mazo acá o al iniciar startGame????*/
     public void createPlayers(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy, Deck deck) {
+        this.players.clear();
+        this.turns.clear();
         this.deck = deck;
+
         List<DeckPlayer> decksPlayers = this.deck.share(playerNames.size());
 
         for (int i = 0; i < playerNames.size(); i++) {
+            Strategy strategy = (managedManually.get(i)) ? new ManualStrategy() : selectedStrategy;
 
-            Strategy strategy = (managedManually.get(i))
-                    ? new ManualStrategy()
-                    : selectedStrategy;
 
 
             this.addPlayer(

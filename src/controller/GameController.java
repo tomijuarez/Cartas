@@ -1,12 +1,14 @@
 package controller;
 
 import controller.events.*;
+import controller.utils.AlertUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import model.*;
@@ -61,7 +63,18 @@ public class GameController extends MediableController implements Initializable,
     @FXML
     private Pane globalDeckAccumulator;
 
+    @FXML
+    private Pane shadedPane;
+
+    @FXML
+    private Button initGameButton;
+
+    @FXML
+    private GridPane mainContainer;
+
     private GameMediator mediator;
+
+    AlertUtils alerts = new AlertUtils();
 
     private List<Player> players;
 
@@ -72,9 +85,10 @@ public class GameController extends MediableController implements Initializable,
     private Game game;
 
     public GameController(Game game) {
-        super();
         this.game = game;
-        this.players = game.getPlayers();
+        this.players = this.game.getPlayers();
+
+        this.game.addObserver(this);
     }
 
     @Override
@@ -109,8 +123,10 @@ public class GameController extends MediableController implements Initializable,
     private void showSpacesIfNeeded() {
         if(this.players.size() == 3)
             this.thirdPlayerSpace.setVisible(true);
-        if(this.players.size() == 4)
-            this.fourthPlayerSpace.setVisible(false);
+        if(this.players.size() == 4) {
+            this.thirdPlayerSpace.setVisible(true);
+            this.fourthPlayerSpace.setVisible(true);
+        }
     }
 
     @Override
@@ -118,7 +134,10 @@ public class GameController extends MediableController implements Initializable,
         this.setPlayersNames();
         this.showSpacesIfNeeded();
 
-        //this.game.startGame();
+        this.initGameButton.setOnAction((event)->{
+            this.mainContainer.getChildren().removeAll(this.shadedPane,this.initGameButton);
+            this.game.startGame();
+        });
 
     }
 
@@ -133,7 +152,7 @@ public class GameController extends MediableController implements Initializable,
 
     @Override
     public void visit(InitGame event) {
-        List<Pane> spaces = this.getCurrentCardsSpaces();
+        /*List<Pane> spaces = this.getCurrentCardsSpaces();
         for(int i = 0; i < this.players.size(); i++) {
             spaces.get(i).getChildren().add(
                     new CardView(
@@ -141,29 +160,26 @@ public class GameController extends MediableController implements Initializable,
                             false
                     ).getResult()
             );
-        }
+        }*/
     }
 
     @Override
     public void visit(ShiftTurn event) {
+        this.alerts.throwUINotice("Es el turno de " + event.getCurrentPlayer().getName());
+
+    }
+
+    @Override
+    public void visit(CardsSelection event) {
         List<Pane> spaces = this.getCurrentCardsSpaces();
-        for(int i = 0; i < this.players.size(); i++) {
+        for (int i = 0; i < this.players.size(); i++) {
+            spaces.get(i).getChildren().clear();
             spaces.get(i).getChildren().add(
                     new CardView(
                             this.players.get(i).getCurrentCard(),
                             false
                     ).getResult()
             );
-        }
-    }
-
-    @Override
-    public void visit(CardsSelection event) {
-        List<Player> players = event.getPlayers();
-        DeckPlayer accumulatorDeck = new DeckPlayer();
-
-        for(Player player: players) {
-            accumulatorDeck.addCard(player.getCurrentCard());
         }
     }
 
@@ -174,7 +190,7 @@ public class GameController extends MediableController implements Initializable,
 
     @Override
     public void visit(WinRound event) {
-
+        this.alerts.throwUINotice("El ganador de la ronda es: " + event.getWinner().getName());
     }
 
     @Override
@@ -184,7 +200,8 @@ public class GameController extends MediableController implements Initializable,
 
     @Override
     public void update(Observable object, Object src) {
-
+        ((GameEventAcceptor) src).accept(this);
+        System.out.println("RECIBIDO");
     }
 
 }

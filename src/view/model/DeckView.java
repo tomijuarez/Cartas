@@ -25,7 +25,6 @@ public class DeckView extends ViewPackage {
     public DeckView(Deck deck) {
         this.deck = deck;
         String name = deck.getName();
-
         this.container = new Pane();
 
         Text deckName = new Text();
@@ -51,6 +50,11 @@ public class DeckView extends ViewPackage {
     }
 
     public Deck getDeck() {
+        System.out.println("*****************");
+        System.out.println("MAZO:");
+        System.out.println(this.deck);
+        System.out.println("*****************");
+
         return this.deck;
     }
 

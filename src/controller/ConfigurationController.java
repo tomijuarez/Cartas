@@ -58,7 +58,7 @@ public class ConfigurationController extends MediableController implements Initi
 
     private List<String> userNames = new Vector<>();
     private List<Boolean> managedManually = new Vector<>();
-    private Strategy selectedStrategy;
+    private Strategy selectedStrategy = new EasyStrategy();
 
     private int playersNum = 2;
     private ConfigurationMediator mediator;

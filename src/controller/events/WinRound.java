@@ -10,8 +10,7 @@ import model.Player;
 public class WinRound implements GameEventAcceptor {
     Player winner;
 
-    public WinRound(Player winner, DeckPlayer accumulator) {
-        winner.addAccumulatorWinner(accumulator);
+    public WinRound(Player winner) {
         this.winner = winner;
     }
 
