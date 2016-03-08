@@ -4,16 +4,18 @@ import controller.events.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import model.*;
 import view.Context;
 import view.GameWindow;
+import view.model.CardView;
 
 import java.net.URL;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by Gandalf on 30/12/2015.
@@ -24,25 +26,44 @@ public class GameController extends MediableController implements Initializable,
      */
 
     @FXML
-    private Pane mazoJugador1;
+    private Pane firstPlayerDeck;
     @FXML
-    private Pane cartaActualJugador1;
+    private Pane firstPlayerCurrentCard;
     @FXML
-    private Pane mazoJugador2;
+    private Text firstPlayerName;
+
     @FXML
-    private Pane cartaActualJugador2;
+    private Pane secondPlayerDeck;
     @FXML
-    private Pane mazoJugador3;
+    private Pane secondPlayerCurrentCard;
     @FXML
-    private Pane cartaActualJugador3;
+    private Text secondPlayerName;
+
     @FXML
-    private Pane mazoJugador4;
+    private Pane thirdPlayerDeck;
     @FXML
-    private Pane cartaActualJugador4;
+    private Pane thirdPlayerCurrentCard;
     @FXML
-    private Pane pozo;
+    private Text thirdPlayerName;
+
+    @FXML
+    private Pane fourthPlayerDeck;
+    @FXML
+    private Pane fourthPlayerCurrentCard;
+    @FXML
+    private Text fourthPlayerName;
+
+    @FXML
+    private Pane thirdPlayerSpace;
+    @FXML
+    private Pane fourthPlayerSpace;
+
+    @FXML
+    private Pane globalDeckAccumulator;
 
     private GameMediator mediator;
+
+    private List<Player> players;
 
     /**
      * Model
@@ -53,28 +74,87 @@ public class GameController extends MediableController implements Initializable,
     public GameController(Game game) {
         super();
         this.game = game;
+        this.players = game.getPlayers();
     }
-
 
     @Override
     public void setMediator(Mediator mediator) {
         this.mediator = (GameMediator) mediator;
     }
 
+    private List<Text> getListedPlayersNames() {
+        List<Text> labels = new ArrayList<>();
+        labels.add(firstPlayerName);
+        labels.add(secondPlayerName);
+        labels.add(thirdPlayerName);
+        labels.add(fourthPlayerName);
+        return labels;
+    }
+
+    private List<Pane> getListedPlayersDecks() {
+        List<Pane> decks = new ArrayList<>();
+        decks.add(firstPlayerDeck);
+        decks.add(secondPlayerDeck);
+        decks.add(thirdPlayerDeck);
+        decks.add(fourthPlayerDeck);
+        return decks;
+    }
+
+    private void setPlayersNames() {
+        List<Text> labels = getListedPlayersNames();
+        for(int i = 0; i < this.players.size(); i++)
+            labels.get(i).setText(this.players.get(i).getName());
+    }
+
+    private void showSpacesIfNeeded() {
+        if(this.players.size() == 3)
+            this.thirdPlayerSpace.setVisible(true);
+        if(this.players.size() == 4)
+            this.fourthPlayerSpace.setVisible(false);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("OLA K TAL?");
+        this.setPlayersNames();
+        this.showSpacesIfNeeded();
+
+        //this.game.startGame();
+
+    }
+
+    private List<Pane> getCurrentCardsSpaces() {
+        List<Pane> spaces = new ArrayList<>();
+        spaces.add(this.firstPlayerCurrentCard);
+        spaces.add(this.secondPlayerCurrentCard);
+        spaces.add(this.thirdPlayerCurrentCard);
+        spaces.add(this.fourthPlayerCurrentCard);
+        return spaces;
     }
 
     @Override
     public void visit(InitGame event) {
-
+        List<Pane> spaces = this.getCurrentCardsSpaces();
+        for(int i = 0; i < this.players.size(); i++) {
+            spaces.get(i).getChildren().add(
+                    new CardView(
+                            this.players.get(i).getCurrentCard(),
+                            false
+                    ).getResult()
+            );
+        }
     }
 
     @Override
     public void visit(ShiftTurn event) {
-        Player currentPlayer = event.getCurrentPlayer();
-        currentPlayer.nameCurrentAttribute();
+        List<Pane> spaces = this.getCurrentCardsSpaces();
+        for(int i = 0; i < this.players.size(); i++) {
+            spaces.get(i).getChildren().add(
+                    new CardView(
+                            this.players.get(i).getCurrentCard(),
+                            false
+                    ).getResult()
+            );
+        }
     }
 
     @Override
@@ -88,11 +168,6 @@ public class GameController extends MediableController implements Initializable,
     }
 
     @Override
-    public void visit(TieBreakCardsSelection event) {
-
-    }
-
-    @Override
     public void visit(DeadHeatRound event) {
 
     }
@@ -103,7 +178,13 @@ public class GameController extends MediableController implements Initializable,
     }
 
     @Override
+    public void visit(TieBreakCardsSelection event) {
+
+    }
+
+    @Override
     public void update(Observable object, Object src) {
 
     }
+
 }

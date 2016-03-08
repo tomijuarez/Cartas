@@ -89,9 +89,9 @@ public class FirstController extends MediableController implements Initializable
         this.context.setChild(malletSelector, new DeckSelectorMediator());
     }
 
-    public void initGameUI() {/*
-        Modal subWindow = new Modal("layouts/GameView.fxml", new GameController(), new Stage(), this.context);
-        this.context.setChild(subWindow, new GameMediator());*/
+    public void initGameUI() {
+        Modal subWindow = new Modal("layouts/GameView.fxml", new GameController(this.game), new Stage(), this.context);
+        this.context.setChild(subWindow, new GameMediator());
     }
 
     public void setGameArtifacts(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy) {
@@ -103,6 +103,7 @@ public class FirstController extends MediableController implements Initializable
 
     public void setGameDeck(Deck deck) {
         this.game.createPlayers(this.playerNames, this.managedManually, this.selectedStrategy, deck);
+        this.initGameUI();
     }
 
     public void createCard(AbstractCharacter character, List<String> attributes) {

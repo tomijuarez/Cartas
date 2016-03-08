@@ -7,3 +7,13 @@
     -fx-background-color: "white";
     -fx-border-color: "red";
 }
+
+.playerDeck {
+    -fx-background-image: url("../resources/images/deckBackground.png");
+}
+
+.cardSpace {
+    -fx-border-radius: 4px;
+    -fx-border-width: 2px;
+    -fx-border-color: "white";
+}

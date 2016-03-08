@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane alignment="center" hgap="10" stylesheets="@../styles/main.css" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -31,50 +31,59 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1">
+            <Pane fx:id="firstPlayerSpace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1">
                <children>
-                  <Pane id="mazoJugador1" layoutX="8.0" layoutY="2.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" />
-                  <Pane id="cartaActualJugador1" layoutX="141.0" layoutY="2.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" />
-                  <Text layoutX="96.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador 1">
+                  <Pane id="mazoJugador1" fx:id="firstPlayerDeck" layoutX="8.0" layoutY="2.0" prefHeight="170.0" prefWidth="120.0" styleClass="playerDeck" />
+                  <Pane id="cartaActualJugador1" fx:id="firstPlayerCurrentCard" layoutX="141.0" layoutY="2.0" prefHeight="170.0" prefWidth="120.0" styleClass="cardSpace" />
+                  <Text fx:id="firstPlayerName" layoutX="96.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                </children></Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
+            <Pane fx:id="secondPlayerSpace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
                <children>
-                  <Pane id="mazoJugador2" layoutX="7.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" />
-                  <Pane id="cartaActualJugador2" layoutX="141.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" />
-                  <Text layoutX="96.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador 2">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Text>
+                  <Pane id="mazoJugador2" fx:id="secondPlayerDeck" layoutX="14.0" layoutY="14.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" styleClass="playerDeck" />
+                  <Pane id="cartaActualJugador2" fx:id="secondPlayerCurrentCard" layoutX="143.0" layoutY="15.0" prefHeight="170.0" prefWidth="120.0" styleClass="cardSpace" />
                </children></Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Pane id="pozo" layoutX="74.0" layoutY="15.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: orange;" />
+                  <Pane id="pozo" fx:id="globalDeckAccumulator" layoutX="74.0" layoutY="16.0" prefHeight="170.0" prefWidth="120.0" styleClass="cardSpace" />
                </children></Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Pane fx:id="fourthPlayerSpace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Pane id="mazoJugador4" layoutX="6.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" />
-                  <Pane id="cartaActualJugador4" layoutX="137.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" />
-                  <Text layoutX="96.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador 4">
+                  <Pane id="mazoJugador4" fx:id="fourthPlayerDeck" layoutY="15.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" styleClass="playerDeck" />
+                  <Pane id="cartaActualJugador4" fx:id="fourthPlayerCurrentCard" layoutX="130.0" layoutY="15.0" prefHeight="170.0" prefWidth="120.0" styleClass="cardSpace" />
+               </children></Pane>
+            <Pane fx:id="thirdPlayerSpace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Pane id="mazoJugador3" fx:id="thirdPlayerDeck" layoutX="8.0" layoutY="29.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" styleClass="playerDeck" />
+                  <Pane id="cartaActualJugador3" fx:id="thirdPlayerCurrentCard" layoutX="141.0" layoutY="28.0" prefHeight="170.0" prefWidth="120.0" styleClass="cardSpace" />
+                  <Text fx:id="thirdPlayerName" layoutX="104.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                </children></Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Pane id="mazoJugador3" layoutX="8.0" layoutY="29.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" />
-                  <Pane id="cartaActualJugador3" layoutX="141.0" layoutY="28.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" />
-                  <Text layoutX="104.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador 3">
+                  <Text fx:id="secondPlayerName" layoutX="118.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
-               </children></Pane>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <Text fx:id="fourthPlayerName" layoutX="103.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" />
          </children>
       </GridPane>
    </children>

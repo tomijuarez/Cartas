@@ -13,10 +13,14 @@ import model.Deck;
  * Created by Gandalf on 13/2/2016.
  */
 public class DeckView extends ViewPackage {
-
-    private final String deckImageName = "deckBackground";
-
     private Deck deck;
+
+    private Pane getBackground() {
+        Pane imageDeckView = new Pane();
+        imageDeckView.setPrefSize(150,200);
+        imageDeckView.getStyleClass().add("playerDeck");
+        return imageDeckView;
+    }
 
     public DeckView(Deck deck) {
         this.deck = deck;
@@ -25,20 +29,15 @@ public class DeckView extends ViewPackage {
         this.container = new Pane();
 
         Text deckName = new Text();
-        ImageView deckImageView = new ImageView();
 
         VBox verticalDeckElements = new VBox();
         BorderPane positionalPane = new BorderPane();
-
-        deckImageView.setFitWidth(150);
-        deckImageView.setFitHeight(200);
-        deckImageView.setImage(new Image(this.getImagePath(this.deckImageName)));
 
         deckName.setText(name.toUpperCase());
 
         verticalDeckElements.setPrefSize(150,200);
 
-        verticalDeckElements.getChildren().addAll(deckImageView, deckName);
+        verticalDeckElements.getChildren().addAll(this.getBackground(), deckName);
 
         this.container.getChildren().add(verticalDeckElements);
     }

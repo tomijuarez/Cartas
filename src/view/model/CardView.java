@@ -15,12 +15,17 @@ public class CardView extends ViewPackage {
 
     private Card card;
 
+    private static int SMALL_HEIGHT = 170;
+    private static int SMALL_WIDTH  = 120;
+    private static int BIG_HEIGHT   = 170;
+    private static int BIG_WIDTH    = 150;
+
     /**
      *
      * @param card
      */
 
-    public CardView(Card card) {
+    public CardView(Card card, boolean big) {
         this.card = card;
 
         String nick = card.getNick();
@@ -39,7 +44,10 @@ public class CardView extends ViewPackage {
 
         cardName.setText(nick.toUpperCase());
 
-        verticalCardElements.setPrefSize(150,170);
+        if(big)
+            verticalCardElements.setPrefSize(BIG_HEIGHT, BIG_WIDTH);
+        else
+            verticalCardElements.setPrefSize(SMALL_WIDTH, SMALL_HEIGHT);
 
         verticalCardElements.getChildren().addAll(cardImageView, cardName);
 

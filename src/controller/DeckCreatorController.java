@@ -73,7 +73,7 @@ public class DeckCreatorController extends MediableController implements Initial
     private List<CardView> getCardsView() {
         List<CardView> cardsView = new Vector<>();
         for (Card card: this.cards) {
-            cardsView.add(new CardView(card));
+            cardsView.add(new CardView(card, true));
         }
         return cardsView;
     }
