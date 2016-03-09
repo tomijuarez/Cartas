@@ -132,7 +132,7 @@ public class GameController extends MediableController implements Initializable,
         this.setPlayersNames();
         this.showSpacesIfNeeded();
         this.game.addObserver(this);
-        
+
         this.initGameButton.setOnAction((event)->{
             this.mainContainer.getChildren().removeAll(this.shadedPane,this.initGameButton);
             this.game.startGame();
@@ -194,7 +194,11 @@ public class GameController extends MediableController implements Initializable,
 
     @Override
     public void visit(WinRound event) {
-        this.alerts.throwUINotice("El ganador de la ronda es: " + event.getWinner().getName());
+        if(event.getWinner() != null) {
+            this.alerts.throwUINotice("El ganador de la ronda es: " + event.getWinner().getName());
+        }else{
+            this.alerts.throwUINotice("La ronda no tiene ganador, el pozo acumulado será del ganador de la próxima ronda");
+        }
     }
 
     @Override
@@ -204,8 +208,9 @@ public class GameController extends MediableController implements Initializable,
 
     @Override
     public void update(Observable object, Object src) {
+        //System.out.println(src.getClass().toString());
         ((GameEventAcceptor) src).accept(this);
-        System.out.println("RECIBIDO");
+        //System.out.println("RECIBIDO");
     }
 
 }

@@ -69,7 +69,7 @@ public class Deck {
     }
 
     public boolean getComparisonType(String attrib){
-        return (boolean)this.attributes.get(attrib);
+        return this.attributes.get(attrib);
     }
 
     public List<Card> getCards() {

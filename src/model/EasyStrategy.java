@@ -9,13 +9,11 @@ public class EasyStrategy implements Strategy {
 
     @Override
     public String getAttribute(Card c) {
-        System.out.println("EAsy");
-        String nameAttribLess = "-";
+        String nameAttribLess = "";
         Double valueLess = 10000.0;
         List<String> attributes = c.getAttributes();
 
         for(String attrib: attributes){
-            System.out.println(attrib);
             if(c.getAttribute(attrib) < valueLess){
                 nameAttribLess = attrib;
                 valueLess = c.getAttribute(attrib) ;
