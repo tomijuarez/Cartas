@@ -18,7 +18,7 @@ public class HeroesConfrontation implements Confrontation{
         for (Player j : players) {
             if(localWinner == null){
                 localWinner = j;
-            }else if(typeConfrontation){
+            }else if(typeConfrontation.booleanValue()){
                 if(localWinner.getAttribute(attrib) < j.getAttribute(attrib)) // Por Mayor typeConfrontation = true
                     localWinner = j;
             }else{
