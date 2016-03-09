@@ -12,7 +12,7 @@ public class HeroesConfrontation implements Confrontation{
 
 
     @Override
-    public Player getWinnerRound(List<Player> players, List<Player> deadHeadList, String attrib) {
+    public Player getWinnerRound(List<Player> players, List<Player> deadHeadList, String attrib, Boolean typeConfrontation) {
         Player higher = players.remove(0);
         for (Player j : players) {
             if (higher.getAttribute(attrib) > j.getAttribute(attrib)) {

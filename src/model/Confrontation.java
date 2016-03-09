@@ -7,5 +7,5 @@ import java.util.List;
  */
 public interface Confrontation {
 
-    public Player getWinnerRound(List<Player> players, List<Player> deadHead, String attrib);
+    public Player getWinnerRound(List<Player> players, List<Player> deadHead, String attrib, Boolean typeConfrontation);
 }

@@ -111,7 +111,7 @@ public class Game extends Observable {
     }
 
     public Player getRoundWinner(List<Player> gamePlayers, String attrib) {
-        return this.confrontation.getWinnerRound(gamePlayers, this.deadHeatList, attrib);             /********/
+        return this.confrontation.getWinnerRound(gamePlayers, this.deadHeatList, attrib,this.deck.getComparisonType(attrib));             /********/
     }
 
     public List<Player> getDeadHeadList() {
