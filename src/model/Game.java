@@ -23,6 +23,7 @@ public class Game extends Observable {
     private List<Deck> decks;
     private Hashtable<String, Card> cards;
     private Confrontation confrontation;
+    private Player currentPlayer;
 
     private Hashtable<String, AbstractCharacter> all;
     private Hashtable<String, Character> characters;
@@ -40,6 +41,9 @@ public class Game extends Observable {
         return this.players;
     }
 
+    public Player getCurrentPalyer(){ //Devuelve el poseedor actual del turno
+        return this.currentPlayer;
+    }
 
 
     public Game() {
@@ -104,7 +108,7 @@ public class Game extends Observable {
      *
      * @return
      */
-    public Player currentPlayer() {
+    public Player selectCurrentPlayer() {
         Player  p = this.turns.removeFirst();
         this.turns.addLast(p);
         return p;
@@ -201,15 +205,15 @@ public class Game extends Observable {
                System.out.println("Jugador "+p.getName()+" saco carta: " + p.getCurrentCard().getNick());
            }
 
-           Player currentPlayer = this.currentPlayer();
+           this.currentPlayer = this.selectCurrentPlayer();
 
-           this.handleShiftTurn(currentPlayer);
+           this.handleShiftTurn(this.currentPlayer);
 
            this.handleCardsSelection(this.players);
 
            //El jugador actual elige el atributo*/
-            currentPlayer.selectAttribute();
-           System.out.println("Jugador Actual: " + this.currentPlayer().getName());
+           this.currentPlayer.selectAttribute();
+           System.out.println("Jugador Actual: " + this.currentPlayer.getName());
            this.currentAttribute = currentPlayer.nameCurrentAttribute();
            System.out.println("Atributo Elegido: " + this.currentAttribute);
 
@@ -256,6 +260,7 @@ public class Game extends Observable {
 
                        //Si hay un ganador entregarle las cartas que se usaron para desempatar y el acumulador
                        if(this.winner != null){
+                           System.out.println("El ganador de la ronda es : " + this.winner.getName());
                            for(Player p : localListTie){
                                this.winner.giveCard(p.getCurrentCard());
                            }
@@ -271,7 +276,7 @@ public class Game extends Observable {
 
                }
            }else{
-               System.out.println("El ganador de la ronda es : " + this.winner);
+               System.out.println("El ganador de la ronda es : " + this.winner.getName());
                this.handleWinRound(this.winner);
                //Entregar las cartas al ganador
                for(Player p : this.turns){
