@@ -150,6 +150,11 @@ public class GameController extends MediableController implements Initializable,
         return spaces;
     }
 
+    public String requestAttribute(Card c) {
+        System.out.println();
+        return "";
+    }
+
     @Override
     public void visit(InitGame event) {
         /*List<Pane> spaces = this.getCurrentCardsSpaces();

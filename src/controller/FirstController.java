@@ -42,6 +42,7 @@ public class FirstController extends MediableController implements Initializable
     private Strategy selectedStrategy;
     private List<String> playerNames;
     private List<Boolean> managedManually;
+    private Deck deck;
 
     private Game game;
 
@@ -89,7 +90,18 @@ public class FirstController extends MediableController implements Initializable
         this.context.setChild(malletSelector, new DeckSelectorMediator());
     }
 
+    private List<Strategy> createStrategies(GameController controller) {
+        List<Strategy> strategies = new Vector<>();
+        for(Boolean manual: this.managedManually) {
+            Strategy strategy = (manual) ? new ManualStrategy(controller) : this.selectedStrategy;
+            strategies.add(strategy);
+        }
+        return strategies;
+    }
+
     public void initGameUI() {
+        GameController gameController = new GameController(this.game);
+        this.game.createPlayers(this.playerNames, this.createStrategies(gameController), this.deck);
         Modal subWindow = new Modal("layouts/GameView.fxml", new GameController(this.game), new Stage(), this.context);
         this.context.setChild(subWindow, new GameMediator());
     }
@@ -97,13 +109,12 @@ public class FirstController extends MediableController implements Initializable
     public void setGameArtifacts(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy) {
         this.playerNames = playerNames;
         this.managedManually = managedManually;
-        System.out.println("SELECCIONADA________________" + selectedStrategy);
         this.selectedStrategy = selectedStrategy;
         this.initDeckSelectorUI();
     }
 
     public void setGameDeck(Deck deck) {
-        this.game.createPlayers(this.playerNames, this.managedManually, this.selectedStrategy, deck);
+        this.deck = deck;
         this.initGameUI();
     }
 

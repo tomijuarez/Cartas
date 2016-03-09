@@ -92,7 +92,6 @@ public class ConfigurationController extends MediableController implements Initi
         this.acceptButton.setOnAction((event) -> {
             if( this.verifyInputs() ) {
                 this.mediator.rootControllerSetData(this.userNames, this.managedManually, this.selectedStrategy);
-                System.out.println("accepte a los jugadores");
                 this.context.close();
             }
         });

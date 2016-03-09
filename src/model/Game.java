@@ -301,26 +301,19 @@ public class Game extends Observable {
     }
 
     /*Repartimos el mazo acá o al iniciar startGame????*/
-    public void createPlayers(List<String> playerNames, List<Boolean> managedManually, Strategy selectedStrategy, Deck deck) {
+    public void createPlayers(List<String> playerNames, List<Strategy> strategies, Deck deck) {
         this.players.clear();
         this.turns.clear();
         this.deck = deck;
 
         List<DeckPlayer> decksPlayers = this.deck.share(playerNames.size());
 
-        for (int i = 0; i < playerNames.size(); i++) {
-            Strategy strategy = (managedManually.get(i)) ? new ManualStrategy() : selectedStrategy;
-
-
-
-            this.addPlayer(
-                    new Player(
-                            strategy,
-                            playerNames.get(i),
-                            decksPlayers.get(i)
-                    )
+        for (int i = 0; i < playerNames.size(); i++)
+            this.addPlayer(new Player(
+                    strategies.get(i),
+                    playerNames.get(i),
+                    decksPlayers.get(i))
             );
-        }
     }
 
     private void crearEstPrueba() {
