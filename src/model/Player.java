@@ -52,4 +52,8 @@ public class Player {
     public String getName(){
         return this.userName;
     }
+
+    public void giveCard(Card c){
+        this.deck.addCard(c);
+    }
 }
