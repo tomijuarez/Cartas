@@ -90,6 +90,43 @@
       <Pane fx:id="shadedPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 100, 100, 0.8);">
          <children>
             <Button fx:id="initGameButton" layoutX="285.0" layoutY="250.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="230.0" text="¡COMENZAR JUEGO!" />
+            <GridPane fx:id="confrontationContainer" layoutY="116.0" prefHeight="370.0" prefWidth="800.0" style="-fx-background-color: white;" visible="false">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Pane prefHeight="299.0" prefWidth="220.0" style="-fx-border-color: gray;" styleClass="inverseCardSpace" stylesheets="@../styles/main.css">
+                     <children>
+                        <Pane layoutX="25.0" layoutY="14.0" prefHeight="170.0" prefWidth="150.0" style="-fx-background-color: red;" />
+                        <ListView layoutX="14.0" layoutY="202.0" prefHeight="163.0" prefWidth="172.0" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="299.0" prefWidth="220.0" style="-fx-border-color: gray;" styleClass="inverseCardSpace" stylesheets="@../styles/main.css" GridPane.columnIndex="1">
+                     <children>
+                        <Pane layoutX="25.0" layoutY="14.0" prefHeight="170.0" prefWidth="150.0" style="-fx-background-color: red;" />
+                        <ListView layoutX="14.0" layoutY="202.0" prefHeight="163.0" prefWidth="172.0" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="299.0" prefWidth="220.0" style="-fx-border-color: gray;" styleClass="inverseCardSpace" stylesheets="@../styles/main.css" GridPane.columnIndex="2">
+                     <children>
+                        <Pane layoutX="25.0" layoutY="14.0" prefHeight="170.0" prefWidth="150.0" style="-fx-background-color: red;" />
+                        <ListView layoutX="14.0" layoutY="202.0" prefHeight="163.0" prefWidth="172.0" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="299.0" prefWidth="220.0" style="-fx-border-color: gray;" styleClass="inverseCardSpace" stylesheets="@../styles/main.css" GridPane.columnIndex="3">
+                     <children>
+                        <Pane layoutX="25.0" layoutY="14.0" prefHeight="170.0" prefWidth="150.0" style="-fx-background-color: red;" />
+                        <ListView layoutX="14.0" layoutY="202.0" prefHeight="163.0" prefWidth="172.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
          </children></Pane>
    </children>
 </GridPane>

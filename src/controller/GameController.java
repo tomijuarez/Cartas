@@ -2,10 +2,13 @@ package controller;
 
 import controller.events.*;
 import controller.utils.AlertUtils;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -71,6 +74,8 @@ public class GameController extends MediableController implements Initializable,
 
     @FXML
     private GridPane mainContainer;
+    @FXML
+    private GridPane confrontationContainer;
 
     private GameMediator mediator;
 
@@ -134,7 +139,8 @@ public class GameController extends MediableController implements Initializable,
         this.game.addObserver(this);
 
         this.initGameButton.setOnAction((event)->{
-            this.mainContainer.getChildren().removeAll(this.shadedPane,this.initGameButton);
+            this.initGameButton.setVisible(false);
+            this.shadedPane.setVisible(false);
             this.game.startGame();
         });
 
@@ -155,22 +161,28 @@ public class GameController extends MediableController implements Initializable,
     }
 
     @Override
-    public void visit(InitGame event) {
-        /*List<Pane> spaces = this.getCurrentCardsSpaces();
-        for(int i = 0; i < this.players.size(); i++) {
-            spaces.get(i).getChildren().add(
-                    new CardView(
-                            this.players.get(i).getCurrentCard(),
-                            false
-                    ).getResult()
-            );
-        }*/
+    public void visit(ConfrontationEvent event) {
+        this.shadedPane.setVisible(true);
+        this.confrontationContainer.setVisible(true);
+
+        List<Player> players = event.getPlayers();
+        for (int i = 0; i < this.confrontationContainer.getChildren().size(); i++) {
+            Pane space = (Pane)this.confrontationContainer.getChildren().get(i);
+            List<Node> childs = space.getChildren();
+
+            Pane cardView = (Pane)childs.get(0);
+            Card card = players.get(0).getCurrentCard();
+            cardView.getChildren().add(new CardView(card, true).getResult());
+
+            ListView list = (ListView)childs.get(1);
+            list.setItems(FXCollections.observableArrayList(card.getAttributes() + " - "));
+        }
+
     }
 
     @Override
     public void visit(ShiftTurn event) {
-        this.alerts.throwUINotice("Es el turno de " + event.getCurrentPlayer().getName());
-
+        //this.alerts.throwUINotice("Es el turno de " + event.getCurrentPlayer().getName());
     }
 
     @Override
@@ -193,12 +205,11 @@ public class GameController extends MediableController implements Initializable,
     }
 
     @Override
-    public void visit(WinRound event) {
-        if(event.getWinner() != null) {
+    public void visit(WinRound event) {/*
+        if(event.getWinner() != null)
             this.alerts.throwUINotice("El ganador de la ronda es: " + event.getWinner().getName());
-        }else{
-            this.alerts.throwUINotice("La ronda no tiene ganador, el pozo acumulado será del ganador de la próxima ronda");
-        }
+        else
+            this.alerts.throwUINotice("Hubo un empate, el pozo acumulado será del ganador de la próxima ronda.");*/
     }
 
     @Override
@@ -208,9 +219,7 @@ public class GameController extends MediableController implements Initializable,
 
     @Override
     public void update(Observable object, Object src) {
-        //System.out.println(src.getClass().toString());
         ((GameEventAcceptor) src).accept(this);
-        //System.out.println("RECIBIDO");
     }
 
 }

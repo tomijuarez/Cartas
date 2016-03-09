@@ -121,6 +121,7 @@ public class Game extends Observable {
     }
 
     public Player getRoundWinner(List<Player> gamePlayers, String attrib) {
+        this.handleConfrontationEvent(gamePlayers);
         return this.confrontation.getWinnerRound(gamePlayers, this.deadHeatList, attrib,this.deck.getComparisonType(attrib));             /********/
     }
 
@@ -186,6 +187,11 @@ public class Game extends Observable {
         this.notifyObservers(new WinRound(winner));
     }
 
+    private void handleConfrontationEvent(List<Player> players) {
+        setChanged();
+        this.notifyObservers(new ConfrontationEvent(players));
+    }
+
     /**
      * Recepción de eventos
      */
@@ -206,10 +212,8 @@ public class Game extends Observable {
        while (this.turns.size() >= CANT_MIN_PLAYERS) {
            /*Cada Jugador en turns (Jugadores en juego, tienen al menos una carta) Sacan una carta de su mazo*/
 
-           for(Player p : this.turns) {
+           for(Player p : this.turns)
                p.takeCard();
-               System.out.println("Jugador "+p.getName()+" saco carta: " + p.getCurrentCard().getNick());
-           }
 
            this.currentPlayer = this.selectCurrentPlayer();
 
@@ -228,7 +232,6 @@ public class Game extends Observable {
 
            //Ver posible empate
            if(this.winner == null) {
-               System.out.println("Hay empate");
 
                //Poner las cartas de los jugadores en el acumulador
                for (Player p : this.turns) {

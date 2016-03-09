@@ -8,7 +8,7 @@ import javafx.scene.control.Alert;
 public class AlertUtils {
 
     private static String errorHeader = "Lo sentimos, ocurrió un error.";
-    private static String inforHeader = "Información";
+    private static String infoHeader = "Información";
     private static String warningHeader = "Cuidado!";
 
     public void showAlert(Alert.AlertType context, String header, String content) {
@@ -23,7 +23,7 @@ public class AlertUtils {
     }
 
     public void throwUINotice(String infoMsg) {
-        this.showAlert(Alert.AlertType.INFORMATION,this.errorHeader, infoMsg);
+        this.showAlert(Alert.AlertType.INFORMATION,this.infoHeader, infoMsg);
     }
 
     public void throwUIWarning(String warnMsg) {
