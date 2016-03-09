@@ -13,22 +13,25 @@ public class HeroesConfrontation implements Confrontation{
 
     @Override
     public Player getWinnerRound(List<Player> players, List<Player> deadHeadList, String attrib, Boolean typeConfrontation) {
-        Player higher = players.remove(0);
+        /*typeConfrontation true = mayor, false = menor*/
+        Player localWinner = null;
         for (Player j : players) {
-            if (higher.getAttribute(attrib) > j.getAttribute(attrib)) {
-                higher = j;
+            if(localWinner == null){
+                localWinner = j;
+            }else if (localWinner.getAttribute(attrib) > j.getAttribute(attrib)) {
+                localWinner = j;
             }
         }
         //verifico si hay empate en la partida
         deadHeadList.clear();
-        deadHeadList.add(higher);
+        deadHeadList.add(localWinner);
         for (Player j : players) {
-            if (higher.getAttribute(attrib) == j.getAttribute(attrib)) {
+            if (localWinner.getAttribute(attrib) == j.getAttribute(attrib)) {
                 deadHeadList.add(j);
             }
         }
         if (deadHeadList.size() == 1) {
-            return higher;
+            return localWinner;
         } else {
             return null;
         }
