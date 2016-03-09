@@ -87,8 +87,6 @@ public class GameController extends MediableController implements Initializable,
     public GameController(Game game) {
         this.game = game;
         this.players = this.game.getPlayers();
-
-        this.game.addObserver(this);
     }
 
     @Override
@@ -133,7 +131,8 @@ public class GameController extends MediableController implements Initializable,
     public void initialize(URL url, ResourceBundle rb) {
         this.setPlayersNames();
         this.showSpacesIfNeeded();
-
+        this.game.addObserver(this);
+        
         this.initGameButton.setOnAction((event)->{
             this.mainContainer.getChildren().removeAll(this.shadedPane,this.initGameButton);
             this.game.startGame();
