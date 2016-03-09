@@ -18,19 +18,23 @@ public class HeroesConfrontation implements Confrontation{
         for (Player j : players) {
             if(localWinner == null){
                 localWinner = j;
-            }else if (localWinner.getAttribute(attrib) > j.getAttribute(attrib)) {
-                localWinner = j;
+            }else if(typeConfrontation){
+                if(localWinner.getAttribute(attrib) < j.getAttribute(attrib)) // Por Mayor typeConfrontation = true
+                    localWinner = j;
+            }else{
+                if(localWinner.getAttribute(attrib) > j.getAttribute(attrib)) // Por Menor typeConfrontation = false
+                    localWinner = j;
             }
         }
+
         //verifico si hay empate en la partida
         deadHeadList.clear();
-        deadHeadList.add(localWinner);
         for (Player j : players) {
             if (localWinner.getAttribute(attrib) == j.getAttribute(attrib)) {
                 deadHeadList.add(j);
             }
         }
-        if (deadHeadList.size() == 1) {
+        if (deadHeadList.size() == 1){
             return localWinner;
         } else {
             return null;
