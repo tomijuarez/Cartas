@@ -14,7 +14,7 @@ public class Game extends Observable {
     private static final int CANT_MIN_PLAYERS = 2;
 
     private XStream xstream;
-    private Queue<Player> turns;
+    private LinkedList<Player> turns;
     private Deck deck;
     private List<Player> players = new Vector<>();
     private Player winner;
@@ -31,7 +31,7 @@ public class Game extends Observable {
 
 
     private String currentAttribute;
-    private DeckPlayer currentAccumulatorDeck;
+    private DeckPlayer currentAccumulatorDeck = new DeckPlayer();
 
     //serializador de datos
     private DataAccessObject daoXML = new DataAccessObjectXML();
@@ -105,7 +105,9 @@ public class Game extends Observable {
      * @return
      */
     public Player currentPlayer() {
-        return this.turns.remove();
+        Player  p = this.turns.removeFirst();
+        this.turns.addLast(p);
+        return p;
     }
 
     public Player getRoundWinner(List<Player> gamePlayers, String attrib) {
@@ -194,8 +196,10 @@ public class Game extends Observable {
        while (this.turns.size() >= CANT_MIN_PLAYERS) {
            /*Cada Jugador en turns (Jugadores en juego, tienen al menos una carta) Sacan una carta de su mazo*/
 
-           for(Player p : this.turns)
+           for(Player p : this.turns) {
                p.takeCard();
+               System.out.println("Jugador "+p.getName()+" saco carta: " + p.getCurrentCard().getNick());
+           }
 
            Player currentPlayer = this.currentPlayer();
 
@@ -205,60 +209,85 @@ public class Game extends Observable {
 
            //El jugador actual elige el atributo*/
             currentPlayer.selectAttribute();
-
+           System.out.println("Jugador Actual: " + this.currentPlayer().getName());
            this.currentAttribute = currentPlayer.nameCurrentAttribute();
+           System.out.println("Atributo Elegido: " + this.currentAttribute);
 
            //Realizamos la comparacion entre las cartas de los jugadores
            this.winner = this.getRoundWinner(this.players, this.currentAttribute);
 
            //Ver posible empate
            if(this.winner == null) {
+               System.out.println("Hay empate");
+
+               //Poner las cartas de los jugadores en el acumulador
+               for (Player p : this.turns) {
+                   this.currentAccumulatorDeck.addCard(p.getCurrentCard());
+               }
+               //Desempatar
                while (this.winner == null) {
                    //this.handleDeadHeatRound();
-                   //Poner las cartas de los jugadores en el acumulador
-                   for (Player p : this.deadHeatList) {
-                       this.currentAccumulatorDeck.addCard(p.getCurrentCard());
-                   }
+
                    //Verificar que nadie se haya quedado sin cartas en la ronda
 
                    this.checkPlayers();
 
-                   //Verificar que los empatados tengan cartas para desempatar
+                   //Verificar que los empatados no hayan perdido en la verificacion de cartas
                    if (this.deadHeatList.size() < 2) {
                        if (this.deadHeatList.size() == 1) { // Se le entregan las cartas al único empatado que quedo
+                            System.out.println("El ganador del desempate es: " + this.deadHeatList.get(0));
                             this.winner = this.deadHeatList.get(0);
-                       } //Si pierden todos los empatados al mismo tiempo, el ganador de la proxima ronda se lleva
+                            this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
+                            this.currentAccumulatorDeck.clear();
+
+                       }else { //Si pierden todos los empatados al mismo tiempo, el ganador de la proxima ronda se lleva
+                           System.out.println("No hay ganador de la ronda: el proximo ganador se lleva el pozo");
+                       }
 
                    } else {
+                       //Guardar en una lista local los jugadores que van a desempatar
+                       List<Player> localListTie = new ArrayList<>();
+                       for(Player p : this.deadHeatList){
+                           localListTie.add(p);
+                       }
+
                        //Realizar el desempate entre los empatados
                        this.tieBreakRound(this.currentAttribute);
+
+                       //Si hay un ganador entregarle las cartas que se usaron para desempatar y el acumulador
+                       if(this.winner != null){
+                           for(Player p : localListTie){
+                               this.winner.giveCard(p.getCurrentCard());
+                           }
+                           this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
+                           this.currentAccumulatorDeck.clear();
+                       //Si no hay un ganador agregar las cartas usadas para desempatar al acumulador
+                       }else{
+                           for(Player p : localListTie){
+                               this.currentAccumulatorDeck.addCard(p.getCurrentCard());
+                           }
+                       }
                    }
 
                }
            }else{
-               System.out.println("EL GANADOR ES: " + this.winner);
+               System.out.println("El ganador de la ronda es : " + this.winner);
                this.handleWinRound(this.winner);
                //Entregar las cartas al ganador
+               for(Player p : this.turns){
+                   this.winner.giveCard(p.getCurrentCard());
+               }
+               //Si hubo un pozo sin reclamar en la ronda anterior entregar tambien
+               if(this.currentAccumulatorDeck.getNumberCards() > 0){
+                   this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
+                   this.currentAccumulatorDeck.clear();
+               }
            }
 
+           this.checkPlayers();//Verifico el estado de cada uno de los jugadores
+           this.deadHeatList.clear();//Limpiamos la lista de empate
+           this.winner = null;//Limpiamos el ganador de ronda
        }
-/*
-            //Notifico quién es el ganador de la ronda.
-            //this.handleWinRound(this.winner, this.currentAccumulatorDeck);
-
-            //Reintegro el jugador actual al final de la cola de turnos.
-            this.turns.add(this.currentPlayer());
-
-            //actualizo seteo cada una de las estructuras involucradas en la partida
-            this.deadHeatList.clear();
-            this.winner = null;
-            this.currentAccumulatorDeck.clear();
-
-            this.checkPlayers();//verifico el estado de cada uno de los jugadores
-            //actualizo VISTA con informacion de la partida
-            //notifico al la VISTA de la actualizacion
-        }
-*/
     }
 
     public List<Card> getCards() {
