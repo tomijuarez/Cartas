@@ -208,6 +208,58 @@ public class Game extends Observable {
      * Método de comienzo de partida.
      */
 
+    public void tieBreak(){
+        //Desempatar
+        while (this.winner == null) {
+            //this.handleDeadHeatRound();
+
+            //Verificar que nadie se haya quedado sin cartas en la ronda
+
+            this.checkPlayers();
+
+            //Verificar que los empatados no hayan perdido en la verificacion de cartas
+            if (this.deadHeatList.size() < 2) {
+                if (this.deadHeatList.size() == 1) { // Se le entregan las cartas al único empatado que quedo
+                    System.out.println("El ganador del desempate es: " + this.deadHeatList.get(0).getName());
+                    this.handleWinRound(this.winner);
+                    this.winner = this.deadHeatList.get(0);
+                    this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
+                    this.currentAccumulatorDeck.clear();
+
+                }else { //Si pierden todos los empatados al mismo tiempo, el ganador de la proxima ronda se lleva
+                    System.out.println("No hay ganador de la ronda: el proximo ganador se lleva el pozo");
+                    this.handleWinRound(null);
+                }
+
+            } else {
+                //Guardar en una lista local los jugadores que van a desempatar
+                List<Player> localListTie = new ArrayList<>();
+                for(Player p : this.deadHeatList){
+                    localListTie.add(p);
+                }
+
+                //Realizar el desempate entre los empatados
+                this.tieBreakRound(this.currentAttribute);
+
+                //Si hay un ganador entregarle las cartas que se usaron para desempatar y el acumulador
+                if(this.winner != null){
+                    System.out.println("El ganador del desempate es : " + this.winner.getName());
+                    this.handleWinRound(this.winner);
+                    for(Player p : localListTie){
+                        this.winner.giveCard(p.getCurrentCard());
+                    }
+                    this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
+                    this.currentAccumulatorDeck.clear();
+                    //Si no hay un ganador agregar las cartas usadas para desempatar al acumulador
+                }else{
+                    for(Player p : localListTie){
+                        this.currentAccumulatorDeck.addCard(p.getCurrentCard());
+                    }
+                }
+            }
+
+        }
+    }
 
     public void nextRound() {
 
@@ -240,55 +292,7 @@ public class Game extends Observable {
                    this.currentAccumulatorDeck.addCard(p.getCurrentCard());
                }
                //Desempatar
-               while (this.winner == null) {
-                   //this.handleDeadHeatRound();
-
-                   //Verificar que nadie se haya quedado sin cartas en la ronda
-
-                   this.checkPlayers();
-
-                   //Verificar que los empatados no hayan perdido en la verificacion de cartas
-                   if (this.deadHeatList.size() < 2) {
-                       if (this.deadHeatList.size() == 1) { // Se le entregan las cartas al único empatado que quedo
-                            System.out.println("El ganador del desempate es: " + this.deadHeatList.get(0).getName());
-                            this.handleWinRound(this.winner);
-                            this.winner = this.deadHeatList.get(0);
-                            this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
-                            this.currentAccumulatorDeck.clear();
-
-                       }else { //Si pierden todos los empatados al mismo tiempo, el ganador de la proxima ronda se lleva
-                           System.out.println("No hay ganador de la ronda: el proximo ganador se lleva el pozo");
-                           this.handleWinRound(null);
-                       }
-
-                   } else {
-                       //Guardar en una lista local los jugadores que van a desempatar
-                       List<Player> localListTie = new ArrayList<>();
-                       for(Player p : this.deadHeatList){
-                           localListTie.add(p);
-                       }
-
-                       //Realizar el desempate entre los empatados
-                       this.tieBreakRound(this.currentAttribute);
-
-                       //Si hay un ganador entregarle las cartas que se usaron para desempatar y el acumulador
-                       if(this.winner != null){
-                           System.out.println("El ganador del desempate es : " + this.winner.getName());
-                           this.handleWinRound(this.winner);
-                           for(Player p : localListTie){
-                               this.winner.giveCard(p.getCurrentCard());
-                           }
-                           this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
-                           this.currentAccumulatorDeck.clear();
-                       //Si no hay un ganador agregar las cartas usadas para desempatar al acumulador
-                       }else{
-                           for(Player p : localListTie){
-                               this.currentAccumulatorDeck.addCard(p.getCurrentCard());
-                           }
-                       }
-                   }
-
-               }
+               this.tieBreak();
            }else{
                System.out.println("El ganador de la ronda es : " + this.winner.getName());
                this.handleWinRound(this.winner);
