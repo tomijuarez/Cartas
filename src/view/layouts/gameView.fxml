@@ -44,7 +44,7 @@
                </children></Pane>
             <Pane fx:id="secondPlayerSpace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
                <children>
-                  <Pane id="mazoJugador2" fx:id="secondPlayerDeck" layoutX="14.0" layoutY="14.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" styleClass="playerDeck" />
+                  <Pane id="mazoJugador2" fx:id="secondPlayerDeck" layoutX="14.0" layoutY="14.0" prefHeight="170.0" prefWidth="120.0" styleClass="playerDeck" />
                   <Pane id="cartaActualJugador2" fx:id="secondPlayerCurrentCard" layoutX="143.0" layoutY="15.0" prefHeight="170.0" prefWidth="120.0" styleClass="cardSpace" />
                </children></Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -53,12 +53,12 @@
                </children></Pane>
             <Pane fx:id="fourthPlayerSpace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Pane id="mazoJugador4" fx:id="fourthPlayerDeck" layoutX="2.0" layoutY="15.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" styleClass="playerDeck" />
+                  <Pane id="mazoJugador4" fx:id="fourthPlayerDeck" layoutX="2.0" layoutY="15.0" prefHeight="170.0" prefWidth="120.0" styleClass="playerDeck" />
                   <Pane id="cartaActualJugador4" fx:id="fourthPlayerCurrentCard" layoutX="130.0" layoutY="15.0" prefHeight="170.0" prefWidth="120.0" styleClass="cardSpace" />
                </children></Pane>
             <Pane fx:id="thirdPlayerSpace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Pane id="mazoJugador3" fx:id="thirdPlayerDeck" layoutX="8.0" layoutY="29.0" prefHeight="170.0" prefWidth="120.0" style="-fx-background-color: red;" styleClass="playerDeck" />
+                  <Pane id="mazoJugador3" fx:id="thirdPlayerDeck" layoutX="8.0" layoutY="29.0" prefHeight="170.0" prefWidth="120.0" styleClass="playerDeck" />
                   <Pane id="cartaActualJugador3" fx:id="thirdPlayerCurrentCard" layoutX="141.0" layoutY="28.0" prefHeight="170.0" prefWidth="120.0" styleClass="cardSpace" />
                   <Text fx:id="thirdPlayerName" layoutX="104.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
@@ -84,12 +84,15 @@
                   </Text>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="nextRoundButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="144.0" text="Siguiente ronda" />
+               </children>
+            </Pane>
          </children>
       </GridPane>
-      <Pane fx:id="shadedPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 100, 100, 0.8);">
+      <Pane fx:id="shadedPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 100, 100, 0.8);" visible="false">
          <children>
-            <Button fx:id="initGameButton" layoutX="285.0" layoutY="250.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="230.0" text="¡COMENZAR JUEGO!" />
             <GridPane fx:id="confrontationContainer" layoutY="116.0" prefHeight="370.0" prefWidth="800.0" style="-fx-background-color: white;" visible="false">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -127,6 +130,15 @@
                   </Pane>
                </children>
             </GridPane>
-         </children></Pane>
+            <Button fx:id="dismissButton" layoutX="14.0" layoutY="493.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="114.0" text="Entendido" visible="false" />
+            <Pane fx:id="attributesSelectorPane" layoutX="220.0" layoutY="215.0" prefHeight="193.0" prefWidth="360.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Seleccionar atributo" />
+                  <ListView fx:id="attributesListView" layoutX="14.0" layoutY="31.0" prefHeight="122.0" prefWidth="331.0" />
+                  <Button fx:id="confirmAttributeButton" layoutX="14.0" layoutY="162.0" mnemonicParsing="false" text="Continuar" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
    </children>
 </GridPane>

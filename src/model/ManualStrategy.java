@@ -19,8 +19,9 @@ public class ManualStrategy implements Strategy {
 
     @Override
     public String getAttribute(Card c) {
-        System.out.println("SI");
-        return this.controller.requestAttribute(c);
+        String t = this.controller.requestAttribute(c);
+        System.out.println("LLEGO F");
+        return t;
     }
 
 }

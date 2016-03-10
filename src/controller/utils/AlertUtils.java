@@ -12,8 +12,8 @@ public class AlertUtils {
     private static String warningHeader = "Cuidado!";
 
     public void showAlert(Alert.AlertType context, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(errorHeader);
+        Alert alert = new Alert(context);
+        alert.setHeaderText(header);
         alert.setContentText(content);
         alert.show();
     }
@@ -23,7 +23,7 @@ public class AlertUtils {
     }
 
     public void throwUINotice(String infoMsg) {
-        this.showAlert(Alert.AlertType.INFORMATION,this.infoHeader, infoMsg);
+        this.showAlert(Alert.AlertType.INFORMATION, this.infoHeader, infoMsg);
     }
 
     public void throwUIWarning(String warnMsg) {

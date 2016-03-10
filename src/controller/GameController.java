@@ -7,16 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.*;
-import view.Context;
-import view.GameWindow;
+import view.Modal;
 import view.model.CardView;
 
 import java.net.URL;
@@ -70,18 +68,32 @@ public class GameController extends MediableController implements Initializable,
     private Pane shadedPane;
 
     @FXML
-    private Button initGameButton;
+    private Button dismissButton;
+
+    @FXML
+    private Button nextRoundButton;
 
     @FXML
     private GridPane mainContainer;
     @FXML
     private GridPane confrontationContainer;
 
+    @FXML
+    private Button confirmAttributeButton;
+    @FXML
+    private ListView attributesListView;
+    @FXML
+    private Pane attributesSelectorPane;
+
     private GameMediator mediator;
+
+    private Player currentPlayer;
 
     AlertUtils alerts = new AlertUtils();
 
     private List<Player> players;
+
+    private String selectedAttribute = null;
 
     /**
      * Model
@@ -138,12 +150,25 @@ public class GameController extends MediableController implements Initializable,
         this.showSpacesIfNeeded();
         this.game.addObserver(this);
 
-        this.initGameButton.setOnAction((event)->{
-            this.initGameButton.setVisible(false);
+        this.nextRoundButton.setOnAction((event)->{
             this.shadedPane.setVisible(false);
-            this.game.startGame();
+            this.game.nextRound();
         });
 
+        this.dismissButton.setOnAction((event)->{
+            this.dismissButton.setVisible(false);
+            this.shadedPane.setVisible(false);
+            this.nextRoundButton.setVisible(true);
+        });
+
+        this.confirmAttributeButton.setOnAction((event)->{
+            if(this.selectedAttribute != null) {
+                this.attributesSelectorPane.setVisible(false);
+                this.shadedPane.setVisible(false);
+            }
+            else
+                this.alerts.throwUIError("Debes elegir un atributo para continuar.");
+        });
     }
 
     private List<Pane> getCurrentCardsSpaces() {
@@ -156,33 +181,49 @@ public class GameController extends MediableController implements Initializable,
     }
 
     public String requestAttribute(Card c) {
-        System.out.println();
-        return "";
+        String attribute = null;
+        do {
+            List<String> choices = new ArrayList<>(c.getAttributes());
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.setTitle("Hey");
+            dialog.setHeaderText("Elegí un atributo");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent())
+                attribute = result.get();
+        }
+        while(attribute == null);
+
+        return attribute;
     }
 
     @Override
     public void visit(ConfrontationEvent event) {
         this.shadedPane.setVisible(true);
         this.confrontationContainer.setVisible(true);
+        this.dismissButton.setVisible(true);
+
 
         List<Player> players = event.getPlayers();
-        for (int i = 0; i < this.confrontationContainer.getChildren().size(); i++) {
+        for (int i = 0; i < players.size(); i++) {
+
             Pane space = (Pane)this.confrontationContainer.getChildren().get(i);
             List<Node> childs = space.getChildren();
 
             Pane cardView = (Pane)childs.get(0);
-            Card card = players.get(0).getCurrentCard();
+            Card card = players.get(i).getCurrentCard();
+            cardView.getChildren().clear();
             cardView.getChildren().add(new CardView(card, true).getResult());
 
             ListView list = (ListView)childs.get(1);
-            list.setItems(FXCollections.observableArrayList(card.getAttributes() + " - "));
+            list.setItems(FXCollections.observableArrayList(card.getAttributes()));
         }
-
     }
 
     @Override
     public void visit(ShiftTurn event) {
-        //this.alerts.throwUINotice("Es el turno de " + event.getCurrentPlayer().getName());
+        this.currentPlayer = event.getCurrentPlayer();
+        this.alerts.throwUINotice("Es el turno de " + this.currentPlayer.getName());
     }
 
     @Override
@@ -201,15 +242,12 @@ public class GameController extends MediableController implements Initializable,
 
     @Override
     public void visit(DeadHeatRound event) {
-
+        this.alerts.throwUINotice("Hubo un empate.");
     }
 
     @Override
-    public void visit(WinRound event) {/*
-        if(event.getWinner() != null)
-            this.alerts.throwUINotice("El ganador de la ronda es: " + event.getWinner().getName());
-        else
-            this.alerts.throwUINotice("Hubo un empate, el pozo acumulado será del ganador de la próxima ronda.");*/
+    public void visit(WinRound event) {
+        this.alerts.throwUINotice("El ganador de la ronda es: " + event.getWinner().getName());
     }
 
     @Override

@@ -207,9 +207,11 @@ public class Game extends Observable {
     /**
      * Método de comienzo de partida.
      */
-    public void startGame() {
 
-       while (this.turns.size() >= CANT_MIN_PLAYERS) {
+
+    public void nextRound() {
+
+       if (this.turns.size() >= CANT_MIN_PLAYERS) {
            /*Cada Jugador en turns (Jugadores en juego, tienen al menos una carta) Sacan una carta de su mazo*/
 
            for(Player p : this.turns)
@@ -305,8 +307,9 @@ public class Game extends Observable {
            this.deadHeatList.clear();//Limpiamos la lista de empate
            this.winner = null;//Limpiamos el ganador de ronda
        }
-       //Hay un ganador del juego
-       System.out.println("EL GANADOR DEL JUEGO ES: " + this.gameWinner.getName());
+       else
+           //Hay un ganador del juego
+           System.out.println("EL GANADOR DEL JUEGO ES: " + this.gameWinner.getName());
     }
 
     public List<Card> getCards() {
