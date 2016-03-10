@@ -15,7 +15,7 @@ public class AlertUtils {
         Alert alert = new Alert(context);
         alert.setHeaderText(header);
         alert.setContentText(content);
-        alert.show();
+        alert.showAndWait();
     }
 
     public void throwUIError(String errorMsg) {
