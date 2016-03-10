@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Loki</fictitiousName>
+  <fictitiousName>Aquaman</fictitiousName>
   <id>11</id>
-  <nameReal>Loki Laufeyson</nameReal>
+  <nameReal>Arthur Curry</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.0</double>
+      <double>9.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>100.0</double>
+      <double>86.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>96.0</double>
+      <double>94.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>190.0</double>
+      <double>220.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>10.0</double>
+      <double>99.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>10.0</double>
+      <double>0.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>1000.0</double>
+      <double>700.0</double>
     </entry>
   </attributes>
 </model.Character>

@@ -49,9 +49,9 @@ public class Game extends Observable {
 
     public Game() {
 
-      //  this.crearEstPrueba();
-        this.turns = new LinkedList<>();
+        //this.crearEstPrueba();
 
+        this.turns = new LinkedList<>();
         this.characters = this.daoXML.getCharacters();
         this.leagues = this.daoXML.getLeagues(this.characters);
         this.all =this.daoXML.getAll();
@@ -1371,6 +1371,22 @@ public class Game extends Observable {
 
         this.cards.put(String.valueOf(49),c49);
 
+        League l2 = new League("X-Men");
+        l2.addCharacter(p26);
+        l2.addCharacter(p27);
+        l2.addCharacter(p28);
+        l2.addCharacter(p29);
+        l2.addCharacter(p30);
+        this.leagues.put(String.valueOf(50),l2);
+        this.all.put(String.valueOf(50),l2);
+        Card c50 = new Card(l2);
+        c50.addAttribute("Fuerza");
+        c50.addAttribute("Velocidad");
+        c50.addAttribute("Maldad");
+        c50.addAttribute("Destreza");
+        c50.addAttribute("Inteligencia");
+
+        this.cards.put(String.valueOf(50),c50);
         /**MAZOS**/
         Deck d1 = new Deck("Los Campeones 1");
         d1.addAttribute("Fuerza",true);

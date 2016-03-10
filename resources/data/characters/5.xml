@@ -1,7 +1,7 @@
 <model.Character>
-  <fictitiousName>Bestia</fictitiousName>
+  <fictitiousName>Thor</fictitiousName>
   <id>5</id>
-  <nameReal>Henry Philip McCoy</nameReal>
+  <nameReal>Thor Odinson</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
@@ -9,7 +9,7 @@
     </entry>
     <entry>
       <string>Peso</string>
-      <double>112.0</double>
+      <double>103.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
@@ -17,19 +17,19 @@
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>86.0</double>
+      <double>250.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>99.0</double>
+      <double>99.5</double>
     </entry>
     <entry>
       <string>Maldad</string>
-      <double>0.0</double>
+      <double>10.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>1000.0</double>
+      <double>1100.0</double>
     </entry>
   </attributes>
 </model.Character>

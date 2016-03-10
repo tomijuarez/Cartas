@@ -1,9 +1,0 @@
-<model.CardSave>
-  <attributes>
-    <string>Fuerza</string>
-    <string>Velocidad</string>
-    <string>Destreza</string>
-    <string>Inteligencia</string>
-  </attributes>
-  <idCharacter>49</idCharacter>
-</model.CardSave>

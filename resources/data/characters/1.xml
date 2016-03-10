@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Acertijo</fictitiousName>
+  <fictitiousName>Storm</fictitiousName>
   <id>1</id>
-  <nameReal>Edward Nigma</nameReal>
+  <nameReal>Ororo Iqadi Munroe</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.0</double>
+      <double>9.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>62.0</double>
+      <double>66.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>90.0</double>
+      <double>97.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>45.0</double>
+      <double>110.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>0.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
       <double>98.0</double>
     </entry>
     <entry>
+      <string>Maldad</string>
+      <double>0.0</double>
+    </entry>
+    <entry>
       <string>Fuerza</string>
-      <double>625.0</double>
+      <double>120.0</double>
     </entry>
   </attributes>
 </model.Character>

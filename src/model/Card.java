@@ -38,14 +38,8 @@ public class Card extends Observable {
     }
 
     public void addAttribute(String attrib){
-      if(this.character.getAttribute(attrib) == 0.0){
-            //notifico que el atributo no se encuentra
-            this.notifyObservers("no_atributo");
-        }
-        else{
-            this.attributes.add(attrib);
-            //notifico que el atributo fue agregado
-            this.notifyObservers("atrib_agregado");
+      if(this.character.hasAttribute(attrib)){
+          this.attributes.add(attrib);
         }
     }
 

@@ -188,7 +188,8 @@ public class DataAccessObjectXML extends DataAccessObject{
         for (int i = 1; i <= cards.size(); i++) {
             Card m = cards.get(String.valueOf(i));
             m.setId(i);
-            this.dpFile.saveData(this.CARDS_PATH, String.valueOf(i), new CardSave(m.getAttributes(),String.valueOf(m.getCharacter().getId())));
+            CardSave cSave = new CardSave(m.getAttributes(),String.valueOf(m.getCharacter().getId()));
+            this.dpFile.saveData(this.CARDS_PATH, String.valueOf(i),cSave);
         }
     }
 

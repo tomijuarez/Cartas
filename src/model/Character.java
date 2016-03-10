@@ -51,6 +51,11 @@ public class Character extends AbstractCharacter{
         }
     }
 
+    @Override
+    public boolean hasAttribute(String attrib) {
+        return this.attributes.containsKey(attrib);
+    }
+
     public String getnameReal() {
         return this.nameReal;
     }

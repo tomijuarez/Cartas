@@ -62,4 +62,9 @@ public class League extends AbstractCharacter {
         return (total / this.characters.size());
     }
 
+    @Override
+    public boolean hasAttribute(String attrib) {
+        return this.getAttributes().contains(attrib);
+    }
+
 }

@@ -2,8 +2,9 @@
   <attributes>
     <string>Fuerza</string>
     <string>Velocidad</string>
+    <string>Maldad</string>
     <string>Destreza</string>
     <string>Inteligencia</string>
   </attributes>
-  <idCharacter>4</idCharacter>
+  <idCharacter>14</idCharacter>
 </model.CardSave>

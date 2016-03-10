@@ -26,4 +26,5 @@ public abstract class AbstractCharacter {
 
     public abstract double getAttribute(String attrib);
 
+    public abstract  boolean hasAttribute(String attrib);
 }
