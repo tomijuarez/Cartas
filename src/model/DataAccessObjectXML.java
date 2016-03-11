@@ -119,9 +119,9 @@ public class DataAccessObjectXML implements DataAccessObject{
     }
 
     @Override
-    public List<Deck> getDecks() {
+    public List<MainDeck> getDecks() {
         if(this.cardsLoaded) {
-            List<Deck> decks = new ArrayList<>();
+            List<MainDeck> decks = new ArrayList<>();
 
             /**Cargado de Mazos**/
             Object obj = this.dpFile.getData(this.DECKS_PATH, "deckNames");
@@ -132,7 +132,7 @@ public class DataAccessObjectXML implements DataAccessObject{
                 for (String n : list) {
                     DeckSave auxDeck = (DeckSave) this.dpFile.getData(this.DECKS_PATH, n);
                     if (obj != null) {
-                        Deck newDeck = new Deck(auxDeck.getName());
+                        MainDeck newDeck = new MainDeck(auxDeck.getName());
                         for (String id : auxDeck.getIds()) {
                             newDeck.addCard(cards.get(id));
                         }
@@ -157,7 +157,7 @@ public class DataAccessObjectXML implements DataAccessObject{
 
 
     @Override
-    public void saveData(Hashtable<String, Character> characters, LinkedHashMap<String, League> leagues, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards) {
+    public void saveData(Hashtable<String, Character> characters, LinkedHashMap<String, League> leagues, List<String> attributes, List<MainDeck> decks, Hashtable<String, Card> cards) {
         charactersCount = 0;
         saveAttributes(attributes);
         saveCharacters(characters);
@@ -167,14 +167,12 @@ public class DataAccessObjectXML implements DataAccessObject{
 
     }
 
-    @Override
-    public void saveAttributes(List<String> attributes) {
+    private void saveAttributes(List<String> attributes) {
         /**Guardar Lista de atributos**/
         this.dpFile.saveData(this.ATTRIBUTES_PATH,this.NAME_FILE_ATTRIBUTTES,attributes);
     }
 
-    @Override
-    public void saveCharacters(Hashtable<String, Character> characters) {
+    private void saveCharacters(Hashtable<String, Character> characters) {
         /**Guardar Personajes**/
 
         int id = 1;
@@ -186,8 +184,7 @@ public class DataAccessObjectXML implements DataAccessObject{
         }
     }
 
-    @Override
-    public void saveLeagues(LinkedHashMap<String, League> leagues){
+    private void saveLeagues(LinkedHashMap<String, League> leagues){
         int id = 1;
         for(League league : leagues.values()){
             List<String> characters = new ArrayList<String>();
@@ -201,8 +198,7 @@ public class DataAccessObjectXML implements DataAccessObject{
         }
     }
 
-    @Override
-    public void saveCards(Hashtable<String, Card> cards) {
+    private void saveCards(Hashtable<String, Card> cards) {
         /**Guardar Cards**/
         for (int i = 1; i <= cards.size(); i++) {
             Card m = cards.get(String.valueOf(i));
@@ -212,11 +208,10 @@ public class DataAccessObjectXML implements DataAccessObject{
         }
     }
 
-    @Override
-    public void saveDecks(List<Deck> decks) {
+    private void saveDecks(List<MainDeck> decks) {
         /**Guardar Decks**/
         List<String> names = new ArrayList<>();
-        for (Deck m : decks) {
+        for (MainDeck m : decks) {
             names.add(m.getName());
             this.dpFile.saveData(this.DECKS_PATH, m.getName(), new DeckSave(m.getName(), this.getIds(m), m.getAtrib()));
         }

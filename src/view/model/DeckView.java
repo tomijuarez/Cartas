@@ -7,13 +7,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import model.Deck;
+import model.MainDeck;
 
 /**
  * Created by Gandalf on 13/2/2016.
  */
 public class DeckView extends ViewPackage {
-    private Deck deck;
+    private MainDeck deck;
 
     private Pane getBackground() {
         Pane imageDeckView = new Pane();
@@ -22,7 +22,7 @@ public class DeckView extends ViewPackage {
         return imageDeckView;
     }
 
-    public DeckView(Deck deck) {
+    public DeckView(MainDeck deck) {
         this.deck = deck;
         String name = deck.getName();
         this.container = new Pane();
@@ -49,7 +49,7 @@ public class DeckView extends ViewPackage {
         this.container.setStyle("-fx-border-color: transparent;");
     }
 
-    public Deck getDeck() {
+    public MainDeck getDeck() {
         System.out.println("*****************");
         System.out.println("MAZO:");
         System.out.println(this.deck);

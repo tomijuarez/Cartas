@@ -42,7 +42,7 @@ public class FirstController extends MediableController implements Initializable
     private Strategy selectedStrategy;
     private List<String> playerNames;
     private List<Boolean> managedManually;
-    private Deck deck;
+    private MainDeck deck;
 
     private Game game;
 
@@ -113,7 +113,7 @@ public class FirstController extends MediableController implements Initializable
         this.initDeckSelectorUI();
     }
 
-    public void setGameDeck(Deck deck) {
+    public void setGameDeck(MainDeck deck) {
         this.deck = deck;
         this.initGameUI();
     }

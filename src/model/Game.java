@@ -15,12 +15,12 @@ public class Game extends Observable {
 
     private XStream xstream;
     private LinkedList<Player> turns;
-    private Deck deck;
+    private MainDeck deck;
     private List<Player> players = new Vector<>();
     private Player winner;
     private List<Player> deadHeatList = new Vector<>();
     private List<Player> losers = new ArrayList<>();
-    private List<Deck> decks;
+    private List<MainDeck> decks;
     private Hashtable<String, Card> cards;
     private Confrontation confrontation;
     private Player currentPlayer;
@@ -68,13 +68,13 @@ public class Game extends Observable {
         }
 
         /**Guardar Datos**/
-      //this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
+      this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
     }
 
 
     public void createDeck(List<Card> cards, String name,Map<String,Boolean> attributes) {
-        Deck newDeck = new MainDeck(name);
+        MainDeck newDeck = new MainDeck(name);
         for (model.Card c : cards) {
             newDeck.addCard(c);
         }
@@ -320,7 +320,7 @@ public class Game extends Observable {
         return new Vector<Card>(this.cards.values());
     }
 
-    public List<Deck> getDecks() {
+    public List<MainDeck> getDecks() {
         return this.decks;
     }
 
@@ -356,7 +356,7 @@ public class Game extends Observable {
     }
 
     /*Repartimos el mazo acá o al iniciar startGame????*/
-    public void createPlayers(List<String> playerNames, List<Strategy> strategies, Deck deck) {
+    public void createPlayers(List<String> playerNames, List<Strategy> strategies, MainDeck deck) {
         this.players.clear();
         this.turns.clear();
         this.deck = deck;
@@ -375,7 +375,7 @@ public class Game extends Observable {
 
         this.all = new Hashtable<String, AbstractCharacter>();
         this.cards = new Hashtable<String, Card>();
-        this.decks = new ArrayList<Deck>();
+        this.decks = new ArrayList<MainDeck>();
         this.characters = new Hashtable<String, Character>();
         this.leagues = new LinkedHashMap<String, League>();
         this.attributes = new ArrayList<String>();
@@ -1433,7 +1433,7 @@ public class Game extends Observable {
 
 
         /**MAZOS**/
-        Deck d1 = new Deck("Los Campeones 1");
+        MainDeck d1 = new MainDeck("Los Campeones 1");
         d1.addAttribute("Fuerza",true);
         d1.addAttribute("Velocidad",true);
         d1.addAttribute("Maldad",true);
@@ -1454,7 +1454,7 @@ public class Game extends Observable {
 
         this.decks.add(d1);
 
-        Deck d2 = new Deck("Los Campeones 2");
+        MainDeck d2 = new MainDeck("Los Campeones 2");
         d2.addAttribute("Fuerza",true);
         d2.addAttribute("Velocidad",true);
         d2.addAttribute("Maldad",true);
@@ -1475,7 +1475,7 @@ public class Game extends Observable {
 
         this.decks.add(d2);
 
-        Deck d3 = new Deck("Los Campeones 3");
+        MainDeck d3 = new MainDeck("Los Campeones 3");
         d3.addAttribute("Fuerza",true);
         d3.addAttribute("Velocidad",true);
         d3.addAttribute("Maldad",true);
@@ -1496,7 +1496,7 @@ public class Game extends Observable {
 
         this.decks.add(d3);
 
-        Deck d4 = new Deck("Los Campeones 4");
+        MainDeck d4 = new MainDeck("Los Campeones 4");
         d4.addAttribute("Fuerza",true);
         d4.addAttribute("Velocidad",true);
         d4.addAttribute("Maldad",true);
