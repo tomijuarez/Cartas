@@ -28,7 +28,7 @@ public class League extends AbstractCharacter {
         return this.characters;
     }
 
-    public void addCharacter(Character a){
+    public void addCharacter(AbstractCharacter a){
         if (!this.characters.contains(a)){
             this.characters.add(a);
         }else{
