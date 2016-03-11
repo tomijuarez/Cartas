@@ -61,7 +61,7 @@ public class Game extends Observable {
         this.cards = this.daoXML.getCards();
         this.decks = this.daoXML.getDecks();
         this.attributes = this.daoXML.getAttributes();
-        this.confrontation = new HeroesConfrontation();
+        this.confrontation = new Confrontation();
 
         for(League l : this.leagues.values()){
             System.out.print(l.getFictitiousName() + "\n");
@@ -1443,7 +1443,7 @@ public class Game extends Observable {
 
 
         /**MAZOS**/
-        MainDeck d1 = new MainDeck("Los Campeones 1");
+        MainDeck d1 = new MainDeck("Heroes");
         d1.addAttribute("Fuerza",true);
         d1.addAttribute("Velocidad",true);
         d1.addAttribute("Maldad",true);
@@ -1461,15 +1461,62 @@ public class Game extends Observable {
         d1.addCard(c10);
         d1.addCard(c11);
         d1.addCard(c12);
-
+        d1.addCard(c13);
+        d1.addCard(c14);
+        d1.addCard(c15);
+        d1.addCard(c16);
+        d1.addCard(c17);
+        d1.addCard(c18);
+        d1.addCard(c19);
+        d1.addCard(c20);
+        d1.addCard(c21);
+        d1.addCard(c22);
+        d1.addCard(c23);
+        d1.addCard(c24);
+        d1.addCard(c25);
+        d1.addCard(c26);
+        d1.addCard(c27);
+        d1.addCard(c28);
+        d1.addCard(c29);
+        d1.addCard(c30);
+        d1.addCard(c31);
+        d1.addCard(c32);
+        d1.addCard(c33);
+        d1.addCard(c34);
+        d1.addCard(c35);
+        d1.addCard(c36);
+        d1.addCard(c37);
+        d1.addCard(c38);
+        d1.addCard(c39);
+        d1.addCard(c40);
+        d1.addCard(c41);
+        d1.addCard(c42);
+        d1.addCard(c43);
+        d1.addCard(c44);
+        d1.addCard(c45);
+        d1.addCard(c46);
+        d1.addCard(c47);
+        d1.addCard(c48);
         this.decks.add(d1);
 
-        MainDeck d2 = new MainDeck("Los Campeones 2");
+        MainDeck d2 = new MainDeck("Heroes y Ligas");
         d2.addAttribute("Fuerza",true);
         d2.addAttribute("Velocidad",true);
         d2.addAttribute("Maldad",true);
         d2.addAttribute("Destreza",true);
         d2.addAttribute("Inteligencia",true);
+        d2.addCard(c1);
+        d2.addCard(c2);
+        d2.addCard(c3);
+        d2.addCard(c4);
+        d2.addCard(c5);
+        d2.addCard(c6);
+        d2.addCard(c7);
+        d2.addCard(c8);
+        d2.addCard(c9);
+        d2.addCard(c10);
+        d2.addCard(c11);
+        d2.addCard(c12);
         d2.addCard(c13);
         d2.addCard(c14);
         d2.addCard(c15);
@@ -1482,52 +1529,31 @@ public class Game extends Observable {
         d2.addCard(c22);
         d2.addCard(c23);
         d2.addCard(c24);
-
+        d2.addCard(c25);
+        d2.addCard(c26);
+        d2.addCard(c27);
+        d2.addCard(c28);
+        d2.addCard(c29);
+        d2.addCard(c30);
+        d2.addCard(c31);
+        d2.addCard(c32);
+        d2.addCard(c33);
+        d2.addCard(c34);
+        d2.addCard(c35);
+        d2.addCard(c36);
+        d2.addCard(c37);
+        d2.addCard(c38);
+        d2.addCard(c39);
+        d2.addCard(c40);
+        d2.addCard(c41);
+        d2.addCard(c42);
+        d2.addCard(c43);
+        d2.addCard(c44);
+        d2.addCard(c49);
+        d2.addCard(c50);
+        d2.addCard(c51);
+        d2.addCard(c52);
         this.decks.add(d2);
-
-        MainDeck d3 = new MainDeck("Los Campeones 3");
-        d3.addAttribute("Fuerza",true);
-        d3.addAttribute("Velocidad",true);
-        d3.addAttribute("Maldad",true);
-        d3.addAttribute("Destreza",true);
-        d3.addAttribute("Inteligencia",true);
-        d3.addCard(c25);
-        d3.addCard(c26);
-        d3.addCard(c27);
-        d3.addCard(c28);
-        d3.addCard(c29);
-        d3.addCard(c30);
-        d3.addCard(c31);
-        d3.addCard(c32);
-        d3.addCard(c33);
-        d3.addCard(c34);
-        d3.addCard(c35);
-        d3.addCard(c36);
-
-        this.decks.add(d3);
-
-        MainDeck d4 = new MainDeck("Los Campeones 4");
-        d4.addAttribute("Fuerza",true);
-        d4.addAttribute("Velocidad",true);
-        d4.addAttribute("Maldad",true);
-        d4.addAttribute("Destreza",true);
-        d4.addAttribute("Inteligencia",true);
-        d4.addCard(c37);
-        d4.addCard(c38);
-        d4.addCard(c39);
-        d4.addCard(c40);
-        d4.addCard(c41);
-        d4.addCard(c42);
-        d4.addCard(c43);
-        d4.addCard(c44);
-        d4.addCard(c45);
-        d4.addCard(c46);
-        d4.addCard(c47);
-        d4.addCard(c48);
-
-        this.decks.add(d4);
-
-
     }
 
 }
