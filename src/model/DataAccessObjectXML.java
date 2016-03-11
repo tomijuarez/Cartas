@@ -11,7 +11,9 @@ import model.XMLDataParser;
 /**
  * Created by Gandalf on 26/2/2016.
  */
-public class DataAccessObjectXML extends DataAccessObject{
+public class DataAccessObjectXML implements DataAccessObject{
+
+    private static DataAccessObjectXML _instance = null;
 
     private static final String CARDS_PATH = "resources/data/cards/";
     private static final String DECKS_PATH = "resources/data/decks/";
@@ -27,8 +29,14 @@ public class DataAccessObjectXML extends DataAccessObject{
 
     private XMLDataParser dpFile;
 
-    public DataAccessObjectXML(){
+    private DataAccessObjectXML(){
         this.dpFile = new XMLDataParser(new XStream());
+    }
+
+    public static DataAccessObject getInstance() {
+        if (_instance == null)
+        _instance = new DataAccessObjectXML();
+        return _instance;
     }
 
     @Override

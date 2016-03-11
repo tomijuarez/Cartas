@@ -36,7 +36,7 @@ public class Game extends Observable {
     private DeckPlayer currentAccumulatorDeck = new DeckPlayer();
 
     //serializador de datos
-    private DataAccessObject daoXML = new DataAccessObjectXML();
+    private DataAccessObject daoXML = DataAccessObjectXML.getInstance();
 
     public List<Player> getPlayers() {
         return this.players;

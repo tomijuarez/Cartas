@@ -7,24 +7,24 @@ import java.util.List;
 /**
  * Created by Gandalf on 26/2/2016.
  */
-public abstract class DataAccessObject {
+public interface DataAccessObject {
 
     /**Cargar**/
-    public abstract Hashtable<String, Card> getCards(Hashtable<String, AbstractCharacter> character);
-    public abstract List<Deck> getDecks(Hashtable<String, Card> cards);
-    public abstract List<String> getAttributes();
-    public abstract Hashtable<String,Character> getCharacters();
-    public abstract LinkedHashMap<String,League> getLeagues(Hashtable<String,Character> characters);
-    public abstract Hashtable<String,AbstractCharacter> getAll();
+    public Hashtable<String, Card> getCards(Hashtable<String, AbstractCharacter> character);
+    public List<Deck> getDecks(Hashtable<String, Card> cards);
+    public List<String> getAttributes();
+    public Hashtable<String,Character> getCharacters();
+    public LinkedHashMap<String,League> getLeagues(Hashtable<String,Character> characters);
+    public Hashtable<String,AbstractCharacter> getAll();
 
 
     /**Guardar**/
-    public abstract  void saveData(Hashtable<String, Character> characters,LinkedHashMap<String, League> leagues, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards);
-    public abstract void saveAttributes(List<String> attributes);
-    public abstract void saveCharacters(Hashtable<String, Character> characters);
-    public abstract void saveLeagues(LinkedHashMap<String,League> leagues);
-    public abstract void saveCards(Hashtable<String, Card> cards);
-    public abstract void saveDecks(List<Deck> decks);
+    public void saveData(Hashtable<String, Character> characters,LinkedHashMap<String, League> leagues, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards);
+    public void saveAttributes(List<String> attributes);
+    public void saveCharacters(Hashtable<String, Character> characters);
+    public void saveLeagues(LinkedHashMap<String,League> leagues);
+    public void saveCards(Hashtable<String, Card> cards);
+    public void saveDecks(List<Deck> decks);
 
 
 
