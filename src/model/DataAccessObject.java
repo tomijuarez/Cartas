@@ -10,11 +10,11 @@ import java.util.List;
 public interface DataAccessObject {
 
     /**Cargar**/
-    public Hashtable<String, Card> getCards(Hashtable<String, AbstractCharacter> character);
-    public List<Deck> getDecks(Hashtable<String, Card> cards);
+    public Hashtable<String, Card> getCards();
+    public List<Deck> getDecks();
     public List<String> getAttributes();
     public Hashtable<String,Character> getCharacters();
-    public LinkedHashMap<String,League> getLeagues(Hashtable<String,Character> characters);
+    public LinkedHashMap<String,League> getLeagues();
     public Hashtable<String,AbstractCharacter> getAll();
 
 

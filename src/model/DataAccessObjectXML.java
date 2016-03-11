@@ -23,9 +23,11 @@ public class DataAccessObjectXML implements DataAccessObject{
     private static final String NAME_FILE_ATTRIBUTTES = "ListAttributes";
 
     private Hashtable<String,AbstractCharacter> all = new Hashtable<>();
+    private Hashtable<String, Card> cards;
     private int charactersCount = 0;
     private boolean charactersLoaded = false;
     private boolean leaguesLoaded = false;
+    private boolean cardsLoaded = false;
 
     private XMLDataParser dpFile;
 
@@ -60,7 +62,7 @@ public class DataAccessObjectXML implements DataAccessObject{
     }
 
     @Override
-    public LinkedHashMap<String, League> getLeagues(Hashtable<String,Character> characters) {
+    public LinkedHashMap<String, League> getLeagues() {
         LinkedHashMap<String, League> leagues = new LinkedHashMap<>();
         if(this.charactersLoaded){
             for(int i=1; i <= this.dpFile.numberFiles(this.LEAGUES_PATH) ; i++) {
@@ -68,7 +70,7 @@ public class DataAccessObjectXML implements DataAccessObject{
                 if (aux != null) {
                     League newLeague = new League(aux.getFictitiousName());
                     for(String s : aux.getIdCharacters()){
-                        newLeague.addCharacter(characters.get(s));
+                        newLeague.addCharacter(this.all.get(s));
                     }
                     newLeague.setId(i+charactersCount);
                     leagues.put(String.valueOf(i+charactersCount),newLeague);
@@ -79,8 +81,9 @@ public class DataAccessObjectXML implements DataAccessObject{
             return leagues;
         }else{
             System.out.print("Primero cargar los Personajes");
-        }
             return null;
+        }
+
     }
 
     @Override
@@ -95,14 +98,14 @@ public class DataAccessObjectXML implements DataAccessObject{
 
 
     @Override
-    public Hashtable<String, Card> getCards(Hashtable<String, AbstractCharacter> characters) {
+    public Hashtable<String, Card> getCards() {
 
         Hashtable<String, Card> cards = new Hashtable<>();
 
         for(int i=1; i <= this.dpFile.numberFiles(this.CARDS_PATH) ; i++){
             CardSave auxCard = (CardSave) this.dpFile.getData(this.CARDS_PATH, String.valueOf(i));
             if(auxCard != null) {
-                AbstractCharacter aux = characters.get(auxCard.getIdCharacter());
+                AbstractCharacter aux = this.all.get(auxCard.getIdCharacter());
                 Card newCard = new Card(aux);
                 for(String c : auxCard.getAttributes()){
                     newCard.addAttribute(c);
@@ -110,34 +113,41 @@ public class DataAccessObjectXML implements DataAccessObject{
                 cards.put(String.valueOf(i),newCard);
             }
         }
+        this.cardsLoaded = true;
+        this.cards = cards;
         return cards;
     }
 
     @Override
-    public List<Deck> getDecks(Hashtable<String, Card> cards) {
-        List<Deck> decks = new ArrayList<>();
+    public List<Deck> getDecks() {
+        if(this.cardsLoaded) {
+            List<Deck> decks = new ArrayList<>();
 
-        /**Cargado de Mazos**/
-        Object obj = this.dpFile.getData(this.DECKS_PATH,"deckNames");
+            /**Cargado de Mazos**/
+            Object obj = this.dpFile.getData(this.DECKS_PATH, "deckNames");
 
-        if(obj != null){
-            List<String> list = (List<String>) obj;
+            if (obj != null) {
+                List<String> list = (List<String>) obj;
 
-            for (String n : list) {
-                DeckSave auxDeck = (DeckSave) this.dpFile.getData(this.DECKS_PATH, n);
-                if(obj!=null){
-                    Deck newDeck = new Deck(auxDeck.getName());
-                    for(String id : auxDeck.getIds()){
-                        newDeck.addCard(cards.get(id));
+                for (String n : list) {
+                    DeckSave auxDeck = (DeckSave) this.dpFile.getData(this.DECKS_PATH, n);
+                    if (obj != null) {
+                        Deck newDeck = new Deck(auxDeck.getName());
+                        for (String id : auxDeck.getIds()) {
+                            newDeck.addCard(cards.get(id));
+                        }
+                        newDeck.setAttribute(auxDeck.getAttributes());
+                        decks.add(newDeck);
+
                     }
-                    newDeck.setAttribute(auxDeck.getAttributes());
-                    decks.add(newDeck);
 
                 }
-
             }
+            return decks;
+        }else{
+            System.out.print("Primero cargar las Cartas");
+            return null;
         }
-        return decks;
     }
 
     @Override

@@ -53,10 +53,10 @@ public class Game extends Observable {
 
         this.turns = new LinkedList<>();
         this.characters = this.daoXML.getCharacters();
-        this.leagues = this.daoXML.getLeagues(this.characters);
+        this.leagues = this.daoXML.getLeagues();
         this.all =this.daoXML.getAll();
-        this.cards = this.daoXML.getCards(this.all);
-        this.decks = this.daoXML.getDecks(this.cards);
+        this.cards = this.daoXML.getCards();
+        this.decks = this.daoXML.getDecks();
         this.attributes = this.daoXML.getAttributes();
         this.confrontation = new HeroesConfrontation();
 
@@ -1385,8 +1385,53 @@ public class Game extends Observable {
         c50.addAttribute("Maldad");
         c50.addAttribute("Destreza");
         c50.addAttribute("Inteligencia");
-
         this.cards.put(String.valueOf(50),c50);
+
+        League l3 = new League("Batman y Robin");
+        l3.addCharacter(p2);
+        l3.addCharacter(p6);
+        this.leagues.put(String.valueOf(51),l3);
+        this.all.put(String.valueOf(51),l3);
+        Card c51 = new Card(l3);
+        c51.addAttribute("Fuerza");
+        c51.addAttribute("Velocidad");
+        c51.addAttribute("Maldad");
+        c51.addAttribute("Destreza");
+        c51.addAttribute("Inteligencia");
+        this.cards.put(String.valueOf(51),c51);
+
+        League l4 = new League("Los Super Amigos");
+        l4.addCharacter(l3);
+        l4.addCharacter(p1);
+        l4.addCharacter(p3);
+        l4.addCharacter(p4);
+        l4.addCharacter(p7);
+        l4.addCharacter(p8);
+        l4.addCharacter(p9);
+        this.leagues.put(String.valueOf(52),l4);
+        this.all.put(String.valueOf(52),l4);
+        Card c52 = new Card(l4);
+        c52.addAttribute("Fuerza");
+        c52.addAttribute("Velocidad");
+        c52.addAttribute("Maldad");
+        c52.addAttribute("Destreza");
+        c52.addAttribute("Inteligencia");
+        this.cards.put(String.valueOf(52),c52);
+
+        League l5 = new League("SuperAmigosFantasticos");
+        l5.addCharacter(l4);
+        l5.addCharacter(l1);
+        this.leagues.put(String.valueOf(53),l5);
+        this.all.put(String.valueOf(53),l5);
+        Card c53 = new Card(l5);
+        c53.addAttribute("Fuerza");
+        c53.addAttribute("Velocidad");
+        c53.addAttribute("Maldad");
+        c53.addAttribute("Destreza");
+        c53.addAttribute("Inteligencia");
+        this.cards.put(String.valueOf(53),c53);
+
+
         /**MAZOS**/
         Deck d1 = new Deck("Los Campeones 1");
         d1.addAttribute("Fuerza",true);
