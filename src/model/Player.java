@@ -56,4 +56,8 @@ public class Player {
     public void giveCard(Card c){
         this.deck.addCard(c);
     }
+
+    public void riffleDeck(int times){
+        this.deck.riffle(times);
+    }
 }

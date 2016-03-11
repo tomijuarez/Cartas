@@ -12,6 +12,7 @@ public class Game extends Observable {
 
     private static final int CARDS_LIMIT = 0;
     private static final int CANT_MIN_PLAYERS = 2;
+    private static final int RIFFLE_TIMES = 100;
 
     private XStream xstream;
     private LinkedList<Player> turns;
@@ -93,7 +94,7 @@ public class Game extends Observable {
 
     private void checkPlayers() {
         for (int i = 0; i < this.turns.size(); i++) {
-            if (this.turns.get(i).numberCards() == this.CARDS_LIMIT) {
+            if (this.turns.get(i).numberCards() == Game.CARDS_LIMIT) {
                 System.out.println("PERDIO EL JUGADOR: " + this.turns.get(i).getName());
                 this.losers.add(this.turns.get(i));// lo agrego a la cola de perdedores
                 if(this.deadHeatList.contains(this.turns.get(i))){ //elimino al perdedor de la lista de desempate si es que esta
@@ -225,7 +226,7 @@ public class Game extends Observable {
                     this.winner = this.deadHeatList.get(0);
                     this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
                     this.currentAccumulatorDeck.clear();
-
+                    this.winner.riffleDeck(Game.RIFFLE_TIMES);
                 }else { //Si pierden todos los empatados al mismo tiempo, el ganador de la proxima ronda se lleva
                     System.out.println("No hay ganador de la ronda: el proximo ganador se lleva el pozo");
                     this.handleWinRound(null);
@@ -241,7 +242,7 @@ public class Game extends Observable {
                 //Realizar el desempate entre los empatados
                 this.tieBreakRound(this.currentAttribute);
 
-                //Si hay un ganador entregarle las cartas que se usaron para desempatar y el acumulador
+                //Si hay un ganador entregarle las cartas que se usaron para desempatar y el acumulador y mezclar su mazo
                 if(this.winner != null){
                     System.out.println("El ganador del desempate es : " + this.winner.getName());
                     this.handleWinRound(this.winner);
@@ -250,6 +251,7 @@ public class Game extends Observable {
                     }
                     this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
                     this.currentAccumulatorDeck.clear();
+                    this.winner.riffleDeck(Game.RIFFLE_TIMES);
                     //Si no hay un ganador agregar las cartas usadas para desempatar al acumulador
                 }else{
                     for(Player p : localListTie){
@@ -263,7 +265,7 @@ public class Game extends Observable {
 
     public void nextRound() {
 
-       if (this.turns.size() >= CANT_MIN_PLAYERS) {
+       if (this.turns.size() >= Game.CANT_MIN_PLAYERS) {
            /*Cada Jugador en turns (Jugadores en juego, tienen al menos una carta) Sacan una carta de su mazo*/
 
            for(Player p : this.turns)
@@ -305,6 +307,8 @@ public class Game extends Observable {
                    this.winner.addAccumulatorWinner(this.currentAccumulatorDeck);
                    this.currentAccumulatorDeck.clear();
                }
+               //Mezclar el mazo del ganador
+               this.winner.riffleDeck(Game.RIFFLE_TIMES);
            }
 
            this.checkPlayers();//Verifico el estado de cada uno de los jugadores
@@ -355,12 +359,13 @@ public class Game extends Observable {
         this.all.put(String.valueOf(character.getId()),character);
     }
 
-    /*Repartimos el mazo acá o al iniciar startGame????*/
+
     public void createPlayers(List<String> playerNames, List<Strategy> strategies, MainDeck deck) {
         this.players.clear();
         this.turns.clear();
         this.deck = deck;
 
+        this.deck.riffle(Game.RIFFLE_TIMES);
         List<DeckPlayer> decksPlayers = this.deck.share(playerNames.size());
 
         for (int i = 0; i < playerNames.size(); i++)
