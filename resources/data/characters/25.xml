@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Flash</fictitiousName>
+  <fictitiousName>Bestia</fictitiousName>
   <id>25</id>
-  <nameReal>Jay Garrick</nameReal>
+  <nameReal>Henry Philip McCoy</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>9.0</double>
+      <double>8.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>90.0</double>
+      <double>112.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>75.5</double>
+      <double>95.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>800000.0</double>
+      <double>86.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>95.5</double>
+      <double>99.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>1000.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
       <double>0.0</double>
-    </entry>
-    <entry>
-      <string>Fuerza</string>
-      <double>840.0</double>
     </entry>
   </attributes>
 </model.Character>

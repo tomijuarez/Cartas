@@ -1,7 +1,7 @@
 <model.Character>
-  <fictitiousName>Acertijo</fictitiousName>
+  <fictitiousName>Batichica</fictitiousName>
   <id>13</id>
-  <nameReal>Edward Nigma</nameReal>
+  <nameReal>Betty Kane</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
@@ -9,7 +9,7 @@
     </entry>
     <entry>
       <string>Peso</string>
-      <double>62.0</double>
+      <double>60.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
@@ -17,19 +17,19 @@
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>45.0</double>
+      <double>50.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>0.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
-      <double>98.0</double>
+      <double>97.5</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>625.0</double>
+      <double>85.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>8.0</double>
     </entry>
   </attributes>
 </model.Character>

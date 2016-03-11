@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Conmocionador</fictitiousName>
+  <fictitiousName>Mujer Invisible</fictitiousName>
   <id>30</id>
-  <nameReal>Herman Schultz</nameReal>
+  <nameReal>Susan Storm</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>7.0</double>
+      <double>8.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>79.0</double>
+      <double>55.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>95.5</double>
+      <double>97.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>43.0</double>
-    </entry>
-    <entry>
-      <string>Bondad</string>
-      <double>2.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
       <double>80.0</double>
     </entry>
     <entry>
+      <string>Bondad</string>
+      <double>98.5</double>
+    </entry>
+    <entry>
       <string>Fuerza</string>
-      <double>400.0</double>
+      <double>250.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>0.0</double>
     </entry>
   </attributes>
 </model.Character>

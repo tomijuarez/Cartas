@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Prof. Xavier</fictitiousName>
+  <fictitiousName>Conmocionador</fictitiousName>
   <id>48</id>
-  <nameReal>Bruce Wane</nameReal>
+  <nameReal>Herman Schultz</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>60.5</double>
+      <double>7.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>90.0</double>
+      <double>79.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>100.0</double>
+      <double>95.5</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>50.0</double>
+      <double>43.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>99.0</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
-      <double>0.0</double>
+      <double>2.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>150.0</double>
+      <double>400.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>80.0</double>
     </entry>
   </attributes>
 </model.Character>

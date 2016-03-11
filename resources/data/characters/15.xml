@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>El Pingüino</fictitiousName>
+  <fictitiousName>Iron Monger</fictitiousName>
   <id>15</id>
-  <nameReal>Oswald Chesterfield Cobblepot</nameReal>
+  <nameReal>Obadiah Stane</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>4.0</double>
+      <double>5.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>90.0</double>
+      <double>218.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>99.0</double>
+      <double>90.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>15.0</double>
+      <double>280.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>0.5</double>
+      <double>0.0</double>
+    </entry>
+    <entry>
+      <string>Fuerza</string>
+      <double>1800.0</double>
     </entry>
     <entry>
       <string>Maldad</string>
       <double>100.0</double>
-    </entry>
-    <entry>
-      <string>Fuerza</string>
-      <double>30.0</double>
     </entry>
   </attributes>
 </model.Character>

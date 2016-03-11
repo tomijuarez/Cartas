@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Batichica</fictitiousName>
+  <fictitiousName>Thor</fictitiousName>
   <id>19</id>
-  <nameReal>Betty Kane</nameReal>
+  <nameReal>Thor Odinson</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>8.0</double>
+      <double>8.5</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>60.0</double>
+      <double>103.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>90.0</double>
+      <double>95.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>50.0</double>
+      <double>250.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>97.5</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
-      <double>8.0</double>
+      <double>99.5</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>85.0</double>
+      <double>1100.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>10.0</double>
     </entry>
   </attributes>
 </model.Character>

@@ -1,35 +1,35 @@
 <model.Character>
-  <fictitiousName>Manhunter</fictitiousName>
+  <fictitiousName>Acertijo</fictitiousName>
   <id>29</id>
-  <nameReal>Dan Richards</nameReal>
+  <nameReal>Edward Nigma</nameReal>
   <attributes class="hashtable">
     <entry>
       <string>Destreza</string>
-      <double>7.0</double>
+      <double>8.0</double>
     </entry>
     <entry>
       <string>Peso</string>
-      <double>86.0</double>
+      <double>62.0</double>
     </entry>
     <entry>
       <string>Inteligencia</string>
-      <double>97.0</double>
+      <double>90.0</double>
     </entry>
     <entry>
       <string>Velocidad</string>
-      <double>85.0</double>
+      <double>45.0</double>
     </entry>
     <entry>
       <string>Bondad</string>
-      <double>98.5</double>
-    </entry>
-    <entry>
-      <string>Maldad</string>
       <double>0.0</double>
     </entry>
     <entry>
       <string>Fuerza</string>
-      <double>400.0</double>
+      <double>625.0</double>
+    </entry>
+    <entry>
+      <string>Maldad</string>
+      <double>98.0</double>
     </entry>
   </attributes>
 </model.Character>
