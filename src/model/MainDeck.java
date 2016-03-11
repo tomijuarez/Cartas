@@ -7,28 +7,45 @@ import java.util.List;
  * Created by Guillermo on 25/2/2016.
  */
 public class MainDeck extends Deck{
+    protected String name;
 
     public MainDeck(String name){
-        super(name);
+        this.setName(name);
     }
 
-    public List<DeckPlayer> distributeCards(int numPlayers){
+    public List<DeckPlayer> share(int numbersPlayers){
 
         List<DeckPlayer> decks = new ArrayList<>();
-        for(int i=0; i < numPlayers; i++){
+        for(int i=0; i < numbersPlayers; i++){
             DeckPlayer cj = new DeckPlayer();
             decks.add(i, cj);
         }
 
+        List<Card> auxiliar = new ArrayList<>();
+
         while(!this.cards.isEmpty()){
-            for(int i=0;i < numPlayers; i++){
+            for(int i=0;i < numbersPlayers; i++){
                 DeckPlayer m = decks.remove(i);
-                m.addCard(this.cards.remove(0));
-                decks.add(m);
+
+                Card c = this.cards.remove(0);
+                auxiliar.add(c);
+
+                m.addCard(c);
+                decks.add(i,m);
             }
         }
-        //notificar que se repartieron las cartas en el metodo que invoco a esta funcion
+
+        this.cards = auxiliar;
+
         return decks;
 
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
