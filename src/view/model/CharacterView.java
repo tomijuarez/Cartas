@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import model.AbstractCharacter;
 import model.Character;
 
 /**
@@ -13,44 +14,44 @@ import model.Character;
  */
 public class CharacterView extends ViewPackage {
 
-    private Character character;
+    private AbstractCharacter character;
 
 
-        public CharacterView(Character character) {
-            this.character = character;
+    public CharacterView(AbstractCharacter character) {
+        this.character = character;
 
-            String nick = character.getFictitiousName();
+        String nick = character.getFictitiousName();
 
-            this.container = new Pane();
+        this.container = new Pane();
 
-            Text cardName = new Text();
-            ImageView cardImageView = new ImageView();
+        Text cardName = new Text();
+        ImageView cardImageView = new ImageView();
 
-            VBox verticalCardElements = new VBox();
-            BorderPane positionalPane = new BorderPane();
+        VBox verticalCardElements = new VBox();
+        BorderPane positionalPane = new BorderPane();
 
-            cardImageView.setFitWidth(150);
-            cardImageView.setFitHeight(150);
-            cardImageView.setImage(new Image(this.getImagePath(nick)));
+        cardImageView.setFitWidth(150);
+        cardImageView.setFitHeight(150);
+        cardImageView.setImage(new Image(this.getImagePath(nick)));
 
-            cardName.setText(nick.toUpperCase());
+        cardName.setText(nick.toUpperCase());
 
-            verticalCardElements.setPrefSize(150,170);
+        verticalCardElements.setPrefSize(150,170);
 
-            verticalCardElements.getChildren().addAll(cardImageView, cardName);
+        verticalCardElements.getChildren().addAll(cardImageView, cardName);
 
-            this.container.getChildren().add(verticalCardElements);
-        }
+        this.container.getChildren().add(verticalCardElements);
+    }
 
     public void select() {
-            this.container.setStyle("-fx-border-width: 2px; -fx-border-color: green;");
-        }
+        this.container.setStyle("-fx-border-width: 2px; -fx-border-color: green;");
+    }
 
     public void unselect() {
         this.container.setStyle("-fx-border-width: 2px; -fx-border-color: transparent;");
     }
 
-    public Character getCharacter() {
-            return this.character;
-        }
+    public AbstractCharacter getCharacter() {
+        return this.character;
+    }
 }

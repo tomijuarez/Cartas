@@ -28,7 +28,7 @@ public class Game extends Observable {
 
     private Hashtable<String, AbstractCharacter> all;
     private Hashtable<String, Character> characters;
-    private Hashtable<String, League> leagues;
+    private LinkedHashMap<String, League> leagues;
     private List<String> attributes;
 
 
@@ -62,13 +62,13 @@ public class Game extends Observable {
 
         for(League l : this.leagues.values()){
             System.out.print(l.getFictitiousName() + "\n");
-            for(Character c : l.getCharacters()){
+            for(AbstractCharacter c : l.getCharacters()){
                 System.out.print(c.getFictitiousName() + "\n");
             }
         }
 
         /**Guardar Datos**/
-      // this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
+      //this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
 
     }
 
@@ -84,7 +84,7 @@ public class Game extends Observable {
         this.decks.add(newDeck);
     }
 
-    public void createLeague(String leagueName, List<Character> characters) {
+    public void createLeague(String leagueName, List<AbstractCharacter> characters) {
         League newLeague = new League(leagueName);
         newLeague.setCharacters(characters);
         this.leagues.put(leagueName, newLeague);
@@ -377,7 +377,7 @@ public class Game extends Observable {
         this.cards = new Hashtable<String, Card>();
         this.decks = new ArrayList<Deck>();
         this.characters = new Hashtable<String, Character>();
-        this.leagues = new Hashtable<String, League>();
+        this.leagues = new LinkedHashMap<String, League>();
         this.attributes = new ArrayList<String>();
 
 

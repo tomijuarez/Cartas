@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
@@ -51,8 +52,8 @@ public class DataAccessObjectXML extends DataAccessObject{
     }
 
     @Override
-    public Hashtable<String, League> getLeagues(Hashtable<String,Character> characters) {
-        Hashtable<String, League> leagues = new Hashtable<>();
+    public LinkedHashMap<String, League> getLeagues(Hashtable<String,Character> characters) {
+        LinkedHashMap<String, League> leagues = new LinkedHashMap<>();
         if(this.charactersLoaded){
             for(int i=1; i <= this.dpFile.numberFiles(this.LEAGUES_PATH) ; i++) {
                 LeagueSave aux = (LeagueSave) this.dpFile.getData(this.LEAGUES_PATH, String.valueOf(i));
@@ -138,7 +139,7 @@ public class DataAccessObjectXML extends DataAccessObject{
 
 
     @Override
-    public void saveData(Hashtable<String, Character> characters,Hashtable<String, League> leagues, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards) {
+    public void saveData(Hashtable<String, Character> characters, LinkedHashMap<String, League> leagues, List<String> attributes, List<Deck> decks, Hashtable<String, Card> cards) {
         charactersCount = 0;
         saveAttributes(attributes);
         saveCharacters(characters);
@@ -168,11 +169,11 @@ public class DataAccessObjectXML extends DataAccessObject{
     }
 
     @Override
-    public void saveLeagues(Hashtable<String, League> leagues) {
+    public void saveLeagues(LinkedHashMap<String, League> leagues){
         int id = 1;
         for(League league : leagues.values()){
             List<String> characters = new ArrayList<String>();
-            for(Character c : league.getCharacters()){
+            for(AbstractCharacter c : league.getCharacters()){
                 characters.add(String.valueOf(c.getId()));
             }
             league.setId(charactersCount+id);

@@ -79,7 +79,7 @@ public class FirstController extends MediableController implements Initializable
         });
 
         createLeagueButton.setOnAction((event)->{
-            Modal leagueCreatorWindow = new Modal("layouts/leagueCreatorView.fxml", new LeagueCreatorController(this.game.getOnlyCharacters()), new Stage(), this.context);
+            Modal leagueCreatorWindow = new Modal("layouts/leagueCreatorView.fxml", new LeagueCreatorController(this.game.getCharacters()), new Stage(), this.context);
             this.context.setChild(leagueCreatorWindow, new LeagueCreatorMediator());
         });
 
@@ -126,7 +126,7 @@ public class FirstController extends MediableController implements Initializable
         this.game.createCharacter(characterName, realName, attributes);
     }
 
-    public void createLeague(String leagueName, List<Character> league) {
+    public void createLeague(String leagueName, List<AbstractCharacter> league) {
         this.game.createLeague(leagueName, league);
     }
 

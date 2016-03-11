@@ -12,19 +12,19 @@ import java.util.Vector;
 public class League extends AbstractCharacter {
 
 
-    private List<Character> characters;
+    private List<AbstractCharacter> characters;
 
     public League(String name) {
         super.setFictitiousName(name);
-        this.characters = new Vector<Character>();
+        this.characters = new Vector<AbstractCharacter>();
 
     }
 
-    public void setCharacters(List<Character> characters) {
+    public void setCharacters(List<AbstractCharacter> characters) {
         this.characters = characters;
     }
 
-    public List<Character> getCharacters(){
+    public List<AbstractCharacter> getCharacters(){
         return this.characters;
     }
 
@@ -40,7 +40,7 @@ public class League extends AbstractCharacter {
     @Override
     public List<String> getAttributes(){
         List<String> attribAux = new ArrayList<>();
-        for (Character character : this.characters){
+        for (AbstractCharacter character : this.characters){
             for(String s : character.getAttributes()){
                 if(!attribAux.contains(s)){
                     attribAux.add(s);
@@ -54,7 +54,7 @@ public class League extends AbstractCharacter {
     @Override
     public double getAttribute(String attrib) {
         int total = 0;
-        for (Character character : this.characters)
+        for (AbstractCharacter character : this.characters)
         {
             total += character.getAttribute(attrib);
         }

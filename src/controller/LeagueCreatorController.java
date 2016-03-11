@@ -44,27 +44,27 @@ public class LeagueCreatorController extends MediableController implements Initi
     private TextFieldUtils textFieldUtils = new TextFieldUtils();
     private AlertUtils alertUtils = new AlertUtils();
 
-    private List<Character> characters;
+    private List<AbstractCharacter> characters;
     private Map<String, CharacterView> selectedCharacters = new HashMap<>();
 
     private ViewPackage imageManager = new ViewPackage();
 
     private File selectedImage;
 
-    public LeagueCreatorController(List<Character> characters) {
+    public LeagueCreatorController(List<AbstractCharacter> characters) {
         this.characters = characters;
     }
 
     private List<CharacterView> getCharactersView() {
         List<CharacterView> characterView = new Vector<>();
-        for (Character character: this.characters) {
+        for (AbstractCharacter character: this.characters) {
             characterView.add(new CharacterView(character));
         }
         return characterView;
     }
 
-    private List<Character> getSelectedCharacters() {
-        List<Character> characters = new Vector<>();
+    private List<AbstractCharacter> getSelectedCharacters() {
+        List<AbstractCharacter> characters = new Vector<>();
         for (Map.Entry<String, CharacterView> character: this.selectedCharacters.entrySet()) {
             characters.add(character.getValue().getCharacter());
         }
