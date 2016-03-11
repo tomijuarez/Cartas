@@ -5,9 +5,7 @@ import java.util.Random;
 import java.util.Hashtable;
 import java.util.List;
 
-/**
- * Created by Guillermo on 25/2/2016.
- */
+/*Clase con la funcionalidad basica de un mazo*/
 public class Deck {
     protected List<Card> cards;
     protected Hashtable<String,Boolean> attributes;
@@ -18,6 +16,7 @@ public class Deck {
         this.cards = new ArrayList<>();
     }
 
+    /*Mezclar el mazo*/
     public void riffle(int n){
 
         if(this.cards.size() > 0) {
@@ -32,41 +31,47 @@ public class Deck {
         }
     }
 
+    /*Obtener cantidad de cartas*/
     public int getNumberCards(){
         return this.cards.size();
     }
 
+    /*Obtener atributos posibles de las cartas del mazo*/
     public List<String> getAttributes(){
 
         List<String> attrib = new ArrayList<>();
         for(String a: this.attributes.keySet()){
-
             attrib.add(a);
         }
         return attrib;
     }
 
+    /*Obtener atributos y forma de compararse*/
     public Hashtable<String,Boolean> getAtrib(){
         return this.attributes;
     }
 
+    /*Agregar un atributo con su manera de compararse*/
     public void addAttribute(String a, Boolean b){
         this.attributes.put(a,b);
     }
 
+    /*Setear loas tributos y su forma e comparacion*/
     public void setAttribute(Hashtable<String,Boolean> a){
         this.attributes = a;
     }
 
+    /*Obtener el tipo de comparacion para un atributo*/
     public boolean getComparisonType(String attrib){
         return this.attributes.get(attrib);
     }
 
+    /*Obtener las cartas del mazo*/
     public List<Card> getCards() {
-        List<Card> c = this.cards;
-        return c;
+        return this.cards;
     }
 
+    /*Agregar carta al mazo*/
     public void addCard(Card c){
         this.cards.add(c);
     }

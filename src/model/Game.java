@@ -1,27 +1,38 @@
 package model;
 
-import com.thoughtworks.xstream.XStream;
-import controller.events.*;
 
-import java.util.*;
+import controller.events.CardsSelection;
+import controller.events.ConfrontationEvent;
+import controller.events.DeadHeatRound;
+import controller.events.ListCards;
+import controller.events.ListDecks;
+import controller.events.ShiftTurn;
+import controller.events.TieBreakCardsSelection;
+import controller.events.WinRound;
 
-/**
- * Created by Guillermo on 25/2/2016.
- */
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Vector;
+
+/*Esta clase reprensenta una partida del juego*/
 public class Game extends Observable {
 
     private static final int CARDS_LIMIT = 0;
     private static final int CANT_MIN_PLAYERS = 2;
     private static final int RIFFLE_TIMES = 100;
 
-    private XStream xstream;
     private LinkedList<Player> turns;
     private MainDeck deck;
     private List<Player> players = new Vector<>();
     private Player winner;
     private List<Player> deadHeatList = new Vector<>();
     private List<Player> losers = new ArrayList<>();
-    private List<MainDeck> decks;
+    private ArrayList<MainDeck> decks;
     private Hashtable<String, Card> cards;
     private Confrontation confrontation;
     private Player currentPlayer;
@@ -30,23 +41,14 @@ public class Game extends Observable {
     private Hashtable<String, AbstractCharacter> all;
     private Hashtable<String, Character> characters;
     private LinkedHashMap<String, League> leagues;
-    private List<String> attributes;
+    private ArrayList<String> attributes;
 
 
     private String currentAttribute;
     private DeckPlayer currentAccumulatorDeck = new DeckPlayer();
 
-    //serializador de datos
+
     private DataAccessObject daoXML = DataAccessObjectXML.getInstance();
-
-    public List<Player> getPlayers() {
-        return this.players;
-    }
-
-    public Player getCurrentPalyer(){ //Devuelve el poseedor actual del turno
-        return this.currentPlayer;
-    }
-
 
     public Game() {
 
@@ -73,25 +75,12 @@ public class Game extends Observable {
 
     }
 
-
-    public void createDeck(List<Card> cards, String name,Map<String,Boolean> attributes) {
-        MainDeck newDeck = new MainDeck(name);
-        for (model.Card c : cards) {
-            newDeck.addCard(c);
-        }
-        for (String p : attributes.keySet()) {
-            newDeck.addAttribute(p, attributes.get(p));
-        }
-        this.decks.add(newDeck);
+    /*Obtener los jugadores de la partida*/
+    public List<Player> getPlayers() {
+        return this.players;
     }
 
-    public void createLeague(String leagueName, List<AbstractCharacter> characters) {
-        League newLeague = new League(leagueName);
-        newLeague.setCharacters(characters);
-        this.leagues.put(leagueName, newLeague);
-        this.all.put(leagueName, newLeague);
-    }
-
+    /*Chequear el estado actual de los jugadores para determinar si alguno perdio*/
     private void checkPlayers() {
         for (int i = 0; i < this.turns.size(); i++) {
             if (this.turns.get(i).numberCards() == Game.CARDS_LIMIT) {
@@ -110,48 +99,31 @@ public class Game extends Observable {
         }
     }
 
-    /**
-     * Devuelve el jugador con el turno actual.
-     *
-     * @return
-     */
+    /*Elige el proximo jugador poseedor del turno*/
     public Player selectCurrentPlayer() {
         Player  p = this.turns.removeFirst();
         this.turns.addLast(p);
         return p;
     }
 
+    /*Obtener el ganador de una confrontacion*/
     public Player getRoundWinner(List<Player> gamePlayers, String attrib) {
         this.handleConfrontationEvent(gamePlayers);
         return this.confrontation.getWinnerRound(gamePlayers, this.deadHeatList, attrib,this.deck.getComparisonType(attrib));             /********/
     }
 
+    /*Obtener la lista de empatados*/
     public List<Player> getDeadHeadList() {
         return this.deadHeatList;
     }
 
+    /*Obtener lista de perdedores*/
     public List<Player> getLosers() {
         return this.losers;
     }
 
-    private void tieBreakRound(String attrib) {
-        /*Cada jugador empatado saca una carta*/
-        List<Player> copiedDeadHeat = new Vector<>();
-        for(Player p : this.deadHeatList ){
-            p.takeCard();
-            copiedDeadHeat.add(p);
-        }
-        this.handleTieBreakCardsSelection(this.deadHeatList);
 
-        /*OJO CUANDO SE LLAMA CON this.deadHeatList como primer parametro en el desempate hay que hacer una copia de la lista
-        ya que la funcion la modifica*/
-
-        this.winner = this.getRoundWinner(copiedDeadHeat, attrib);
-    }
-
-    /**
-     * Métodos de eventos.
-     */
+    /**EVENTOS PARA LA INTERFAZ**/
     private void handleDeckList(List<Deck> decks) {
         setChanged();
         this.notifyObservers(new ListDecks(decks));
@@ -162,7 +134,7 @@ public class Game extends Observable {
         this.notifyObservers(new ListCards(cards));
     }
 
-
+    /**/
     private void handleShiftTurn(Player currentPlayer) {
         setChanged();
         this.notifyObservers(new ShiftTurn(currentPlayer));// me devuelve el jugador con el atributo que selecciono en la VISTA...metodos: elegirAtributo() y obtenerAtributo(),
@@ -192,23 +164,26 @@ public class Game extends Observable {
         setChanged();
         this.notifyObservers(new ConfrontationEvent(players));
     }
+    /**FIN DE EVENTOS**/
 
-    /**
-     * Recepción de eventos
-     */
 
-    public void receiveSelectedAttribute(String attr) {
-        this.currentAttribute = attr;
+        /*Realizar el desempate*/
+    private void tieBreakRound(String attrib) {
+        /*Cada jugador empatado saca una carta*/
+        List<Player> copiedDeadHeat = new Vector<>();
+        for(Player p : this.deadHeatList ){
+            p.takeCard();
+            copiedDeadHeat.add(p);
+        }
+        this.handleTieBreakCardsSelection(this.deadHeatList);
+
+        /*OJO CUANDO SE LLAMA CON this.deadHeatList como primer parametro en el desempate hay que hacer una copia de la lista
+        ya que la funcion la modifica*/
+
+        this.winner = this.getRoundWinner(copiedDeadHeat, attrib);
     }
 
-    public void receiveAccumulatorDeck(DeckPlayer accumulator) {
-        this.currentAccumulatorDeck = accumulator;
-    }
-
-    /**
-     * Método de comienzo de partida.
-     */
-
+    /*Logica para el desempate de una ronda*/
     public void tieBreak(){
         //Desempatar
         while (this.winner == null) {
@@ -263,6 +238,7 @@ public class Game extends Observable {
         }
     }
 
+    /*Realizar siguiente ronda del juego*/
     public void nextRound() {
 
        if (this.turns.size() >= Game.CANT_MIN_PLAYERS) {
@@ -320,37 +296,66 @@ public class Game extends Observable {
            System.out.println("EL GANADOR DEL JUEGO ES: " + this.gameWinner.getName());
     }
 
+    /*Obtener las cartas*/
     public List<Card> getCards() {
         return new Vector<Card>(this.cards.values());
     }
 
+    /*Obtener los mazos*/
     public List<MainDeck> getDecks() {
         return this.decks;
     }
 
+    /*Obtener los atributos*/
     public List<String> getAttributes(){
         return this.attributes;
     }
 
+    /*Obtener los Personajes y las Ligas*/
     public List<AbstractCharacter> getCharacters() {
         return new ArrayList<AbstractCharacter>(this.all.values());
     }
 
+    /*Obtener solo los Personajes*/
     public List<Character> getOnlyCharacters() {
         return new ArrayList<>(this.characters.values());
     }
 
+    /*Agregar un jugador*/
     public void addPlayer(Player player) {
         this.players.add(player);
         this.turns.add(player);
     }
 
+    /*Crear un nuevo mazo*/
+    public void createDeck(List<Card> cards, String name,Map<String,Boolean> attributes) {
+        MainDeck newDeck = new MainDeck(name);
+        for (model.Card c : cards) {
+            newDeck.addCard(c);
+        }
+        for (String p : attributes.keySet()) {
+            System.out.println(p);
+            newDeck.addAttribute(p, attributes.get(p));
+        }
+        this.decks.add(newDeck);
+    }
+
+    /*Crear una nueva liga*/
+    public void createLeague(String leagueName, List<AbstractCharacter> characters) {
+        League newLeague = new League(leagueName);
+        newLeague.setCharacters(characters);
+        this.leagues.put(leagueName, newLeague);
+        this.all.put(leagueName, newLeague);
+    }
+
+    /*Crear una carta*/
     public void createCard(AbstractCharacter character, List<String> selectedAttributes) {
         Card card = new Card(character);
         card.setAttributes(selectedAttributes);
         this.cards.put(String.valueOf(this.cards.size()), card);
     }
 
+    /*Crear un Personaje*/
     public void createCharacter(String characterName, String realName, Map<String, Double> selectedAttributes) {
         Character character = new Character(characterName, realName);
         character.setAttributes(selectedAttributes);
@@ -359,7 +364,7 @@ public class Game extends Observable {
         this.all.put(String.valueOf(character.getId()),character);
     }
 
-
+    /*Crear los jugadores del juego*/
     public void createPlayers(List<String> playerNames, List<Strategy> strategies, MainDeck deck) {
         this.players.clear();
         this.turns.clear();

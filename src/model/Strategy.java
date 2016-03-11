@@ -1,13 +1,9 @@
 package model;
 
-/**
- * Created by Guillermo on 25/2/2016.
- */
-
-import java.util.Map;
-
+/*Interfaz para las estrategias de selección de atributos de los jugadores*/
 public interface Strategy {
 
-    public String getAttribute(Card c);
+    /*Obtener el atributo seleccionado por la estrategia*/
+    String getAttribute(Card c);
 
 }

@@ -2,24 +2,31 @@ package model;
 
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.ArrayList;
 
-/**
- * Created by Gandalf on 26/2/2016.
- */
+/*Interfaz del DAO*/
 public interface DataAccessObject {
+    /*Obtener Atributos*/
+    ArrayList<String> getAttributes();
 
-    /**Cargar**/
-    public Hashtable<String, Card> getCards();
-    public List<MainDeck> getDecks();
-    public List<String> getAttributes();
-    public Hashtable<String,Character> getCharacters();
-    public LinkedHashMap<String,League> getLeagues();
-    public Hashtable<String,AbstractCharacter> getAll();
+    /*Obttener Personajes*/
+    Hashtable<String,Character> getCharacters();
+
+    /*Obtener Ligas*/
+    LinkedHashMap<String,League> getLeagues();
+
+    /*Obtener Personajes y Ligas*/
+    Hashtable<String,AbstractCharacter> getAll();
+
+    /*Obtener Cartas*/
+    Hashtable<String, Card> getCards();
+
+    /*Obtener Mazos*/
+    ArrayList<MainDeck> getDecks();
 
 
-    /**Guardar**/
-    public void saveData(Hashtable<String, Character> characters,LinkedHashMap<String, League> leagues, List<String> attributes, List<MainDeck> decks, Hashtable<String, Card> cards);
+    /*Guardar todos los datos (cartas, personajes, atributos, mazos, ligas)*/
+    void saveData(Hashtable<String, Character> characters,LinkedHashMap<String, League> leagues, ArrayList<String> attributes, ArrayList<MainDeck> decks, Hashtable<String, Card> cards);
 
 
 

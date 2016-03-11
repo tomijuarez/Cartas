@@ -2,13 +2,7 @@ package model;
 
 import controller.GameController;
 
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
-
-/**
- * Created by Gandalf on 21/2/2016.
- */
+/*Implementacion de la estrategia manual que interactua con la interfaz de usuario*/
 public class ManualStrategy implements Strategy {
 
     GameController controller;

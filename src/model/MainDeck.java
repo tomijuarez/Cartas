@@ -3,9 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Guillermo on 25/2/2016.
- */
+/*Clase para representar el mazo principal del juego*/
 public class MainDeck extends Deck{
     protected String name;
 
@@ -13,6 +11,7 @@ public class MainDeck extends Deck{
         this.setName(name);
     }
 
+    /*Repartir el mazo en mazos mas pequeños para los jugadores*/
     public List<DeckPlayer> share(int numbersPlayers){
 
         List<DeckPlayer> decks = new ArrayList<>();
@@ -41,10 +40,12 @@ public class MainDeck extends Deck{
 
     }
 
+    /*Obtener nombre del mazo*/
     public String getName() {
         return this.name;
     }
 
+    /*Setear nombre del mazo*/
     public void setName(String name) {
         this.name = name;
     }

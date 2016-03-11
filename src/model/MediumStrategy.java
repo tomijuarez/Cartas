@@ -1,9 +1,9 @@
 package model;
 
 import java.util.List;
-/**
- * Created by Gandalf on 21/2/2016.
- */
+
+/*Implementacion de una estrategia de nivel Medio*/
+
 public class MediumStrategy implements Strategy {
 
     @Override
@@ -11,23 +11,18 @@ public class MediumStrategy implements Strategy {
 
         System.out.println("MEDIO");
 
-        String nameAttribLess = "";
         Double valueLess = 10000.0;
         List<String> attributes = c.getAttributes();
 
         for(String attrib: attributes){
             if(c.getAttribute(attrib) < valueLess){
-                nameAttribLess = attrib;
                 valueLess = c.getAttribute(attrib) ;
             }
         }
 
-
-        String nameAttribMore = "";
         Double valueMore = 0.0;
         for(String attrib: attributes){
             if(c.getAttribute(attrib) > valueMore){
-                nameAttribLess = attrib;
                 valueMore = c.getAttribute(attrib) ;
             }
         }

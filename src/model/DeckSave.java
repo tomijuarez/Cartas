@@ -3,9 +3,7 @@ package model;
 import java.util.Hashtable;
 import java.util.List;
 
-/**
- * Created by Guillermo on 25/2/2016.
- */
+/*Clase para almacenar le informacion de los mazos al ser guardados*/
 public class DeckSave {
 
     private String name;
@@ -18,32 +16,27 @@ public class DeckSave {
         this.name = n;
     }
 
+    /*Obtener el nombre del mazo*/
     public String getName() {
         return this.name;
     }
 
+    /*Setear el nombre del mazo*/
     public void setName(String name) {
         this.name = name;
     }
 
+    /*Obtener ids de las cartas que pertenecen al mazo*/
     public List<String> getIds() {
-        List<String> id = this.ids;
-        return id;
+        return this.ids;
     }
 
-    public void setIds(List<String> ids) {
-        this.ids = ids;
-    }
-
+    /*Obtener los atributos y la forma de comparacion*/
     public Hashtable<String, Boolean> getAttributes() {
-        Hashtable<String, Boolean> a = this.attributes;
-        return a;
+        return this.attributes;
     }
 
-    public void addAttribute(String name ,boolean compareType){
-        this.attributes.put(name, new Boolean(compareType) );
-    }
-
+    /*Setear los atributos y la forma de comparacion*/
     public void setAttributes(Hashtable<String, Boolean> attributes) {
         this.attributes = attributes;
     }

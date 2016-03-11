@@ -1,15 +1,9 @@
 package model;
 
 import java.util.List;
-import java.util.ArrayList;
 
-/**
- * Created by Guillermo on 25/2/2016.
- */
+/*Clase para realizar la confrontación entre las cartas de los jugadores*/
 public class HeroesConfrontation implements Confrontation{
-
-    private List<Player> tiePlayers;
-
 
     @Override
     public Player getWinnerRound(List<Player> players, List<Player> deadHeadList, String attrib, Boolean typeConfrontation) {
@@ -18,7 +12,7 @@ public class HeroesConfrontation implements Confrontation{
         for (Player j : players) {
             if(localWinner == null){
                 localWinner = j;
-            }else if(typeConfrontation.booleanValue()){
+            }else if(typeConfrontation){
                 if(localWinner.getAttribute(attrib) < j.getAttribute(attrib)) // Por Mayor typeConfrontation = true
                     localWinner = j;
             }else{

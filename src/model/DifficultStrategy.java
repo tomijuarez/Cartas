@@ -1,11 +1,8 @@
 package model;
 
 import java.util.List;
-import java.util.Map;
 
-/**
- * Created by Gandalf on 21/2/2016.
- */
+/*Implementacion de una estrategia de nivel Dificil*/
 public class DifficultStrategy implements Strategy {
 
     @Override

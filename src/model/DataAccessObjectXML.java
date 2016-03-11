@@ -6,11 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.converters.basic.StringBufferConverter;
-import model.XMLDataParser;
-/**
- * Created by Gandalf on 26/2/2016.
- */
+
+/*Implementacion del DAO usando XStream*/
 public class DataAccessObjectXML implements DataAccessObject{
 
     private static DataAccessObjectXML _instance = null;
@@ -46,8 +43,8 @@ public class DataAccessObjectXML implements DataAccessObject{
         Hashtable<String, Character> characters = new Hashtable<>();
 
 
-        for(int i=1; i <= this.dpFile.numberFiles(this.CHARACTER_PATH) ; i++){
-            Character aux = (Character) this.dpFile.getData(this.CHARACTER_PATH,String.valueOf(i));
+        for(int i=1; i <= this.dpFile.numberFiles(DataAccessObjectXML.CHARACTER_PATH) ; i++){
+            Character aux = (Character) this.dpFile.getData(DataAccessObjectXML.CHARACTER_PATH,String.valueOf(i));
             if(aux != null) {
                 this.charactersCount++;
                 aux.setId(i);
@@ -65,8 +62,8 @@ public class DataAccessObjectXML implements DataAccessObject{
     public LinkedHashMap<String, League> getLeagues() {
         LinkedHashMap<String, League> leagues = new LinkedHashMap<>();
         if(this.charactersLoaded){
-            for(int i=1; i <= this.dpFile.numberFiles(this.LEAGUES_PATH) ; i++) {
-                LeagueSave aux = (LeagueSave) this.dpFile.getData(this.LEAGUES_PATH, String.valueOf(i));
+            for(int i=1; i <= this.dpFile.numberFiles(DataAccessObjectXML.LEAGUES_PATH) ; i++) {
+                LeagueSave aux = (LeagueSave) this.dpFile.getData(DataAccessObjectXML.LEAGUES_PATH, String.valueOf(i));
                 if (aux != null) {
                     League newLeague = new League(aux.getFictitiousName());
                     for(String s : aux.getIdCharacters()){
@@ -102,8 +99,8 @@ public class DataAccessObjectXML implements DataAccessObject{
 
         Hashtable<String, Card> cards = new Hashtable<>();
 
-        for(int i=1; i <= this.dpFile.numberFiles(this.CARDS_PATH) ; i++){
-            CardSave auxCard = (CardSave) this.dpFile.getData(this.CARDS_PATH, String.valueOf(i));
+        for(int i=1; i <= this.dpFile.numberFiles(DataAccessObjectXML.CARDS_PATH) ; i++){
+            CardSave auxCard = (CardSave) this.dpFile.getData(DataAccessObjectXML.CARDS_PATH, String.valueOf(i));
             if(auxCard != null) {
                 AbstractCharacter aux = this.all.get(auxCard.getIdCharacter());
                 Card newCard = new Card(aux);
@@ -119,28 +116,24 @@ public class DataAccessObjectXML implements DataAccessObject{
     }
 
     @Override
-    public List<MainDeck> getDecks() {
+    public ArrayList<MainDeck> getDecks() {
         if(this.cardsLoaded) {
-            List<MainDeck> decks = new ArrayList<>();
+            ArrayList<MainDeck> decks = new ArrayList<>();
 
             /**Cargado de Mazos**/
-            Object obj = this.dpFile.getData(this.DECKS_PATH, "deckNames");
+            Object obj = this.dpFile.getData(DataAccessObjectXML.DECKS_PATH, "deckNames");
 
             if (obj != null) {
                 List<String> list = (List<String>) obj;
 
                 for (String n : list) {
-                    DeckSave auxDeck = (DeckSave) this.dpFile.getData(this.DECKS_PATH, n);
-                    if (obj != null) {
-                        MainDeck newDeck = new MainDeck(auxDeck.getName());
-                        for (String id : auxDeck.getIds()) {
-                            newDeck.addCard(cards.get(id));
-                        }
-                        newDeck.setAttribute(auxDeck.getAttributes());
-                        decks.add(newDeck);
-
+                    DeckSave auxDeck = (DeckSave) this.dpFile.getData(DataAccessObjectXML.DECKS_PATH, n);
+                    MainDeck newDeck = new MainDeck(auxDeck.getName());
+                    for (String id : auxDeck.getIds()) {
+                        newDeck.addCard(cards.get(id));
                     }
-
+                    newDeck.setAttribute(auxDeck.getAttributes());
+                    decks.add(newDeck);
                 }
             }
             return decks;
@@ -151,13 +144,13 @@ public class DataAccessObjectXML implements DataAccessObject{
     }
 
     @Override
-    public List<String> getAttributes() {
-        return (List)this.dpFile.getData(this.ATTRIBUTES_PATH,this.NAME_FILE_ATTRIBUTTES);
+    public ArrayList<String> getAttributes() {
+        return (ArrayList)this.dpFile.getData(DataAccessObjectXML.ATTRIBUTES_PATH,DataAccessObjectXML.NAME_FILE_ATTRIBUTTES);
     }
 
 
     @Override
-    public void saveData(Hashtable<String, Character> characters, LinkedHashMap<String, League> leagues, List<String> attributes, List<MainDeck> decks, Hashtable<String, Card> cards) {
+    public void saveData(Hashtable<String, Character> characters, LinkedHashMap<String, League> leagues, ArrayList<String> attributes, ArrayList<MainDeck> decks, Hashtable<String, Card> cards) {
         charactersCount = 0;
         saveAttributes(attributes);
         saveCharacters(characters);
@@ -167,9 +160,9 @@ public class DataAccessObjectXML implements DataAccessObject{
 
     }
 
-    private void saveAttributes(List<String> attributes) {
+    private void saveAttributes(ArrayList<String> attributes) {
         /**Guardar Lista de atributos**/
-        this.dpFile.saveData(this.ATTRIBUTES_PATH,this.NAME_FILE_ATTRIBUTTES,attributes);
+        this.dpFile.saveData(DataAccessObjectXML.ATTRIBUTES_PATH,DataAccessObjectXML.NAME_FILE_ATTRIBUTTES,attributes);
     }
 
     private void saveCharacters(Hashtable<String, Character> characters) {
@@ -178,7 +171,7 @@ public class DataAccessObjectXML implements DataAccessObject{
         int id = 1;
         for(Character character : characters.values()){
             character.setId(id);
-            this.dpFile.saveData(this.CHARACTER_PATH,String.valueOf(id),character);
+            this.dpFile.saveData(DataAccessObjectXML.CHARACTER_PATH,String.valueOf(id),character);
             charactersCount++;
             id++;
         }
@@ -187,13 +180,13 @@ public class DataAccessObjectXML implements DataAccessObject{
     private void saveLeagues(LinkedHashMap<String, League> leagues){
         int id = 1;
         for(League league : leagues.values()){
-            List<String> characters = new ArrayList<String>();
+            List<String> characters = new ArrayList<>();
             for(AbstractCharacter c : league.getCharacters()){
                 characters.add(String.valueOf(c.getId()));
             }
             league.setId(charactersCount+id);
             LeagueSave leagueSave = new LeagueSave(league.getFictitiousName(),characters);
-            this.dpFile.saveData(this.LEAGUES_PATH,String.valueOf(id),leagueSave);
+            this.dpFile.saveData(DataAccessObjectXML.LEAGUES_PATH,String.valueOf(id),leagueSave);
             id++;
         }
     }
@@ -204,7 +197,7 @@ public class DataAccessObjectXML implements DataAccessObject{
             Card m = cards.get(String.valueOf(i));
             m.setId(i);
             CardSave cSave = new CardSave(m.getAttributes(),String.valueOf(m.getCharacter().getId()));
-            this.dpFile.saveData(this.CARDS_PATH, String.valueOf(i),cSave);
+            this.dpFile.saveData(DataAccessObjectXML.CARDS_PATH, String.valueOf(i),cSave);
         }
     }
 
@@ -213,15 +206,15 @@ public class DataAccessObjectXML implements DataAccessObject{
         List<String> names = new ArrayList<>();
         for (MainDeck m : decks) {
             names.add(m.getName());
-            this.dpFile.saveData(this.DECKS_PATH, m.getName(), new DeckSave(m.getName(), this.getIds(m), m.getAtrib()));
+            this.dpFile.saveData(DataAccessObjectXML.DECKS_PATH, m.getName(), new DeckSave(m.getName(), this.getIds(m), m.getAtrib()));
         }
 
         /**Guardo listado de nombre de mazos**/
-        this.dpFile.saveData(this.DECKS_PATH, "deckNames", names);
+        this.dpFile.saveData(DataAccessObjectXML.DECKS_PATH, "deckNames", names);
     }
 
     private List<String> getIds(Deck m) {
-        List<String> ids = new ArrayList<String>();
+        List<String> ids = new ArrayList<>();
         List<Card> cards = m.getCards();
 
         for (Card c : cards) {

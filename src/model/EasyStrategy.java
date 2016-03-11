@@ -2,9 +2,8 @@ package model;
 
 import java.util.List;
 
-/**
- * Created by Gandalf on 21/2/2016.
- */
+/*Implementacion de una estrategia de nivel Facil*/
+
 public class EasyStrategy implements Strategy {
 
     @Override

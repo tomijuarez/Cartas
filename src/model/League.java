@@ -2,13 +2,10 @@ package model;
 
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Vector;
 
-/**
- * Created by Guillermo on 25/2/2016.
- */
+/*Clase para representar a las Ligas*/
 public class League extends AbstractCharacter {
 
 
@@ -16,18 +13,21 @@ public class League extends AbstractCharacter {
 
     public League(String name) {
         super.setFictitiousName(name);
-        this.characters = new Vector<AbstractCharacter>();
-
+        this.characters = new Vector<>();
     }
 
+    /*Setear los personajes que componen la Liga*/
     public void setCharacters(List<AbstractCharacter> characters) {
-        this.characters = characters;
+        for(AbstractCharacter ac :characters)
+            this.characters.add(ac);
     }
 
+    /*Obtener los Personajes/Ligas que componen la Liga*/
     public List<AbstractCharacter> getCharacters(){
-        return this.characters;
+        return new ArrayList<>(this.characters);
     }
 
+    /*Agregar un Personaje/Liga a la Liga*/
     public void addCharacter(AbstractCharacter a){
         if (!this.characters.contains(a)){
             this.characters.add(a);
