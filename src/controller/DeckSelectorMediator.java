@@ -2,7 +2,7 @@ package controller;
 
 import javafx.scene.control.TextField;
 import model.Player;
-import model.Deck;
+import model.MainDeck;
 
 import javax.xml.soap.Text;
 import java.util.List;
@@ -33,7 +33,7 @@ public class DeckSelectorMediator implements Mediator {
 
     }
 
-    public void setDeck(Deck deck) {
+    public void setDeck(MainDeck deck) {
         this.parentController.setGameDeck(deck);
     }
 }
