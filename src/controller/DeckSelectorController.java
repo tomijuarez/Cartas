@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.shape.Rectangle;
-import model.Deck;
+import model.MainDeck;
 import view.model.DeckView;
 
 import java.net.URL;
@@ -33,7 +33,7 @@ public class DeckSelectorController extends MediableController implements Initia
 
     private List<String> selectedAttributes;
 
-    private List<Deck> decks;
+    private List<MainDeck> decks;
 
     private DeckSelectorMediator mediator;
     private DeckView selectedDeck;
@@ -41,13 +41,13 @@ public class DeckSelectorController extends MediableController implements Initia
 
     private AlertUtils alertUtils = new AlertUtils();
 
-    public DeckSelectorController(List<Deck> decks) {
+    public DeckSelectorController(List<MainDeck> decks) {
         this.decks = decks;
     }
 
     private List<DeckView> getDeckViews() {
         List<DeckView> decksView = new Vector<>();
-        for (Deck deck: this.decks) {
+        for (MainDeck deck: this.decks) {
             decksView.add(new DeckView(deck));
         }
         return decksView;
