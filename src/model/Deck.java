@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Random;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -19,11 +19,16 @@ public class Deck {
     }
 
     public void riffle(int n){
-		/*abarajo n veces*/
-        for(int i=0; i < n; i++){
-            int posS = (int)Math.random()*100;
-            int posP = (int)Math.random()*100;
-            this.cards.add(posP, this.cards.remove(posS));
+
+        if(this.cards.size() > 0) {
+            Random random = new Random();
+            for (int i = 0; i < n; i++) {
+                int posS = random.nextInt(this.cards.size());
+                int posP = random.nextInt(this.cards.size());
+                this.cards.add(posP, this.cards.remove(posS));
+            }
+        }else{
+            System.out.println("No se puede mezclar un mazo sin cartas");
         }
     }
 
