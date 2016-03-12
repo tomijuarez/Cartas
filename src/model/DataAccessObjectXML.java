@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.io.File;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -152,12 +153,30 @@ public class DataAccessObjectXML implements DataAccessObject{
     @Override
     public void saveData(Hashtable<String, Character> characters, LinkedHashMap<String, League> leagues, ArrayList<String> attributes, ArrayList<MainDeck> decks, Hashtable<String, Card> cards) {
         charactersCount = 0;
+        /*Limpiar Directorios*/
+        this.cleanDirectory(new File(DataAccessObjectXML.CARDS_PATH));
+        this.cleanDirectory(new File(DataAccessObjectXML.CHARACTER_PATH));
+        this.cleanDirectory(new File(DataAccessObjectXML.DECKS_PATH));
+        this.cleanDirectory(new File(DataAccessObjectXML.LEAGUES_PATH));
         saveAttributes(attributes);
         saveCharacters(characters);
         saveLeagues(leagues);
         saveCards(cards);
         saveDecks(decks);
 
+    }
+
+    private void cleanDirectory(File directory){
+        File[] files = directory.listFiles();
+        if(files!=null){
+            for(File f: files) {
+                if(f.isDirectory()) {
+                    cleanDirectory(f);
+                } else {
+                    f.delete();
+                }
+            }
+        }
     }
 
     private void saveAttributes(ArrayList<String> attributes) {

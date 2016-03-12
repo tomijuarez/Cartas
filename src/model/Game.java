@@ -63,16 +63,19 @@ public class Game extends Observable {
         this.attributes = this.daoXML.getAttributes();
         this.confrontation = new Confrontation();
 
-        for(League l : this.leagues.values()){
-            System.out.print(l.getFictitiousName() + "\n");
-            for(AbstractCharacter c : l.getCharacters()){
-                System.out.print(c.getFictitiousName() + "\n");
-            }
-        }
+        //for(League l : this.leagues.values()){
+        //    System.out.print(l.getFictitiousName() + "\n");
+        //    for(AbstractCharacter c : l.getCharacters()){
+        //        System.out.print(c.getFictitiousName() + "\n");
+        //    }
+        //}
 
-        /**Guardar Datos**/
-      this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
+        //this.saveData();
+    }
 
+    /*Guardar los datos*/
+    public void saveData(){
+        this.daoXML.saveData(this.characters,this.leagues,this.attributes,this.decks,this.cards);
     }
 
     /*Obtener los jugadores de la partida*/
